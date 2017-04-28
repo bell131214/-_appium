@@ -1,6 +1,7 @@
 log/
 result/
 config/
+.idea/
 *.pyc
 *.log
 *.html
