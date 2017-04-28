@@ -1,0 +1,6 @@
+log/
+result/
+config/
+*.pyc
+*.log
+*.html
