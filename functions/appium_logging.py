@@ -1,16 +1,23 @@
 #coding:utf-8
-import logging
+import logging,os
 from datetime import  datetime
+
 import os
 # print os.getcwd()
 
 class AppLog():
 
-    def __init__(self):
-        time=datetime.now().strftime("%Y_%m_%d %H-%M-%S")
-        path="E:\\quark_work\\log"
-        log_name=path+"\\appium "+time+".log"
-        #print log_name
+    def __init__(self,project_path):
+        now=datetime.now().strftime("%Y_%m_%d %H-%M-%S")
+        # project_path="D:\\quarkscript\\UFO_appium"
+
+        day=datetime.now().strftime("%Y_%m_%d")
+        log_path=project_path+"\\log\\"+day+"\\"
+
+
+        if os.path.exists(log_path)!=True:
+            os.mkdir(log_path)
+        log_name=log_path+"appium "+now+".log"
 
         self.logger=logging.Logger('appium_logger')
 
@@ -33,13 +40,10 @@ class AppLog():
         self.logger.addHandler(fh1)
         self.logger.addHandler(fh2)
 
+if __name__=='__main__':
+    log=AppLog('')
 
 
 
 
 
-
-
-
-if __name__ == '__main__':
-    log=AppLog()

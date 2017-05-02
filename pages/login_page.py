@@ -1,7 +1,6 @@
 #coding=utf-8
 
 import time
-
 from selenium.webdriver.common.by import By
 
 from functions.BasePage import BasePage
@@ -14,20 +13,20 @@ class Login_Test(BasePage):
 #new  PO  return element
     @property
     def el_my_btn(self):
-        return self.new_find_element(By.NAME,u'我的')
+        return self.base_find_element(By.NAME,u'我的')
 
     @property
     def el_phone_text_input(self):
-        return self.new_find_element(By.ID,"com.quarkfinance.ufo:id/edit_name")
+        return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/edit_name")
 
 
     @property
     def el_pwd_text_input(self):
-        return self.new_find_element(By.ID,"com.quarkfinance.ufo:id/edit_password")
+        return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/edit_password")
 
     @property
     def el_login_btn(self):
-        return  self.new_find_element(By.ID,"com.quarkfinance.ufo:id/tv_login")
+        return  self.base_find_element(By.ID,"com.quarkfinance.ufo:id/tv_login")
 
 
     def logic_login(self,phone,pwd):
@@ -35,8 +34,10 @@ class Login_Test(BasePage):
         self.el_phone_text_input.send_keys(phone)
         self.el_pwd_text_input.send_keys(pwd)
         self.el_login_btn.click()
-        time.sleep(2)
+        time.sleep(3)
         return MyPage(self.driver)
+
+
 
 #old  PO
     #定位首页【我的】
@@ -85,6 +86,7 @@ class Login_Test(BasePage):
          time.sleep(3)
          self.click_login()
          return MyPage(self.driver)
+
 
     def page_swipe(self):
         time.sleep(2)

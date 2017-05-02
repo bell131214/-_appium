@@ -10,7 +10,7 @@ class exec_sutiecase():
 
     def __init__(self):
         # path = Initialization()
-        self.result = appium_init.inital.get_project_path() + "\\result\\"
+        self.result = appium_init.inital.project_path + "\\result\\"
         # 获取系统当前时间
         self.now = time.strftime('%Y-%m-%d-%H_%M_%S', time.localtime(time.time()))
         self.day = time.strftime('%Y-%m-%d', time.localtime(time.time()))

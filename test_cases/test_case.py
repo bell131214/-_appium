@@ -16,6 +16,10 @@ class LoginTest(InterfaceCase):
         self.driver = self.inital.get_driver()
         self.logger=self.inital.logger
 
+    def test_add(self):
+        self.assertEqual(self.inital.project_path,'D:\\quarkscript\\UFO_appium')
+
+
     def test_new_PO_test(self):
         try:
             username = '18048444414'
@@ -24,10 +28,12 @@ class LoginTest(InterfaceCase):
 
             login=Login_Test(self.driver)
             login.page_swipe()
+            self.assertEqual(1, 1)
             login.logic_login(username,password)
-            assert (1==1)
+
+            # assert (1==1)
         except Exception,e:
-            self.driver.quit()
+            # self.driver.quit()
             self.logger.info(e)
             raise e
 

@@ -15,28 +15,32 @@ class Initialization():
 
     def __init__(self):
         self.config=Config()
-        path_list=os.getcwd().split('\\')
-        self.config_path="E:\\quark_work\\config\\appium_config.ini"
+        self.config_path="D:\\quarkscript\\UFO_appium\\config\\appium_config.ini"
 
+        #读取配置文件中desired_caps信息，作为initial的属性保存
+        self.desired_caps=self.config.get_config(
+            'desired_caps', self.config_path)
 
+        #读取配置文件中project_path信息，作为initial的属性保存
+        self.project_path=self.desired_caps['project_path']
 
-
-        appLog = AppLog()
+        #将常用配置信息，日志类、ADB调用类、手机系统监控类（待扩展）的实例作为属性绑定在inital中，这些常用类避免反复实例化浪费内存影响效率
+        appLog = AppLog(self.project_path)
         self.logger = appLog.logger
-        self.logger.info('Initialization | config_path is %s init is complate!' %
-                         self.config_path)
         self.adbCall = AndroidDebugBridge()
 
-    def get_project_path(self):
-        return self.get_desired_caps()['project_path']
+        self.logger.info('Initialization | config_path is %s init is complate!' %
+                         self.config_path)
 
-    def get_desired_caps(self):
-        desired_caps_config = self.config.get_config(
-            'desired_caps', self.config_path)
-        # print desired_caps_config
-        # self.logger.info('Initialization | loading desired_caps_config')
-        # print desired_caps_config
-        return desired_caps_config
+
+
+    # def get_project_path(self):
+    #     return self.get_desired_caps()['project_path']
+
+    # def get_desired_caps(self):
+    #     desired_caps_config = self.config.get_config(
+    #         'desired_caps', self.config_path)
+    #     return desired_caps_config
 
     # @staticmethod
     def get_cases_info(self, case_ini):
@@ -55,21 +59,21 @@ class Initialization():
         """
         # 通过adb判断设备是否启动
         if self.adbCall.attached_devices():
-            desired_caps_config = self.get_desired_caps()
+            # desired_caps_config = self.get_desired_caps()
             desired_caps = {}
-            desired_caps['platformName'] = desired_caps_config['platformname']
-            desired_caps['platformVersion'] = desired_caps_config[
+            desired_caps['platformName'] = self.desired_caps['platformname']
+            desired_caps['platformVersion'] = self.desired_caps[
                 'platformversion']
-            desired_caps['deviceName'] = desired_caps_config['devicename']
-            desired_caps['appPackage'] = desired_caps_config['apppackage']
-            desired_caps['appActivity'] = desired_caps_config['appactivity']
+            desired_caps['deviceName'] = self.desired_caps['devicename']
+            desired_caps['appPackage'] = self.desired_caps['apppackage']
+            desired_caps['appActivity'] = self.desired_caps['appactivity']
 
             time.sleep(1)
             # driver 实例化前，调用adb命令卸载和重新安装应用,保证每次测试用例执行的环境都是干净的
             self.adbCall.call_adb('uninstall ' + desired_caps['appPackage'])
             time.sleep(1)
             self.adbCall.call_adb(
-                'install ' + desired_caps_config['project_path'] + "\\app\\" + desired_caps_config['app_name'])
+                'install ' + self.project_path + "\\app\\" + self.desired_caps['app_name'])
             time.sleep(1)
             # print desired_caps.items()
             driver = webdriver.Remote(
@@ -88,4 +92,4 @@ class Init():
 if __name__ == '__main__':
     if isinstance(appium_init.inital,Initialization)!=True:
         Init()
-    print appium_init.inital.get_project_path()
+    print appium_init.inital.desired_caps

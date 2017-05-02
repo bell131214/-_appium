@@ -18,6 +18,7 @@ class Config():
 
 
 
+
 if __name__ == '__main__':
 	config=Config()
 	path="D:\\quarkscript\\auto_appium\\config\\appium_config.ini"
