@@ -16,7 +16,7 @@ class Initialization():
     def __init__(self):
         self.config=Config()
         path_list=os.getcwd().split('\\')
-        self.config_path="D:\\quarkscript\\quarkUFO\\config\\appium_config.ini"
+        self.config_path="E:\\quark_work\\config\\appium_config.ini"
 
 
 

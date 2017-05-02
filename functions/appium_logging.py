@@ -8,7 +8,7 @@ class AppLog():
 
     def __init__(self):
         time=datetime.now().strftime("%Y_%m_%d %H-%M-%S")
-        path="D:\\quarkscript\\quarkUFO\\log"
+        path="E:\\quark_work\\log"
         log_name=path+"\\appium "+time+".log"
         #print log_name
 

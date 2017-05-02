@@ -26,29 +26,20 @@ class BasePage(object):
 
 
 
-	# def find_element(self, *loc):
-	# 	"""
-	# 	定位元素,定位正确后返回元素的信息,外部调用传入元组参数必须有*,
-	# 	例如:
-	# 	find_element(*self.native_caixun)
-	# 	:param loc: 元组类型,结构必须是(By.NAME, u'财讯')
-	# 	:return: element
-	# 	"""
-	# 	try:
-	# 		print loc
-	# 		element = WebDriverWait(self.driver, 30).until(lambda x: x.find_element(*loc))
-	# 		return element
-	# 	except NoSuchElementException, e:
-	# 		print e
-	# 		print ('Error details :%s' % (e.args[0]))
-	# 	#print loc
-	# 	#return  self.driver.find_element(*loc)
-	# 	#try:
-	# 		#WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element(*loc).is_displayed())
-	# 		#return self.driver.find_element(*loc)
-	# 	#except:
-	# 		#print u"%s 页面中未能找到 %s 元素" % (self, loc)
-
+	def find_element(self, *loc):
+	 	"""
+	 	定位元素,定位正确后返回元素的信息,外部调用传入元组参数必须有*,
+	 	例如:
+	 	find_element(*self.native_caixun)
+	 	:param loc: 元组类型,结构必须是(By.NAME, u'财讯')
+	 	:return: element
+	 	"""
+	 	try:
+	 		element = WebDriverWait(self.driver, 30).until(lambda x: x.find_element(*loc))
+	 		return element
+	 	except NoSuchElementException, e:
+	 		#print e
+	 		print ('Error details :%s' % (e.args[0]))
 
 	def find_elements(self, *loc):
 		"""
@@ -207,7 +198,7 @@ class BasePage(object):
 		self.driver.hide_keyboard()
 
 	def press_TouchAction(self):
-		TouchAction(self.driver).press(x=359,y=1074).release().perform()
+		TouchAction(self.driver).press(x=359, y=1074).release().perform()
 
 
 
