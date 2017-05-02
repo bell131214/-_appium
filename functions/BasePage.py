@@ -3,7 +3,7 @@ import time,os
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from appium.webdriver.common.touch_action import TouchAction
-from selenium.webdriver.common.by import  By
+from functions.appium_init import *
 
 class BasePage(object):
 	"""
@@ -14,9 +14,14 @@ class BasePage(object):
 	#	print driver
 		self.driver = driver
 
-	def new_find_element(self,locator,value):
-		return self.driver.find_element(locator,value)
-
+	def base_find_element(self,locator,value):
+		try:
+			return self.driver.find_element(locator,value)
+		except NoSuchElementException,e:
+			if isinstance(appium_init.inital,Initialization)!=True:
+				Init()
+			appium_init.inital.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
+			raise e
 
 
 

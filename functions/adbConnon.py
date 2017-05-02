@@ -89,8 +89,8 @@ class AndroidDebugBridge(object):
 
 if __name__ == '__main__':
     a=AndroidDebugBridge()
-
-    a.call_adb('install '+ '../Data/ufo.apk')
+    # print a.get_app_pid('com.quarkfinance.ufo')
+    # a.call_adb('install '+ '../Data/ufo.apk')
     #a.call_adb( 'uninstall '+' com.quarkfinance.ufo')
-    a.attached_devices()
+    print a.attached_devices()
    # a.get_app_pid('com.quarkfinance.ufo')
