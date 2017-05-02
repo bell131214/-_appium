@@ -26,7 +26,7 @@ class exec_sutiecase():
 
             # 定义测试报告
 
-            runner = HTMLTestRunner(stream=fp, title=u'hele', description=u'用例详情：')
+            runner = HTMLTestRunner(stream=fp, title=u'quark—UFO自动化测试报告', description=u'用例详情：')
 
 
             # 运行测试用例
@@ -37,7 +37,7 @@ class exec_sutiecase():
             filename = self.tdresult + "\\" + self.now + "_result.html"
             fp = file(filename, 'wb')
             # 定义测试报告
-            runner = HTMLTestRunner(stream=fp, title=u'hele', description=u'用例详情：')
+            runner = HTMLTestRunner(stream=fp, title=u'quark—UFO自动化测试报告', description=u'用例详情：')
 
             # 运行测试用例
             runner.run(test_case)

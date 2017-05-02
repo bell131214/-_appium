@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from appium.webdriver.common.touch_action import TouchAction
 from functions.appium_init import *
 
+
 class BasePage(object):
 	"""
 	封装关于Appium中操作元素对象的方法
@@ -13,6 +14,7 @@ class BasePage(object):
 	def __init__(self, driver):
 	#	print driver
 		self.driver = driver
+
 
 	def base_find_element(self,locator,value):
 		try:
@@ -23,43 +25,34 @@ class BasePage(object):
 			appium_init.inital.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
 			raise e
 
-
-
-#old PO
-	def __str__(self):
-		return "APP"
-
-
-
-	def find_element(self, *loc):
-	 	"""
-	 	定位元素,定位正确后返回元素的信息,外部调用传入元组参数必须有*,
-	 	例如:
-	 	find_element(*self.native_caixun)
-	 	:param loc: 元组类型,结构必须是(By.NAME, u'财讯')
-	 	:return: element
-	 	"""
-	 	try:
-	 		element = WebDriverWait(self.driver, 30).until(lambda x: x.find_element(*loc))
-	 		return element
-	 	except NoSuchElementException, e:
-	 		#print e
-	 		print ('Error details :%s' % (e.args[0]))
-
-	def find_elements(self, *loc):
-		"""
-		定位元素,定位正确后返回元素的信息,外部调用传入元组参数必须有*,
-		例如:
-		find_elements(*self.native_caixun)
-
-		:param loc: 元组类型,结构必须是(By.NAME, u'财讯')
-		:return: elements
-		"""
+	def base_find_elements(self,locator,value):
 		try:
-			elements = WebDriverWait(self.driver, 30).until(lambda x: x.find_elements(*loc))
-			return elements
-		except NoSuchElementException, e:
-			print ('Error details :%s' % (e.args[0]))
+			return self.driver.find_element(locator,value)
+		except NoSuchElementException,e:
+			if isinstance(appium_init.inital,Initialization)!=True:
+				Init()
+			appium_init.inital.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
+			raise e
+
+
+		# 重新封装输入方法
+	def send_values(self,element,kvalue,name):
+		try:
+			element.send_keys(kvalue)
+		except AttributeError:
+			self.driver.saveScreenshot(name)
+
+			print "%s 页面未能找到 %s 元素" % (self,)
+
+		# 重新封装按钮点击方法
+	def clickButton(self, loc, find_first=True):
+		try:
+			if find_first:
+				self.find_element(loc)
+			self.find_element(loc).click()
+		except AttributeError:
+
+			print "%s 页面未能找到 %s 按钮" % (self, loc)
 
 	def checkElementIsShown(self, *loc):
 		"""
@@ -203,7 +196,7 @@ class BasePage(object):
 		self.driver.hide_keyboard()
 
 	def press_TouchAction(self):
-		TouchAction(self.driver).press(x=359, y=1074).release().perform()
+		TouchAction(self.driver).press(x=607, y=1629).release().perform()
 
 
 
@@ -217,15 +210,47 @@ class BasePage(object):
 		result = self.driver.wait_activity(activity, timeout)
 		return result
 
-	def send_keys(self, loc, value, clear_first=True, click_first=True):
-		try:
-			if click_first:
-				self.find_element(*loc).click()
-			if clear_first:
-				self.find_element(*loc).clear()
-			self.find_element(*loc).send_keys(value)
-		except AttributeError,WebDriverException:
-			print "%s 页面未能找到 %s 元素" % (self, loc)
+	# savePngName:生成图片的名称
+	def savePngName(self, name):
+			"""
+			name：自定义图片的名称
+			"""
+
+			_path= Initialization()
+			day = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+			fp = _path.project_path+"\\result\\" + day + "\\image\\" + day
+			tm = self.saveTime()
+			type = ".png"
+			if os.path.exists(fp):
+				filename = fp + "\\" + tm + "_" + name + type
+				print filename
+				# print "True"
+				return filename
+			else:
+				os.makedirs(fp)
+				filename = fp + "\\" + tm + "_" + name + type
+				print filename
+				# print "False"
+				return filename
+
+	# 获取系统当前时间
+	def saveTime(self):
+			"""
+			返回当前系统时间以括号中（2014-08-29-15_21_55）展示
+			"""
+			return time.strftime('%Y-%m-%d-%H_%M_%S', time.localtime(time.time()))
+
+	# saveScreenshot:通过图片名称，进行截图保存
+	def saveScreenshot(self, name):
+			"""
+			快照截图
+			name:图片名称
+			"""
+			# 获取当前路径
+			# print os.getcwd()
+			image = self.driver.save_screenshot(self.savePngName(name))
+			return image
+
 
 
 
@@ -237,3 +262,10 @@ class WebUI(BasePage):
 class AppUI(BasePage):
 	def __str__(self):
 		return 'App UI'
+
+
+if __name__ == '__main__':
+	a=Initialization()
+	d=a.get_driver()
+	c=BasePage(d)
+	c.saveScreenshot("test")

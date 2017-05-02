@@ -21,6 +21,7 @@ class LoginTest(InterfaceCase):
 
 
     def test_new_PO_test(self):
+        u"""成功登录"""
         try:
             username = '18048444414'
             password = 'hele5201'
@@ -30,17 +31,13 @@ class LoginTest(InterfaceCase):
             login.page_swipe()
             self.assertEqual(1, 1)
             login.logic_login(username,password)
-
             # assert (1==1)
         except Exception,e:
             # self.driver.quit()
             self.logger.info(e)
-            raise e
 
         # finally:
             # self.driver.quit()
-
-
 
     def tearDown(self):
        #self.devices.close_app()
