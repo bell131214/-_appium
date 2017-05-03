@@ -15,6 +15,8 @@ class AppLog():
         log_path=project_path+"\\log\\"+day+"\\"
 
 
+
+
         if os.path.exists(log_path)!=True:
             os.mkdir(log_path)
         log_name=log_path+"appium "+now+".log"

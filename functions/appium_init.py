@@ -16,11 +16,13 @@ class Initialization():
     def __init__(self):
 
         self.config=Config()
+        self.config_path="D:\\quarkscript\\UFO_appium\\config\\appium_config.ini"
         #读取配置文件中desired_caps信息，作为initial的属性保存
         self.desired_caps=self.config.get_config(
             'desired_caps', self.config_path)
         #读取配置文件中project_path信息，作为initial的属性保存
         self.project_path=self.desired_caps['project_path']
+
         #将常用配置信息，日志类、ADB调用类、手机系统监控类（待扩展）的实例作为属性绑定在inital中，这些常用类避免反复实例化浪费内存影响效率
         appLog = AppLog(self.project_path)
         self.logger = appLog.logger

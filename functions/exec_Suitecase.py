@@ -18,6 +18,9 @@ class exec_sutiecase():
         self.tdresult = self.result + self.day
 
 
+        # appium_init.inital.result_path=self.tdresult
+
+
     def exec_cases(self,test_case):
 
         if os.path.exists(self.tdresult):

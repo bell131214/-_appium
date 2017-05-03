@@ -4,6 +4,7 @@ import  unittest,os,time
 from functions.exec_Suitecase import exec_sutiecase
 from functions.appium_init import *
 from functions.load_case import LoadCase
+from functions.send_mail import SendMail
 # case_path="test_cases"
 # # result = "D:\\CodeWork\\quarkUFO\\result\\"
 #
@@ -29,6 +30,8 @@ if __name__ == '__main__':
     testSuite = LoadCase.get_cases('testcase')
     exec_result=exec_sutiecase()
     exec_result.exec_cases(testSuite)
+    mail = SendMail()
+    mail.send()
 
 
 
