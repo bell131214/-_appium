@@ -18,7 +18,9 @@ def post_mail(report_file):
     yag = yagmail.SMTP(user='89605179@qq.com', password='wtqglbdactrhbhji', host='smtp.qq.com', port='587')
     contents = mail_body
 
-    yag.send(to='89605179@qq.com', subject='2323232', contents=[contents, "E:\quark_work\\result\\2017-05-02\image\\2017-05-02\\2017-05-02-11_13_50_logic_login.png",])
+
+
+    yag.send(to='leHe@quarkfinance.com', subject='2323232', contents=["E:\\quark_work\\result\\2017-05-02\\2017-05-02-11_26_05_result.html"])
 
 
 """
@@ -31,5 +33,5 @@ yag = yagmail.SMTP(
 """
 
 if __name__ == '__main__':
-    a=get_report("E:\\quark_work\\result\\2017-05-02")
+    a=get_report("D:\CodeWork\Auto_Analysis-master\\result\\2017-05-02_17_20_0918")
     post_mail(a)
