@@ -24,7 +24,7 @@ class SendMail(object):
     def post_mail(self,to_mail_list,resultFile,logFile):
 
         mail = yagmail.SMTP(user='276476197@qq.com', password='gujttwszbatpbieh', host='smtp.qq.com', port='587')
-        contents = "UFO_appium test report"
+        contents = self.get_mail_body(resultFile)
         mail.send(to=to_mail_list,subject=u'quark—UFO自动化测试报告',
                   contents=[contents,resultFile,logFile])
 
