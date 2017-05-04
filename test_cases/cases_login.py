@@ -24,7 +24,7 @@ class LoginTest(unittest.TestCase):
            username = '18048444414'
            password = 'hele5201'
            self.logger.info(username+password)
-           d.login_test(username,password)
+           d.logic_login(username,password)
            self.assertEquals(1==1)
            self.logger.info('LoginTest | exec test_Login_def1')
 

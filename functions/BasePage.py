@@ -196,7 +196,13 @@ class BasePage(object):
 		self.driver.hide_keyboard()
 
 	def press_TouchAction(self):
-		TouchAction(self.driver).press(x=607, y=1629).release().perform()
+
+		window_size = self.get_size()
+		width = window_size.get("width")
+		height = window_size.get("height")
+		print width,height
+		print int(width * 0.5),(height*0.9)
+		TouchAction(self.driver).press(x=int(width * 0.5), y=int(height*0.9)).release().perform()
 
 
 
