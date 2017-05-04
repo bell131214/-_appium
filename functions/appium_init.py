@@ -13,10 +13,11 @@ inital=None
 class Initialization():
     """docstring for initialization"""
 
+
     def __init__(self):
 
         self.config=Config()
-        self.config_path="D:\\quarkscript\\UFO_appium\\config\\appium_config.ini"
+        self.config_path="E:\\quark_work\\config\\appium_config.ini"
         #读取配置文件中desired_caps信息，作为initial的属性保存
         self.desired_caps=self.config.get_config(
             'desired_caps', self.config_path)

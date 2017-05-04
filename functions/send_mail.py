@@ -11,6 +11,7 @@ from email.header import Header
 class SendMail(object):
     """docstring for send_mail"""
         #入参测试报告文件路径，查询文件夹，选取最新的文件，返回“文件路径+最新的文件名”
+
     def get_report(self,result_path):
         reportName=sorted(os.listdir(result_path),key=lambda filename:(os.path.getmtime(result_path+"\\"+filename)))[-1]
         return (result_path+'\\'+reportName)

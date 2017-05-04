@@ -39,6 +39,12 @@ class LoginTest(InterfaceCase):
         # finally:
             # self.driver.quit()
 
+
+    @unittest.skip
+    def test_Skip(self):
+        print "不执行用例"
+
+
     def tearDown(self):
        #self.devices.close_app()
         #self.devices.close()
@@ -67,4 +73,4 @@ class LoginTest(InterfaceCase):
 
 
 if __name__ == '__main__':
-     unittest.main()
+     unittest.main(verbosity =2)

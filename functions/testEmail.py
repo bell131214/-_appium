@@ -20,7 +20,7 @@ def post_mail(report_file):
 
 
 
-    yag.send(to='leHe@quarkfinance.com', subject='2323232', contents=["E:\\quark_work\\result\\2017-05-02\\2017-05-02-11_26_05_result.html"])
+    yag.send(to='leHe@quarkfinance.com', subject='2323232', contents=[mail_body])
 
 
 """
@@ -32,6 +32,8 @@ yag = yagmail.SMTP(
 )
 """
 
+
+
 if __name__ == '__main__':
-    a=get_report("D:\CodeWork\Auto_Analysis-master\\result\\2017-05-02_17_20_0918")
+    a=get_report("E:\\quark_work\\result\\2017-05-03")
     post_mail(a)
