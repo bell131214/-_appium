@@ -27,7 +27,7 @@ from functions.send_mail import SendMail
 if __name__ == '__main__':
     if isinstance(appium_init.inital,Initialization)!=True:
         Init()
-    testSuite = LoadCase.get_cases('testcase')
+    testSuite = LoadCase.get_cases()
     exec_result=exec_sutiecase()
     exec_result.exec_cases(testSuite)
     mail = SendMail()
