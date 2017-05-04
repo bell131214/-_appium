@@ -107,7 +107,7 @@ class exec_sutiecase():
             # 运行测试用例
             a=runner.run(test_case)
 
-            self.get_html(fp1,  self.now,  1,"ss", a.success_count, a.failure_count, a.error_count)
+            self.get_html(fp1,  a.startTime,a.duration,a.status, a.success_count, a.failure_count, a.error_count)
             fp.close()  # 关闭报告文件
             fp1.close()
 
@@ -123,6 +123,6 @@ class exec_sutiecase():
             # 运行测试用例
             a=runner.run(test_case)
 
-            self.get_html(fp1, a.startTime, self.now, 1,"ss", a.success_count, a.failure_count, a.error_count)
+            self.get_html(fp1, a.startTime,a.duration,a.status, a.success_count, a.failure_count, a.error_count)
             fp.close()  # 关闭报告文件
             fp1.close()
