@@ -1,6 +1,5 @@
 # coding:utf-8
 import os,sys,time
-#os.chdir('..')
 sys.path.append('..')
 from appium import webdriver
 from configParser import Config
@@ -11,16 +10,23 @@ import appium_init
 inital=None
 
 class Initialization():
-    """docstring for initialization"""
+    """
+    只在程序启动时，实例化一次Init()；后面在调用时就用实例化好的对象
+    口操作都封装在全局对象appium_init.inital中
+    """
 
 
     def __init__(self):
 
         self.config=Config()
-        self.config_path="E:\\quark_work\\config\\appium_config.ini"
+
+        #唯一需要配置路径的地方，路径为配置文件绝对路径
+        self.config_path="D:\\quarkscript\\UFO_appium\\config\\appium_config.ini"
+
         #读取配置文件中desired_caps信息，作为initial的属性保存
         self.desired_caps=self.config.get_config(
             'desired_caps', self.config_path)
+
         #读取配置文件中project_path信息，作为initial的属性保存
         self.project_path=self.desired_caps['project_path']
 
@@ -32,17 +38,6 @@ class Initialization():
                          self.config_path)
 
 
-
-
-    # def get_project_path(self):
-    #     return self.get_desired_caps()['project_path']
-
-    # def get_desired_caps(self):
-    #     desired_caps_config = self.config.get_config(
-    #         'desired_caps', self.config_path)
-    #     return desired_caps_config
-
-    # @staticmethod
     def get_cases_info(self, case_ini):
 
         cases_info = self.config.get_config(case_ini, self.config_path)
@@ -84,6 +79,8 @@ class Initialization():
         else:
             self.logger.info('Initialization | 设备不存在 ')
 
+
+#初始化类，执行以后inital成为Initialization的实例，供框架各处调用
 class Init():
     def __init__(self):
         appium_init.inital=Initialization()

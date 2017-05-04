@@ -2,19 +2,14 @@
 import logging,os
 from datetime import  datetime
 
-import os
-# print os.getcwd()
-
 class AppLog():
-
+    '''
+    日志类，只有初始化方法，启动以后将实例作为属性传给inital，供框架各处调用记录日志
+    '''
     def __init__(self,project_path):
         now=datetime.now().strftime("%Y_%m_%d %H-%M-%S")
-        # project_path="D:\\quarkscript\\UFO_appium"
-
         day=datetime.now().strftime("%Y_%m_%d")
         log_path=project_path+"\\log\\"+day+"\\"
-
-
 
 
         if os.path.exists(log_path)!=True:
