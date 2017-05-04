@@ -20,10 +20,6 @@ class SendMail(object):
         reportName=sorted(result_list,key=lambda filename:(os.path.getmtime(result_path+"\\"+filename)))[-1]
         return (result_path+'\\'+reportName)
 
-    def get_report(self, result_path):
-        reportName = \
-        sorted(os.listdir(result_path), key=lambda filename: (os.path.getmtime(result_path + "\\" + filename)))[-1]
-        return (result_path + '\\' + reportName)
 
     def get_mail_body(self,report_file):
         f = open(report_file, 'rb')
