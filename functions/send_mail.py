@@ -10,12 +10,8 @@ from email.header import Header
 
 class SendMail(object):
     """docstring for send_mail"""
-<<<<<<< HEAD
-        #入参测试报告文件路径，查询文件夹，选取最新的文件，返回“文件路径+最新的文件名”
 
-    def get_report(self,result_path):
-        reportName=sorted(os.listdir(result_path),key=lambda filename:(os.path.getmtime(result_path+"\\"+filename)))[-1]
-=======
+
         #入参测试报告文件路径、文件模糊匹配字符串；查询文件夹，选取最新的文件，返回“文件路径+最新的文件名”
     def get_FileName(self,result_path,re_name):
         file_list=os.listdir(result_path)
@@ -24,7 +20,6 @@ class SendMail(object):
             if file.find(re_name)!=-1:
                 result_list.append(file)
         reportName=sorted(result_list,key=lambda filename:(os.path.getmtime(result_path+"\\"+filename)))[-1]
->>>>>>> bac0de81d2609e55995922d74e9d0b526277d5b8
         return (result_path+'\\'+reportName)
 
 
@@ -34,10 +29,10 @@ class SendMail(object):
         f.close()
         return mail_body
 
-    def post_mail(self,to_mail_list,resultFile,logFile):
+    def post_mail(self,to_mail_list,resultFile,logFile,mailFile):
 
         mail = yagmail.SMTP(user='276476197@qq.com', password='gujttwszbatpbieh', host='smtp.qq.com', port='587')
-        contents = self.get_mail_body(resultFile)
+        contents = self.get_mail_body(mailFile)
         mail.send(to=to_mail_list,subject=u'quark—UFO自动化测试报告',
                   contents=[contents,resultFile,logFile])
 
@@ -50,8 +45,9 @@ class SendMail(object):
 
         logFile=self.get_FileName(log_path,'log')
         resultFile=self.get_FileName(result_path,'result')
+        mailFile=self.get_FileName(result_path,'send_mail')
 
-        self.post_mail(to_mail_list,resultFile,logFile)
+        self.post_mail(to_mail_list,resultFile,logFile,mailFile)
 
 
 
