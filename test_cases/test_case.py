@@ -26,11 +26,11 @@ class LoginTest(InterfaceCase):
             username = '18048444414'
             password = 'hele5201'
             self.driver.implicitly_wait(5)
-
             login=Login_Test(self.driver)
             login.page_swipe()
+            login.logic_login(username, password)
             self.assertEqual(1, 1)
-            login.logic_login(username,password)
+
             # assert (1==1)
         except Exception,e:
             # self.driver.quit()
