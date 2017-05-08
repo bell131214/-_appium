@@ -35,51 +35,9 @@ class BasePage(object):
 			raise e
 
 
-		# 重新封装输入方法
-	def send_values(self,element,kvalue,name):
-		try:
-			element.send_keys(kvalue)
-		except AttributeError:
-			self.driver.saveScreenshot(name)
 
-			print "%s 页面未能找到 %s 元素" % (self,)
 
-		# 重新封装按钮点击方法
-	def clickButton(self, loc, find_first=True):
-		try:
-			if find_first:
-				self.find_element(loc)
-			self.find_element(loc).click()
-		except AttributeError:
-
-			print "%s 页面未能找到 %s 按钮" % (self, loc)
-
-	def checkElementIsShown(self, *loc):
-		"""
-		判断某个控件是否显示
-
-		:param loc: 元组类型,结构必须是(By.NAME, u'财讯')
-		"""
-		try:
-			self.find_element(*loc)
-			return True
-		except:
-			return False
-
-	def waitForElementNotPresent(self, period, *loc):
-		"""
-		等待某个控件不再显示
-
-		:param loc: 元组类型,结构必须是(By.NAME, u'财讯')
-		:param period：等待的秒数
-		"""
-		for i in range(0, period):
-			time.sleep(1)
-			if not self.checkElementIsShown(*loc):
-				return True
-			else:
-				continue
-		raise Exception("Cannot find Element seconds")
+	
 
 	def get_size(self):
 		"""
@@ -149,38 +107,7 @@ class BasePage(object):
 		"""
 		self.driver.tap([(x, y)], peroid)
 
-	def clickElement(self, *loc):
-		"""
-		点击某一个控件，如果改控件不存在则会抛出异常
 
-		:param loc: 元组类型,结构必须是(By.NAME, u'财讯')
-		"""
-		element = self.find_element(*loc)
-		element.click()
-
-
-	def getTextOfElement(self, *loc):
-		"""
-		获取某个控件显示的文本，如果该控件不能找到则会抛出异常
-
-		:param loc: 元组类型,结构必须是(By.NAME, u'财讯')
-		:Return: str, 返回该控件显示的文本
-
-		:Usage:
-			self.getTextOfElement(elementInfo)
-		"""
-		element = self.find_element(*loc)
-		return element.text
-
-	def clearTextEdit(self, *loc):
-		"""
-		清除文本框里面的文本
-
-		:Usage:
-			self.clearTextEdit(*loc)
-		"""
-		element = self.find_element(*loc)
-		element.clear()
 
 	def pressBackKey(self):
 		"""
@@ -196,12 +123,9 @@ class BasePage(object):
 		self.driver.hide_keyboard()
 
 	def press_TouchAction(self):
-
 		window_size = self.get_size()
 		width = window_size.get("width")
 		height = window_size.get("height")
-		print width,height
-		print int(width * 0.5),(height*0.9)
 		TouchAction(self.driver).press(x=int(width * 0.5), y=int(height*0.9)).release().perform()
 
 
