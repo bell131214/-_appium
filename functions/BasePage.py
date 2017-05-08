@@ -27,17 +27,23 @@ class BasePage(object):
 
 	def base_find_elements(self,locator,value):
 		try:
-			return self.driver.find_element(locator,value)
+			return self.driver.find_elements(locator,value)
 		except NoSuchElementException,e:
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
 			appium_init.inital.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
 			raise e
-
-
-
-
-	
+	@staticmethod
+	def page_swipe(driver):
+		time.sleep(2)
+		BasePage(driver).swipe_to_right()
+		time.sleep(2)
+		BasePage(driver).swipe_to_right()
+		time.sleep(2)
+		BasePage(driver).swipe_to_right()
+		time.sleep(2)
+		BasePage(driver).press_TouchAction()
+		time.sleep(5)
 
 	def get_size(self):
 		"""
