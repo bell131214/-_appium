@@ -1,10 +1,19 @@
 #coding:utf-8
-from pages.base_page import BasePage
+#from pages.base_page import BasePage
 from pages.my_page import MyPage
+from functions.BasePage import BasePage
+from selenium.webdriver.common.by import By
+
 
 class HomePage(BasePage):
 
     context='im home page'
+
+
+    #banner
+    @property
+    def home_banner(self):
+        return  self.base_find_elements(By.XPATH,)
 
     #定位器:首页
     @property

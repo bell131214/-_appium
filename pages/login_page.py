@@ -7,7 +7,7 @@ from functions.appium_init import *
 from pages.my_page import MyPage
 
 
-class Login_Test(BasePage):
+class LoginPage(BasePage):
 
 #new  PO  return element
 

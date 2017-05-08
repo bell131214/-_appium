@@ -4,7 +4,7 @@
 import unittest,sys
 # sys.path.append('..')
 from functions.appium_init import Initialization
-from pages.login_page import Login_Test
+from pages.login_page import LoginPage
 
 
 
@@ -20,7 +20,7 @@ class LoginTest(unittest.TestCase):
 
     def test_Login_def1(self):
        try:
-           d=Login_Test(self.driver)
+           d=LoginPage(self.driver)
            username = '18048444414'
            password = 'hele5201'
            self.logger.info(username+password)

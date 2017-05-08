@@ -1,5 +1,5 @@
 #coding:utf-8
-from pages.base_page import BasePage
+from functions.BasePage import BasePage
 
 class MyPage(BasePage):
 

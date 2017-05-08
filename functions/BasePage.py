@@ -27,12 +27,30 @@ class BasePage(object):
 
 	def base_find_elements(self,locator,value):
 		try:
-			return self.driver.find_element(locator,value)
+			return self.driver.find_elements(locator,value)
 		except NoSuchElementException,e:
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
 			appium_init.inital.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
 			raise e
+
+		#ufo 引导页处理
+
+	@staticmethod
+	def page_swipe(driver):
+		time.sleep(2)
+		BasePage(driver).swipe_to_right()
+		time.sleep(1)
+		BasePage(driver).swipe_to_right()
+		time.sleep(1)
+		BasePage(driver).swipe_to_right()
+		time.sleep(1)
+		BasePage(driver).swipe_to_right()
+		time.sleep(1)
+		BasePage(driver).press_TouchAction()
+		time.sleep(2)
+
+		return driver
 
 
 		# 重新封装输入方法
@@ -44,6 +62,7 @@ class BasePage(object):
 
 			print "%s 页面未能找到 %s 元素" % (self,)
 
+
 		# 重新封装按钮点击方法
 	def clickButton(self, loc, find_first=True):
 		try:
@@ -54,14 +73,15 @@ class BasePage(object):
 
 			print "%s 页面未能找到 %s 按钮" % (self, loc)
 
-	def checkElementIsShown(self, *loc):
+
+	def checkElementIsShown(self, locator,value):
 		"""
 		判断某个控件是否显示
 
 		:param loc: 元组类型,结构必须是(By.NAME, u'财讯')
 		"""
 		try:
-			self.find_element(*loc)
+			self.base_find_element(locator,value)
 			return True
 		except:
 			return False
@@ -149,13 +169,13 @@ class BasePage(object):
 		"""
 		self.driver.tap([(x, y)], peroid)
 
-	def clickElement(self, *loc):
+	def clickElement(self,locator,value):
 		"""
 		点击某一个控件，如果改控件不存在则会抛出异常
 
 		:param loc: 元组类型,结构必须是(By.NAME, u'财讯')
 		"""
-		element = self.find_element(*loc)
+		element = self.base_find_element(locator,value)
 		element.click()
 
 
@@ -200,10 +220,7 @@ class BasePage(object):
 		window_size = self.get_size()
 		width = window_size.get("width")
 		height = window_size.get("height")
-		print width,height
-		print int(width * 0.5),(height*0.9)
 		TouchAction(self.driver).press(x=int(width * 0.5), y=int(height*0.9)).release().perform()
-
 
 
 	def waitActivity(self, activity, timeout=5):
@@ -217,14 +234,14 @@ class BasePage(object):
 		return result
 
 	# savePngName:生成图片的名称
-	def savePngName(self, name):
+
+	def savePngName(self, name,path1='result'):
 			"""
 			name：自定义图片的名称
 			"""
-
 			_path= Initialization()
 			day = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-			fp = _path.project_path+"\\result\\" + day + "\\image\\" + day
+			fp = _path.project_path+"\\"+path1+"\\" + day + "\\image\\" + day
 			tm = self.saveTime()
 			type = ".png"
 			if os.path.exists(fp):
@@ -245,6 +262,7 @@ class BasePage(object):
 			返回当前系统时间以括号中（2014-08-29-15_21_55）展示
 			"""
 			return time.strftime('%Y-%m-%d-%H_%M_%S', time.localtime(time.time()))
+
 
 	# saveScreenshot:通过图片名称，进行截图保存
 	def saveScreenshot(self, name):

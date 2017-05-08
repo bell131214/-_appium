@@ -2,8 +2,9 @@
 
 import unittest,sys
 sys.path.append('..')
-from pages.login_page import Login_Test
-from functions.appium_init import *
+
+from pages.login_page import LoginPage
+
 from functions.interface_case import InterfaceCase
 
 
@@ -21,23 +22,22 @@ class LoginTest(InterfaceCase):
 
 
     def test_new_PO_test(self):
-        u"""成功登录"""
+        u"""验证登录"""
         try:
             username = '18048444414'
             password = 'hele5201'
             self.driver.implicitly_wait(5)
-            login=Login_Test(self.driver)
+            login=LoginPage(self.driver)
             login.page_swipe()
             login.logic_login(username, password)
             self.assertEqual(1, 1)
 
-            # assert (1==1)
+
         except Exception,e:
-            # self.driver.quit()
+
             self.logger.info(e)
 
-        # finally:
-            # self.driver.quit()
+
 
 
     @unittest.skip
@@ -52,21 +52,6 @@ class LoginTest(InterfaceCase):
 
 
 
-
-    # @unittest.skip('skip')
-    # def test_Login_def1(self):
-    #    try:
-    #         username='18048444414'
-    #         password='hele5201'
-    #         #a=LoginTest()
-    #         login=Login_Test(self.driver)
-    #         login.login_test(username,password)
-    #         #self.Login_Test_def()
-    #         assert (1==1)
-    #
-    #    finally:
-    #         #getDriver.Closs_Driver()
-    #         self.driver.quit()
 
 
 
