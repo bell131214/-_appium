@@ -33,17 +33,9 @@ class BasePage(object):
 				Init()
 			appium_init.inital.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
 			raise e
-	@staticmethod
-	def page_swipe(driver):
-		time.sleep(2)
-		BasePage(driver).swipe_to_right()
-		time.sleep(2)
-		BasePage(driver).swipe_to_right()
-		time.sleep(2)
-		BasePage(driver).swipe_to_right()
-		time.sleep(2)
-		BasePage(driver).press_TouchAction()
-		time.sleep(5)
+
+
+
 
 	def get_size(self):
 		"""
@@ -151,10 +143,12 @@ class BasePage(object):
 			"""
 			name：自定义图片的名称
 			"""
-
-			_path= Initialization()
+			# 每次实例化Initalization太浪费内存，已经定义好的全局变量就是为了减少初始化类反复实例化
+			if isinstance(appium_init.inital,Initialization)!=True:
+				Init()
+			inital=appium_init.inital
 			day = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-			fp = _path.project_path+"\\result\\" + day + "\\image\\" + day
+			fp = inital.project_path+"\\result\\" + day + "\\image\\" + day
 			tm = self.saveTime()
 			type = ".png"
 			if os.path.exists(fp):
