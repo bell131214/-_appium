@@ -4,7 +4,10 @@ from pages.my_page import MyPage
 from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
 from pages.banner_pages import BannerPages
+from functions.appium_init import *
+
 import time
+
 
 
 class HomePage(BasePage):
@@ -60,14 +63,12 @@ class HomePage(BasePage):
 
     # 根据传入的ID 点击对应的Banner index
     def banner_click(self, id=2):
-        # BasePage.page_swipe()
-        # self.page_swipe
-        time.sleep(3*(id-1))
-
-        self.BannerXpath[id - 1].click()
-        time.sleep(0.5)
-        self.saveScreenshot('banner_click')
-
-        return BannerPages(self.driver)
-       # print self.child_page_Xpath.text
-       # return self.child_page_Xpath.text
+        try:
+            time.sleep(2.5*(id-1))
+            self.BannerXpath[id].click()
+            time.sleep(0.5)
+            self.saveScreenshot('banner_click')
+            return BannerPages(self.driver)
+        except Exception,e:
+            self.logger.info('HomePage | Exception  is %s'%e)
+            self.saveScreenshot('banner_click')

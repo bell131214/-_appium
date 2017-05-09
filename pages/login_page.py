@@ -31,7 +31,7 @@ class LoginPage(BasePage):
 
     def logic_login(self,phone,pwd):
         startuppage=StartupPage(self.driver)
-        str
+        startuppage.page_swipe()
         self.el_my_btn.click()
         self.el_phone_text_input.send_keys(phone)
         self.el_pwd_text_input.send_keys(pwd)

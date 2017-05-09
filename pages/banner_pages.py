@@ -21,6 +21,7 @@ class BannerPages(BasePage):
 
 
 
+
 if __name__ == '__main__':
     Init()
     driver = appium_init.inital.get_driver()

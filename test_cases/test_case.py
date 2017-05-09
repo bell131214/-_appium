@@ -28,7 +28,6 @@ class LoginTest(InterfaceCase):
             password = 'hele5201'
             self.driver.implicitly_wait(5)
             login=LoginPage(self.driver)
-            login.page_swipe()
             login.logic_login(username, password)
             self.assertEqual(1, 1)
 

@@ -14,7 +14,7 @@ class BasePage(object):
 	def __init__(self, driver):
 	#	print driver
 		self.driver = driver
-
+		self.logger=appium_init.inital.logger
 
 	def base_find_element(self,locator,value):
 		try:
@@ -22,7 +22,7 @@ class BasePage(object):
 		except NoSuchElementException,e:
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
-			appium_init.inital.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
+			self.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
 			raise e
 
 	def base_find_elements(self,locator,value):
@@ -31,7 +31,7 @@ class BasePage(object):
 		except NoSuchElementException,e:
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
-			appium_init.inital.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
+			self.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
 			raise e
 
 
