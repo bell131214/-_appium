@@ -5,6 +5,8 @@ sys.path.append('..')
 import time
 from functions.interface_case import InterfaceCase
 from pages.banner_pages import BannerPages
+from functions.appium_init import *
+from pages.startup_page import StartupPage
 
 
 
@@ -22,10 +24,11 @@ class LoginTest(InterfaceCase):
     def test_click_banner(self):
         u"""验证点击banner"""
         try:
-            a=BannerPages(self.driver)
-            b=a.banner_click(id=2)
+            startUp=StartupPage(self.driver)
+            bannerpages=startUp.page_swipe()
+            b=bannerpages.banner_click(id=6)
             time.sleep(3)
-            self.assertEqual(str(b), "新手专享")
+            self.assertEqual(str(b), u"新手专享")
         except Exception,e:
             self.logger.info(e)
 
@@ -38,4 +41,5 @@ class LoginTest(InterfaceCase):
 
 
 if __name__ == '__main__':
- unittest.main(verbosity =2)
+    Init()
+    unittest.main()

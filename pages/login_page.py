@@ -39,23 +39,23 @@ class LoginPage(BasePage):
         time.sleep(3)
         return MyPage(self.driver)
 
-
-    def page_swipe(self):
-        time.sleep(2)
-        self.swipe_to_right()
-        time.sleep(2)
-        self.swipe_to_right()
-        time.sleep(2)
-        self.swipe_to_right()
-        time.sleep(2)
-        self.press_TouchAction()
-        time.sleep(5)
+#封装在startup_page里
+    # def page_swipe(self):
+    #     time.sleep(2)
+    #     self.swipe_to_right()
+    #     time.sleep(2)
+    #     self.swipe_to_right()
+    #     time.sleep(2)
+    #     self.swipe_to_right()
+    #     time.sleep(2)
+    #     self.press_TouchAction()
+    #     time.sleep(5)
 
 
 if __name__ == '__main__':
     # info = Initialization()
     Init()
     driver = appium_init.inital.get_driver()
-    d = Login_Test(driver)
+    d = LoginPage(driver)
     d.logic_login('18048444414','hele5201')
     time.sleep(2)

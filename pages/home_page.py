@@ -3,6 +3,7 @@
 from pages.my_page import MyPage
 from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
+import time
 
 
 class HomePage(BasePage):
@@ -14,6 +15,17 @@ class HomePage(BasePage):
     @property
     def home_banner(self):
         return  self.base_find_elements(By.XPATH,)
+
+    #获取有多少Banner广告
+    @property
+    def BannerXpath(self):
+        return self.base_find_elements(By.XPATH,"//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/image_indicator')]")
+
+    #定位Banne详情页面的title
+    @property
+    def child_page_Xpath(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
+
 
     #定位器:首页
     @property
@@ -40,3 +52,18 @@ class HomePage(BasePage):
     #逻辑key_word:跳转到"产品列表"页面
     def product_page(self):
         self.product_btn.click()
+
+    """
+
+    """
+
+    # 根据传入的ID 点击对应的Banner index
+    def banner_click(self, id=2):
+        # BasePage.page_swipe()
+        # self.page_swipe()
+
+        self.BannerXpath[id - 1].click()
+        time.sleep(0.5)
+        self.saveScreenshot('banner_click')
+        print self.child_page_Xpath.text
+        return self.child_page_Xpath.text
