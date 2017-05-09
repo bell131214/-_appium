@@ -7,7 +7,7 @@ from functions.interface_case import InterfaceCase
 from pages.banner_pages import BannerPages
 from functions.appium_init import *
 from pages.startup_page import StartupPage
-
+from pages.home_page import HomePage
 
 
 class hometest(InterfaceCase):
@@ -29,14 +29,16 @@ class hometest(InterfaceCase):
             homepage=startUp.page_swipe()
             b=homepage.banner_click(id=1)
             time.sleep(3)
-            self.logger.info(b.child_page_Xpath.text)
+            self.logger.info(b.el_title.text)
         except Exception,e:
               self.logger.info(e)
-        self.assertEqual(b.child_page_Xpath.text, u"系统维护")
+        self.assertEqual(b.el_title.text, u"系统维护")
 
 
         # id:输入需要验证的banner 索引ID
         # assertEqual 输入预期的banner详情的title
+
+    # @unittest.skip('skip')
     def test_click_banner3(self):
        u"""验证点击banner[3]"""
        try:
@@ -44,15 +46,16 @@ class hometest(InterfaceCase):
         homepage=startUp.page_swipe()
         b=homepage.banner_click(id=3)
         time.sleep(3)
-        self.logger.info(b.child_page_Xpath.text)
+        self.logger.info(b.el_title.text)
 
        except Exception,e:
         self.logger.info(e)
-        self.assertEqual(b.child_page_Xpath.text, u"夸客美丽增值计划")
+        self.assertEqual(b.el_title.text, u"夸客美丽增值计划")
 
 
         # id:输入需要验证的banner 索引ID
         # assertEqual 输入预期的banner详情的title
+    # @unittest.skip('skip')
     def test_click_banner5(self):
         u"""验证点击banner[5]"""
         try:
@@ -60,10 +63,10 @@ class hometest(InterfaceCase):
             homepage = startUp.page_swipe()
             b = homepage.banner_click(id=5)
             time.sleep(3)
-            self.logger.info(b.child_page_Xpath.text)
+            self.logger.info(b.el_title.text)
         except Exception, e:
             self.logger.info(e)
-        self.assertEqual(b.child_page_Xpath.text, u"新春心意")
+        self.assertEqual(b.el_title.text, u"新春心意")
 
 
 

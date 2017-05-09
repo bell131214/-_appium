@@ -16,18 +16,18 @@ class BasePage(object):
 		self.driver = driver
 		self.logger=appium_init.inital.logger
 
+
+	#根据何乐获取的方法名、方法行数对日志异常修改完善
 	def base_find_element(self,locator,value):
 		try:
 			return self.driver.find_element(locator,value)
 		except NoSuchElementException,e:
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
-			self.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
-			print sys._getframe().f_code.co_name
-			print sys._getframe().f_back.f_lineno
-			print  (sys._getframe().f_back.f_code.co_name)
+			self.logger.info('BasePage | NoSuchElementException error occur at %s;function name is %s;locator is %s %s Exception: %s;'
+							 %(sys._getframe().f_back.f_lineno,sys._getframe().f_code.co_name,locator,value,e))
 			self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
-			# raise e
+
 
 	def base_find_elements(self,locator,value):
 		try:
@@ -35,9 +35,10 @@ class BasePage(object):
 		except NoSuchElementException,e:
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
-			self.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
+			self.logger.info('BasePage | NoSuchElementException error occur at %s;function name is %s;locator is %s %s Exception: %s;'
+							 %(sys._getframe().f_back.f_lineno,sys._getframe().f_code.co_name,locator,value,e))
 			self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
-			# raise e
+
 
 
 
@@ -158,13 +159,13 @@ class BasePage(object):
 			type = ".png"
 			if os.path.exists(fp):
 				filename = fp + "\\" + tm + "_" + name + type
-				print filename
+				# print filename
 				# print "True"
 				return filename
 			else:
 				os.makedirs(fp)
 				filename = fp + "\\" + tm + "_" + name + type
-				print filename
+				# print filename
 				# print "False"
 				return filename
 

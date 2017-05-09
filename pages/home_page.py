@@ -20,43 +20,18 @@ class HomePage(BasePage):
     def home_banner(self):
         return  self.base_find_elements(By.XPATH,)
 
-    #获取有多少Banner广告
+    #获取有多少Banner广告  ;这里获取的页面的元素属性，命名还是一个el开头。返回的是一个元素，而不是xpath,稍作修改
     @property
-    def BannerXpath(self):
+    def el_Banner(self):
         return self.base_find_elements(By.XPATH,"//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/image_indicator')]")
 
-    #定位Banne详情页面的title
+
+
     @property
-    def child_page_Xpath(self):
-        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
+    def el_my_btn(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'我的')]")
 
 
-
-    #定位器:首页
-    @property
-    def home_btn(self):
-        return self.by_name(u'首页')
-
-    #定位器：我的
-    @property
-    def my_btn(self):
-        return self.by_name(u'我的')
-
-    #定位器：产品列表
-    @property
-    def product_btn(self):
-        return self.by_name(u'产品列表')
-
-
-
-    #逻辑key_word:跳转到"我的"页面
-    def my_page(self):
-        self.my_btn.click()
-        return MyPage(self.driver)
-
-    #逻辑key_word:跳转到"产品列表"页面
-    def product_page(self):
-        self.product_btn.click()
 
     """
 
@@ -66,7 +41,7 @@ class HomePage(BasePage):
     def banner_click(self, id=2):
         try:
             time.sleep(2.5*(id-1))
-            self.BannerXpath[id].click()
+            self.el_Banner[id].click()
             time.sleep(0.5)
             self.saveScreenshot('banner_click')
             return BannerPages(self.driver)

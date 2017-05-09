@@ -13,10 +13,8 @@ class BannerPages(BasePage):
 
     #定位Banne详情页面的title
     @property
-    def child_page_Xpath(self):
+    def el_title(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
-
-
 
 
 
