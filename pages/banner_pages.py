@@ -22,12 +22,13 @@ class BannerPages(BasePage):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
 
     """
-    
+
     """
     #根据传入的ID 点击对应的Banner index
     def banner_click(self,id=2):
             BasePage.page_swipe(self.driver)
             #self.page_swipe()
+            time.sleep(3*id)
             self.BannerXpath[id-1].click()
             time.sleep(0.5)
             self.saveScreenshot('banner_click')
