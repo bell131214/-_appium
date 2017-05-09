@@ -19,8 +19,6 @@ class hometest(InterfaceCase):
         self.logger=self.inital.logger
 
 
-
-
     #id:输入需要验证的banner 索引ID
     #assertEqual 输入预期的banner详情的title
 
@@ -34,8 +32,8 @@ class hometest(InterfaceCase):
             self.logger.info(b.child_page_Xpath.text)
         except Exception,e:
               self.logger.info(e)
+        self.assertEqual(b.child_page_Xpath.text, u"系统维护")
 
-        self.assertEqual(str(b.child_page_Xpath.text), "系统维护")
 
         # id:输入需要验证的banner 索引ID
         # assertEqual 输入预期的banner详情的title
@@ -50,8 +48,7 @@ class hometest(InterfaceCase):
 
        except Exception,e:
         self.logger.info(e)
-
-        self.assertEqual(str(b.child_page_Xpath.text), u"夸客美丽增值计划")
+        self.assertEqual(b.child_page_Xpath.text, u"夸客美丽增值计划")
 
 
         # id:输入需要验证的banner 索引ID
@@ -66,8 +63,8 @@ class hometest(InterfaceCase):
             self.logger.info(b.child_page_Xpath.text)
         except Exception, e:
             self.logger.info(e)
+        self.assertEqual(b.child_page_Xpath.text, u"新春心意")
 
-        self.assertEqual(str(b.child_page_Xpath.text), u"新春心意")
 
 
     def tearDown(self):

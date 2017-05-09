@@ -30,8 +30,6 @@ class LoginPage(BasePage):
 
 
 
-
-
     def logic_login(self,phone,pwd):
             startuppage=StartupPage(self.driver)
             startuppage.page_swipe()
