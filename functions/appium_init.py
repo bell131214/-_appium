@@ -21,7 +21,7 @@ class Initialization():
         self.config=Config()
 
         #唯一需要配置路径的地方，路径为配置文件绝对路径
-        self.config_path="D:\\quarkscript\\UFO_appium\\config\\appium_config.ini"
+        self.config_path="E:\\quark_work\\config\\appium_config.ini"
 
         #读取配置文件中desired_caps信息，作为initial的属性保存
         self.desired_caps=self.config.get_config(

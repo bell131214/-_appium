@@ -21,17 +21,40 @@ class LoginTest(InterfaceCase):
 
 
 
-    def test_click_banner(self):
+
+    def test_click_banner1(self):
         u"""验证点击banner"""
         try:
             startUp=StartupPage(self.driver)
-            bannerpages=startUp.page_swipe()
-            b=bannerpages.banner_click(id=6)
+            homepage=startUp.page_swipe()
+            b=homepage.banner_click(id=8)
             time.sleep(3)
-            self.assertEqual(str(b), u"新手专享")
+            self.assertEqual(str(b), u"系统维护")
         except Exception,e:
             self.logger.info(e)
 
+
+    def test_click_banner3(self):
+        u"""验证点击banner"""
+        try:
+            startUp=StartupPage(self.driver)
+            homepage=startUp.page_swipe()
+            b=homepage.banner_click(id=3)
+            time.sleep(3)
+            self.assertEqual(str(b), u"夸客美丽增值计划")
+        except Exception,e:
+            self.logger.info(e)
+
+    def test_click_banner5(self):
+        u"""验证点击banner"""
+        try:
+            startUp = StartupPage(self.driver)
+            homepage = startUp.page_swipe()
+            b = homepage.banner_click(id=5)
+            time.sleep(3)
+            self.assertEqual(str(b.child_page_Xpath.text), u"新春心意")
+        except Exception, e:
+            self.logger.info(e)
 
     def tearDown(self):
         self.driver.quit()

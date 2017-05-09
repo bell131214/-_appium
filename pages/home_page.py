@@ -3,6 +3,7 @@
 from pages.my_page import MyPage
 from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
+from pages.banner_pages import BannerPages
 import time
 
 
@@ -60,10 +61,13 @@ class HomePage(BasePage):
     # 根据传入的ID 点击对应的Banner index
     def banner_click(self, id=2):
         # BasePage.page_swipe()
-        # self.page_swipe()
+        # self.page_swipe
+        time.sleep(3*(id-1))
 
         self.BannerXpath[id - 1].click()
         time.sleep(0.5)
         self.saveScreenshot('banner_click')
-        print self.child_page_Xpath.text
-        return self.child_page_Xpath.text
+
+        return BannerPages(self.driver)
+       # print self.child_page_Xpath.text
+       # return self.child_page_Xpath.text

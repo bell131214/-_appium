@@ -5,13 +5,12 @@ from selenium.webdriver.common.by import By
 from functions.BasePage import BasePage
 from functions.appium_init import *
 from pages.my_page import MyPage
+from pages.startup_page import StartupPage
 
 
 class LoginPage(BasePage):
 
 #new  PO  return element
-
-
 
     @property
     def el_my_btn(self):
@@ -20,7 +19,6 @@ class LoginPage(BasePage):
     @property
     def el_phone_text_input(self):
         return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/edit_name")
-
 
     @property
     def el_pwd_text_input(self):
@@ -32,6 +30,8 @@ class LoginPage(BasePage):
 
 
     def logic_login(self,phone,pwd):
+        startuppage=StartupPage(self.driver)
+        str
         self.el_my_btn.click()
         self.el_phone_text_input.send_keys(phone)
         self.el_pwd_text_input.send_keys(pwd)
@@ -39,17 +39,6 @@ class LoginPage(BasePage):
         time.sleep(3)
         return MyPage(self.driver)
 
-#封装在startup_page里
-    # def page_swipe(self):
-    #     time.sleep(2)
-    #     self.swipe_to_right()
-    #     time.sleep(2)
-    #     self.swipe_to_right()
-    #     time.sleep(2)
-    #     self.swipe_to_right()
-    #     time.sleep(2)
-    #     self.press_TouchAction()
-    #     time.sleep(5)
 
 
 if __name__ == '__main__':
