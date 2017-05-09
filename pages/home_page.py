@@ -31,6 +31,7 @@ class HomePage(BasePage):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
 
 
+
     #定位器:首页
     @property
     def home_btn(self):
@@ -70,5 +71,5 @@ class HomePage(BasePage):
             self.saveScreenshot('banner_click')
             return BannerPages(self.driver)
         except Exception,e:
-            self.logger.info('HomePage | Exception  is %s'%e)
+            self.logger.info('HomePage | Exception  is %s %s'%e %(sys._getframe().f_back.f_lineno))
             self.saveScreenshot('banner_click')

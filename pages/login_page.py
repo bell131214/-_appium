@@ -29,15 +29,20 @@ class LoginPage(BasePage):
         return  self.base_find_element(By.ID,"com.quarkfinance.ufo:id/tv_login")
 
 
+
+
+
     def logic_login(self,phone,pwd):
-        startuppage=StartupPage(self.driver)
-        startuppage.page_swipe()
-        self.el_my_btn.click()
-        self.el_phone_text_input.send_keys(phone)
-        self.el_pwd_text_input.send_keys(pwd)
-        self.el_login_btn.click()
-        time.sleep(3)
-        return MyPage(self.driver)
+            startuppage=StartupPage(self.driver)
+            startuppage.page_swipe()
+            self.el_my_btn.click()
+            self.el_phone_text_input.send_keys(phone)
+            self.el_pwd_text_input.send_keys(pwd)
+            self.el_login_btn.click()
+            time.sleep(3)
+            return MyPage(self.driver)
+
+
 
 
 
@@ -46,5 +51,6 @@ if __name__ == '__main__':
     Init()
     driver = appium_init.inital.get_driver()
     d = LoginPage(driver)
-    d.logic_login('18048444414','hele5201')
+    #d.logic_login('18048444414','hele5201')
     time.sleep(2)
+

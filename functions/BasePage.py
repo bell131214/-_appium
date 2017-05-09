@@ -4,7 +4,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from appium.webdriver.common.touch_action import TouchAction
 from functions.appium_init import *
-
+import sys
 
 class BasePage(object):
 	"""
@@ -23,7 +23,11 @@ class BasePage(object):
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
 			self.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
-			raise e
+			print sys._getframe().f_code.co_name
+			print sys._getframe().f_back.f_lineno
+			print  (sys._getframe().f_back.f_code.co_name)
+			self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
+			# raise e
 
 	def base_find_elements(self,locator,value):
 		try:
@@ -32,7 +36,8 @@ class BasePage(object):
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
 			self.logger.info('BasePage | NoSuchElementException error is%s; %s,%s' %(e,locator,value))
-			raise e
+			self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
+			# raise e
 
 
 
