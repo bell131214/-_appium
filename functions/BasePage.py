@@ -78,7 +78,7 @@ class BasePage(object):
 		window_size = self.get_size()
 		width = window_size.get("width")
 		height = window_size.get("height")
-		self.driver.swipe(width / 4, height / 2, width * 3 / 4, height / 2, 500)
+		self.driver.swipe(width / 8, height / 2, width * 7 / 8, height / 2, 500)
 
 	def swipe_to_right(self):
 		"""
@@ -88,7 +88,7 @@ class BasePage(object):
 		window_size = self.get_size()
 		width = window_size.get("width")
 		height = window_size.get("height")
-		self.driver.swipe(width * 4 / 5, height / 2, width / 5, height / 2, 500)
+		self.driver.swipe(width * 7 / 8, height / 2, width / 8, height / 2, 500)
 
 	def reLoadApp(self):
 		"""
