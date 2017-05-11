@@ -30,14 +30,8 @@ class LoginTest(InterfaceCase):
             login=LoginPage(self.driver)
             login.logic_login(username, password)
             self.assertEqual(1, 1)
-
-
         except Exception,e:
-
             self.logger.info(e)
-
-
-
 
     @unittest.skip
     def test_Skip(self):
