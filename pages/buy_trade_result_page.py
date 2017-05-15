@@ -16,4 +16,5 @@ class BuyTradeResultPage(BasePage):
     def logic_link_buy(self):
         from pages.home_page import HomePage
         self.el_confirm_btn.click()
+        from pages.home_page import HomePage
         return HomePage(self.driver)

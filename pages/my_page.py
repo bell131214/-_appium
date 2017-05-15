@@ -1,6 +1,73 @@
 #coding:utf-8
+
 from functions.BasePage import BasePage
+from selenium.webdriver.common.by import By
+from functions.appium_init import *
+from pages.my_invset_record_page import MyInvsetRecorePage
+
 
 class MyPage(BasePage):
+    """
+    describe：登录后个人信息页面
+    """
 
-    context='this is my page'
+    #个人中心
+    @property
+    def el_my_personalCenter(self):
+        return self.base_find_element(By.XPATH,"//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/img_my')]")
+
+    #我的银行卡
+    @property
+    def el_my_bankCard(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'我的银行卡')]")
+
+    #交易记录
+    @property
+    def el_my_transactionRecord(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'交易记录')]")
+
+    #投资记录
+    @property
+    def el_my_investmentRecord(self):
+         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'投资记录')]")
+
+
+    def click_my_investmentRecord(self):
+        self.el_my_investmentRecord.click()
+        return MyInvsetRecorePage(self.driver)
+
+    def test_t(self):
+    #self.el_my_personalCenter.click()
+      #  time.sleep(0.5)
+      #  self.pressBackKey()
+      #  time.sleep(0.5)
+     #   self.el_my_bankCard.click()
+      #  self.pressBackKey()
+        self.press_TouchAction()
+      #  time.sleep(0.5)
+       # self.el_my_transactionRecord.click()
+      #  self.pressBackKey()
+        time.sleep(0.5)
+        self.click_my_investmentRecord()
+        return  MyInvsetRecorePage(self.driver)
+     #   self.pressBackKey()
+
+
+
+
+
+if __name__ == '__main__':
+    from login_page import LoginPage
+    Init()
+    driver = appium_init.inital.get_driver()
+    login=LoginPage(driver)
+    a=login.logic_login('14488888098','qwe123')
+    b=a.click_el_my_btn()
+    time.sleep(3)
+    #a=MyPage()
+    b.test_t()
+
+
+
+
+
