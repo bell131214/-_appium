@@ -5,8 +5,9 @@ from selenium.webdriver.common.by import By
 from pages.banner_pages import BannerPages
 from functions.appium_init import *
 from pages.product_list_page import ProductListPage
-
-import time
+import time,sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 

@@ -25,7 +25,7 @@ class BasePage(object):
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
 			self.logger.info('BasePage | NoSuchElementException error occur at %s;function name is %s;locator is %s %s Exception: %s;'
-							 %(sys._getframe().f_back.f_lineno,sys._getframe().f_code.co_name,locator,value,e))
+							 %(sys._getframe().f_back.f_lineno,sys._getframe().f_back.f_code.co_name,locator,value,e))
 			self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
 
 
