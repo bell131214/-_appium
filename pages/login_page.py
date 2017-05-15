@@ -4,7 +4,7 @@ import time
 from selenium.webdriver.common.by import By
 from functions.BasePage import BasePage
 from functions.appium_init import *
-from pages.my_page import MyPage
+from pages.home_page import HomePage
 from pages.startup_page import StartupPage
 from pages.register_choose_page import RegisterChoosePage
 
@@ -43,16 +43,23 @@ class LoginPage(BasePage):
         self.el_register_btn.click()
         return RegisterChoosePage(self.driver)
 
+
     #逻辑方法-登录
     def logic_login(self,phone,pwd):
+            """
+             :param phone: 账户
+                :param pwd:  密码
+                :return:  HomePage
+            """
+
             startuppage=StartupPage(self.driver)
-            startuppage.page_swipe()
-            self.el_my_btn.click()
+            a= startuppage.page_swipe()
+            a.el_my_btn.click()
             self.el_phone_text_input.send_keys(phone)
             self.el_pwd_text_input.send_keys(pwd)
             self.el_login_btn.click()
-            time.sleep(3)
-            return MyPage(self.driver)
+            #time.sleep(3)
+            return HomePage(self.driver)
 
 
 

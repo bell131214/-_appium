@@ -1,7 +1,7 @@
 #coding:utf-8
 from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
-from pages.home_page import HomePage
+
 
 class BuyTradeResultPage(BasePage):
 
@@ -15,4 +15,5 @@ class BuyTradeResultPage(BasePage):
     #跳转至首页
     def logic_link_buy(self):
         self.el_confirm_btn.click()
+        from pages.home_page import HomePage
         return HomePage(self.driver)

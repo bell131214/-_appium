@@ -20,7 +20,9 @@ class BasePage(object):
 	#根据何乐获取的方法名、方法行数对日志异常修改完善
 	def base_find_element(self,locator,value):
 		try:
+			WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element(locator,value).is_displayed())
 			return self.driver.find_element(locator,value)
+			#return self.driver.find_element(locator,value)
 		except NoSuchElementException,e:
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
@@ -31,7 +33,9 @@ class BasePage(object):
 
 	def base_find_elements(self,locator,value):
 		try:
-			return self.driver.find_elements(locator,value)
+			WebDriverWait(self.driver, 15).until(lambda driver: driver.find_elements(locator, value).is_displayed())
+			return self.driver.find_elements(locator, value)
+			#return self.driver.find_elements(locator,value)
 		except NoSuchElementException,e:
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
@@ -126,6 +130,7 @@ class BasePage(object):
 		"""
 		self.driver.hide_keyboard()
 
+
 	def press_TouchAction(self):
 		window_size = self.get_size()
 		width = window_size.get("width")
@@ -143,6 +148,7 @@ class BasePage(object):
 		"""
 		result = self.driver.wait_activity(activity, timeout)
 		return result
+
 
 	# savePngName:生成图片的名称
 	def savePngName(self, name):
