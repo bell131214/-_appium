@@ -16,8 +16,7 @@ class MyTradeRecordPage(BasePage):
     #交易
     @property
     def el__trade_btn(self):
-        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'交易')]")
-        #return self.base_find_element(By.XPATH, "//com.quarkfinance.ufo:id/tab_layout[contains(@resource-id,'com.quarkfinance.ufo:id/tab_layout')]/android.widget.LinearLayout/android.support.v7.a.a$c[0]/android.widget.TextView[0]")
+        return self.base_find_elements(By.XPATH, "//android.widget.TextView[contains(@text,'交易')]")
 
 
 
@@ -26,6 +25,10 @@ class MyTradeRecordPage(BasePage):
     def el_trade_Consultation_btn(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'咨询')]")
 
+
+    #进入交易list
+    def el__trade_btn_click(self):
+          self.el__trade_btn[1].click()
 
 
 
@@ -39,8 +42,9 @@ if __name__ == '__main__':
     time.sleep(1.5)
     b=a.click_el_my_btn()
     b.test_t()
+
     c=MyTradeRecordPage(driver)
     c.el_trade_Consultation_btn.click()
     time.sleep(3)
-    c.el__trade_btn.click()
+    c.el__trade_btn[1].click()
 

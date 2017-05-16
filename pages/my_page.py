@@ -4,6 +4,7 @@ from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
 from functions.appium_init import *
 from pages.my_invset_record_page import MyInvsetRecorePage
+from pages.my_trade_record_page import MyTradeRecordPage
 
 
 class MyPage(BasePage):
@@ -23,7 +24,7 @@ class MyPage(BasePage):
 
     #交易记录
     @property
-    def el_my_transactionRecord(self):
+    def el_my_transactionRecord_btn(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'交易记录')]")
 
     #投资记录
@@ -32,9 +33,14 @@ class MyPage(BasePage):
          return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'投资记录')]")
 
 
+    #点击投资记录
     def click_my_investmentRecord(self):
         self.el_my_investmentRecord.click()
         return MyInvsetRecorePage(self.driver)
+
+    def el_my_transactionRecord_btn_click(self):
+        self.el_my_transactionRecord_btn.click()
+        return MyTradeRecordPage(self.driver)
 
     def test_t(self):
     #self.el_my_personalCenter.click()
@@ -48,8 +54,8 @@ class MyPage(BasePage):
        # self.el_my_transactionRecord.click()
       #  self.pressBackKey()
         time.sleep(0.5)
-        self.click_my_investmentRecord()
-        return  MyInvsetRecorePage(self.driver)
+        self.el_my_transactionRecord_btn_click()
+        return  MyTradeRecordPage(self.driver)
      #   self.pressBackKey()
 
 

@@ -33,9 +33,8 @@ class BasePage(object):
 
 	def base_find_elements(self,locator,value):
 		try:
-			WebDriverWait(self.driver, 15).until(lambda driver: driver.find_elements(locator, value).is_displayed())
-			return self.driver.find_elements(locator, value)
-			#return self.driver.find_elements(locator,value)
+			if len(self.driver.find_elements(locator, value)):
+				return self.driver.find_elements(locator, value)
 		except NoSuchElementException,e:
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
