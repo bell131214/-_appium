@@ -7,8 +7,9 @@ from functions.appium_init import *
 from pages.product_list_page import ProductListPage
 from pages.news_page import NewsPage
 from pages.my_invset_record_page import MyInvsetRecorePage
-
-import time
+import time,sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 

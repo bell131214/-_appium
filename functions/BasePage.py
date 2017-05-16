@@ -1,8 +1,10 @@
 #coding=utf-8
 import time,os
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from appium.webdriver.common.touch_action import TouchAction
+from appium.webdriver.webelement import WebElement
 from functions.appium_init import *
 import sys,re,math,operator
 from PIL import Image
@@ -11,9 +13,8 @@ class BasePage(object):
 	"""
 	封装关于Appium中操作元素对象的方法
 	"""
-#new PO
+
 	def __init__(self, driver):
-	#	print driver
 		self.driver = driver
 		self.logger=appium_init.inital.logger
 
@@ -22,25 +23,30 @@ class BasePage(object):
 	def base_find_element(self,locator,value):
 		try:
 			WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element(locator,value).is_displayed())
+
 			return self.driver.find_element(locator,value)
-			#return self.driver.find_element(locator,value)
-		except NoSuchElementException,e:
-			if isinstance(appium_init.inital,Initialization)!=True:
-				Init()
-			self.logger.info('BasePage | NoSuchElementException error occur at %s;function name is %s;locator is %s %s Exception: %s;'
-							 %(sys._getframe().f_back.f_lineno,sys._getframe().f_back.f_code.co_name,locator,value,e))
+		except TimeoutException,e:
+			self.logger.info('BasePage | TimeoutException error occur at {one};function name is {two};locator is {three} {four} Exception:{five};'.format(one=sys._getframe().f_back.f_lineno,																																				 two=sys._getframe().f_back.f_code.co_name,
+																																				three=locator,four=value,five=e))
 			self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
+
+		#由于做了超时异常处理，永远不会捕获到找不到元素异常
+		# except NoSuchElementException,e:
+		# 	if isinstance(appium_init.inital,Initialization)!=True:
+		# 		Init()
+		# 	self.logger.info('BasePage | NoSuchElementException error occur at {one};function name is {two};locator is {three} {four} Exception:{five};'.format(one=sys._getframe().f_back.f_lineno,																																				 two=sys._getframe().f_back.f_code.co_name,
+		# 																																			three=locator,four=value,five=e))
+		# 	self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
 
 
 	def base_find_elements(self,locator,value):
-		try:
-			if len(self.driver.find_elements(locator, value)):
-				return self.driver.find_elements(locator, value)
-		except NoSuchElementException,e:
-			if isinstance(appium_init.inital,Initialization)!=True:
-				Init()
-			self.logger.info('BasePage | NoSuchElementException error occur at %s;function name is %s;locator is %s %s Exception: %s;'
-							 %(sys._getframe().f_back.f_lineno,sys._getframe().f_back.f_code.co_name,locator,value,e))
+
+		if len(self.driver.find_elements(locator, value)):
+			return self.driver.find_elements(locator, value)
+		else:
+			self.logger.info('BasePage | NoSuchElementException error occur at {one};function name is {two};locator is {three} {four};'.format(one=sys._getframe().f_back.f_lineno,
+																																			   two=sys._getframe().f_back.f_code.co_name,
+																																			   three=locator,four=value))
 			self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
 
 
@@ -208,10 +214,14 @@ class BasePage(object):
 
 		self.driver.get_screenshot_as_file(self.img_file)
 
-		# 获取元素bounds
-		location = element.location
-		size = element.size
-		box = (location["x"], location["y"], location["x"] + size["width"], location["y"] + size["height"])
+		if isinstance(element,WebElement):
+			# 获取元素bounds
+			location = element.location
+			size = element.size
+			box = (location["x"], location["y"], location["x"] + size["width"], location["y"] + size["height"])
+		else:
+			appium_init.inital.logger.info("Pictrue | get_screenshot_by_element :  element is not found! locator is %s" %function_name)
+			return False
 		# 截取图片
 		image = Image.open(self.img_file)
 		newImage = image.crop(box)
@@ -220,8 +230,14 @@ class BasePage(object):
 		return self
 
 	def same_as(self, percent):
-		image1 = Image.open(self.img_file)
-		image2 = Image.open(self.img_file.replace("temp_", ""))
+
+		try:
+			image1 = Image.open(self.img_file)
+			image2 = Image.open(self.img_file.replace("temp_", ""))
+		except IOError,e:
+			print(e)
+			appium_init.inital.logger.info("Pictrue | same_as: %s" %e)
+			return False
 
 		histogram1 = image1.histogram()
 		histogram2 = image2.histogram()
