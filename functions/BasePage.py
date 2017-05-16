@@ -4,7 +4,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from appium.webdriver.common.touch_action import TouchAction
 from functions.appium_init import *
-import sys
+import sys,re,math,operator
+from PIL import Image
 
 class BasePage(object):
 	"""
@@ -40,7 +41,7 @@ class BasePage(object):
 			if isinstance(appium_init.inital,Initialization)!=True:
 				Init()
 			self.logger.info('BasePage | NoSuchElementException error occur at %s;function name is %s;locator is %s %s Exception: %s;'
-							 %(sys._getframe().f_back.f_lineno,sys._getframe().f_code.co_name,locator,value,e))
+							 %(sys._getframe().f_back.f_lineno,sys._getframe().f_back.f_code.co_name,locator,value,e))
 			self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
 
 
@@ -193,7 +194,45 @@ class BasePage(object):
 			image = self.driver.save_screenshot(self.savePngName(name))
 			return image
 
+	def get_screenshot_by_element(self, instance, function_name, isexist=True):
+		r = r".([a-z0-9A-Z]*)'>"
+		class_name = re.findall(r, str(type(instance)))[0]
+		if isexist == False:
+			self.img_file = appium_init.inital.project_path+ "\\img\\" + class_name + "_" + function_name + ".png"
+		elif isexist == True:
+			self.img_file = appium_init.inital.project_path+ "\\img\\" + "temp_" + class_name + "_" + function_name + ".png"
+		else:
+			appium_init.inital.logger.info("Pictrue | get_screenshot_by_element : isexist value is error %s" % isexist)
+			return False
+		f = getattr(instance, function_name)
+		element = f
 
+		self.driver.get_screenshot_as_file(self.img_file)
+
+		# 获取元素bounds
+		location = element.location
+		size = element.size
+		box = (location["x"], location["y"], location["x"] + size["width"], location["y"] + size["height"])
+		# 截取图片
+		image = Image.open(self.img_file)
+		newImage = image.crop(box)
+		newImage.save(self.img_file)
+		appium_init.inital.logger.info("Pictrue | get_screenshot_by_element:pic %s save complate!" % self.img_file)
+		return self
+
+	def same_as(self, percent):
+		image1 = Image.open(self.img_file)
+		image2 = Image.open(self.img_file.replace("temp_", ""))
+
+		histogram1 = image1.histogram()
+		histogram2 = image2.histogram()
+
+		differ = math.sqrt(reduce(operator.add, list(map(lambda a, b: (a - b) ** 2,
+														 histogram1, histogram2))) / len(histogram1))
+		if differ <= percent:
+			return True
+		else:
+			return False
 
 
 class WebUI(BasePage):

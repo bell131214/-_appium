@@ -1,6 +1,4 @@
 #coding:utf-8
-__author__ = 'FanGu'
-
 import unittest,sys,time
 sys.path.append('..')
 from functions.interface_case import InterfaceCase
@@ -16,7 +14,11 @@ class GFtest(InterfaceCase):
         startuppage=StartupPage(self.driver)
         time.sleep(3)
         homepage=startuppage.page_swipe()
-        homepage.el_my_btn.click()
+
+        # homepage.get_screenshot_by_element(homepage,"el_home_btn",False)
+        result=homepage.get_screenshot_by_element(homepage,"el_home_btn").same_as(30)
+        print result
+        time.sleep(2)
 
     def tearDown(self):
         self.driver.quit()
