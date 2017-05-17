@@ -18,10 +18,32 @@ class NewsContractsPage(BasePage):
     def el_check_pact_btn(self):
         return self.base_find_elements(By.XPATH, "//android.widget.TextView[contains(@text,'点击查看')]")
 
+    @property
+    def el_Contracts_title(self):
+        return self.base_find_elements(By.XPATH, "//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
 
-    def el_check_pact_btn_click(self,index=0):
+
+
+
+
+    def click_el_check_pact_btn(self,index=0):
+        """
+        :param index: 列表索引
+        :return:  NewsContractDetailsPage  合同详情页面
+        """
         self.el_check_pact_btn[index].click()
         return NewsContractDetailsPage(self.driver)
+
+
+    def get_el_Contracts_title(self):
+        """
+        :return: 合同详情页面 title
+        """
+        try:
+            return self.el_Contracts_title.text
+        except  AttributeError, e:
+            self.logger.debug('LoginTest | exception is %s' % e)
+            # self.driver.quit()
 
 
 if __name__ == '__main__':

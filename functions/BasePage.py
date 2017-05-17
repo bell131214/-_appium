@@ -23,7 +23,6 @@ class BasePage(object):
 	def base_find_element(self,locator,value):
 		try:
 			WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element(locator,value).is_displayed())
-
 			return self.driver.find_element(locator,value)
 		except TimeoutException,e:
 			self.logger.info('BasePage | TimeoutException error occur at {one};function name is {two};locator is {three} {four} Exception:{five};'.format(one=sys._getframe().f_back.f_lineno,																																				 two=sys._getframe().f_back.f_code.co_name,
@@ -199,7 +198,15 @@ class BasePage(object):
 			image = self.driver.save_screenshot(self.savePngName(name))
 			return image
 
+
+
 	def get_screenshot_by_element(self, instance, function_name, isexist=True):
+		"""
+		:param instance: 
+		:param function_name: 
+		:param isexist: 
+		:return: 
+		"""
 		r = r".([a-z0-9A-Z]*)'>"
 		class_name = re.findall(r, str(type(instance)))[0]
 		if isexist == False:

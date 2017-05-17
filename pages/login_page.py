@@ -45,13 +45,12 @@ class LoginPage(BasePage):
 
 
     #逻辑方法-登录
-    def logic_login(self,phone,pwd):
+    def logic_login(self,phone='14488888098',pwd='qwe123'):
             """
              :param phone: 账户
-                :param pwd:  密码
-                :return:  HomePage
+             :param pwd:  密码
+              :return:  HomePage
             """
-
             startuppage=StartupPage(self.driver)
             a= startuppage.page_swipe()
             a.el_my_btn.click()

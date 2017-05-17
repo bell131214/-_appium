@@ -24,16 +24,47 @@ class NewsPage(BasePage):
     def el_consult_message_btn(self):
         return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'咨询消息')]")
 
+    #未读消息数
+    @property
+    def el_unread_message_btn(self):
+        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tv_message_number')]")
 
-    #点击 合同中心，返回 NewsContractsPage
-    def el_contract_message_btn_click(self):
+    @property
+    def el_newspage_title_btn(self):
+        return self.base_find_element(By.XPATH,
+                                      "//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
+
+
+    def click_el_contract_message_btn(self):
+        """
+        :return:  NewsContractsPage  消息中心合同页面 
+        """
         self.el_contract_message_btn.click()
         return NewsContractsPage(self.driver)
 
-
-    def el_consult_message_btn_click(self):
+    def click_el_consult_message_btn(self):
+        """
+        :return:  NewsConsultsPage   消息中心咨询页面
+        """
         self.el_consult_message_btn.click()
         return NewsConsultsPage(self.driver)
+
+
+    def get_el_consult_message_btn(self):
+        """
+        :return: message_number
+        """
+        return  self.el_unread_message_btn.text
+
+    def get_el_newspage_title(self):
+        """
+        :return:  newspage title
+        """
+        try:
+            return  self.el_newspage_title_btn.text
+        except  AttributeError,e:
+            self.logger.debug('LoginTest | exception is %s' % e)
+            #self.driver.quit()
 
 
 
@@ -46,5 +77,4 @@ if __name__ == '__main__':
     a = login.logic_login('14488888098', 'qwe123')
     time.sleep(1.5)
     b=a.el_news_img_click()
-    b.el_contract_message_btn_click()
-
+    print b.el_consult_message_btn_get

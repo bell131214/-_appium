@@ -3,6 +3,7 @@ from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
 from pages.buy_trade_result_page import BuyTradeResultPage
 
+
 class BuyConfirmPage(BasePage):
 
     context="buy confirm page"
