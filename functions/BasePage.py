@@ -1,6 +1,5 @@
 #coding=utf-8
 import time,os
-from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from appium.webdriver.common.touch_action import TouchAction
@@ -29,13 +28,7 @@ class BasePage(object):
 																																				three=locator,four=value,five=e))
 			self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
 
-		#由于做了超时异常处理，永远不会捕获到找不到元素异常
-		# except NoSuchElementException,e:
-		# 	if isinstance(appium_init.inital,Initialization)!=True:
-		# 		Init()
-		# 	self.logger.info('BasePage | NoSuchElementException error occur at {one};function name is {two};locator is {three} {four} Exception:{five};'.format(one=sys._getframe().f_back.f_lineno,																																				 two=sys._getframe().f_back.f_code.co_name,
-		# 																																			three=locator,four=value,five=e))
-		# 	self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
+
 
 
 	def base_find_elements(self,locator,value):
@@ -201,12 +194,15 @@ class BasePage(object):
 
 
 	def get_screenshot_by_element(self, instance, function_name, isexist=True):
-		"""
-		:param instance: 
-		:param function_name: 
-		:param isexist: 
-		:return: 
-		"""
+
+		'''
+		
+		:param instance: Page类的实例，比如  a=HomePage()传入的就是a
+		:param function_name:  Page类的元素方法名，注意是字符串。eg:'el_my_btn'
+		:param isexist:  截图对比图片是否存在，即断言对比的图片是否存在，默认存在，就能调用对比，如果不存在就填False，保持该元素图片，以供下次对比
+		:return:  返回self  ，方便same_as()方法连续调用
+		'''
+
 		r = r".([a-z0-9A-Z]*)'>"
 		class_name = re.findall(r, str(type(instance)))[0]
 		if isexist == False:
@@ -236,8 +232,12 @@ class BasePage(object):
 		appium_init.inital.logger.info("Pictrue | get_screenshot_by_element:pic %s save complate!" % self.img_file)
 		return self
 
-	def same_as(self, percent):
-
+	def same_as(self, percent=30):
+		'''
+		
+		:param percent: 相似的百分百，0为100%相似，数值越高，对比容忍度越高，默认值为30
+		:return:  返回True/False   True对比通过，False对比不通过
+		'''
 		try:
 			image1 = Image.open(self.img_file)
 			image2 = Image.open(self.img_file.replace("temp_", ""))

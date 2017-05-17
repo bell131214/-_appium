@@ -14,9 +14,9 @@ class GFtest(InterfaceCase):
         startuppage=StartupPage(self.driver)
         time.sleep(3)
         homepage=startuppage.page_swipe()
-
+        homepage.el_product_btn.click()
         # homepage.get_screenshot_by_element(homepage,"el_home_btn",False)
-        result=homepage.get_screenshot_by_element(homepage,"el_home_btn").same_as(30)
+        result=homepage.get_screenshot_by_element(homepage,"el_my_btn").same_as(30)
         print result
         time.sleep(2)
 
