@@ -60,8 +60,10 @@ class HomePage(BasePage):
     #点击【我的】跳转至my_page
     def click_el_my_btn(self):
 
-       # self.press_TouchAction()
+
+        self.press_TouchAction()
         time.sleep(0.5)
+
         self.el_my_btn.click()
         return MyPage(self.driver)
 
