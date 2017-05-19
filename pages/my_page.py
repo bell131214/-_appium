@@ -15,7 +15,8 @@ class MyPage(BasePage):
     #个人中心
     @property
     def el_my_personalCenter(self):
-        return self.base_find_element(By.XPATH,"//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/img_my')]")
+        #return self.base_find_element(By.XPATH,"//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/img_my')]")
+       return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/img_my")
 
     #我的银行卡
     @property
@@ -33,29 +34,34 @@ class MyPage(BasePage):
          return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'投资记录')]")
 
 
+
+
     #点击投资记录
     def click_my_investmentRecord(self):
         self.el_my_investmentRecord.click()
         return MyInvsetRecorePage(self.driver)
+
 
     def el_my_transactionRecord_btn_click(self):
         self.el_my_transactionRecord_btn.click()
         return MyTradeRecordPage(self.driver)
 
     def test_t(self):
-    #self.el_my_personalCenter.click()
+        self.press_TouchAction()
+        time.sleep(1)
+        self.el_my_personalCenter.click()
+        #self.el_my_personalCenter.click()
       #  time.sleep(0.5)
       #  self.pressBackKey()
       #  time.sleep(0.5)
      #   self.el_my_bankCard.click()
       #  self.pressBackKey()
-        self.press_TouchAction()
+
       #  time.sleep(0.5)
        # self.el_my_transactionRecord.click()
       #  self.pressBackKey()
-        time.sleep(0.5)
-        self.el_my_transactionRecord_btn_click()
-        return  MyTradeRecordPage(self.driver)
+       # self.el_my_transactionRecord_btn_click()
+       # return  MyTradeRecordPage(self.driver)
      #   self.pressBackKey()
 
 
@@ -70,7 +76,6 @@ if __name__ == '__main__':
     a=login.logic_login('14488888098','qwe123')
     b=a.click_el_my_btn()
     time.sleep(3)
-    #a=MyPage()
     b.test_t()
 
 

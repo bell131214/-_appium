@@ -61,6 +61,7 @@ class HomePage(BasePage):
     def click_el_my_btn(self):
         time.sleep(0.5)
         self.press_TouchAction()
+        time.sleep(0.5)
         self.el_my_btn.click()
         return MyPage(self.driver)
 
