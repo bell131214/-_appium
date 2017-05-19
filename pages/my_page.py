@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from functions.appium_init import *
 from pages.my_invset_record_page import MyInvsetRecorePage
 from pages.my_trade_record_page import MyTradeRecordPage
+from pages.my_personal_center_page import MyPersonalCenterPage
 
 
 class MyPage(BasePage):
@@ -42,6 +43,10 @@ class MyPage(BasePage):
         self.el_my_transactionRecord_btn.click()
         return MyTradeRecordPage(self.driver)
 
+    def logic_link_myCenter(self):
+        self.el_my_personalCenter.click()
+        return MyPersonalCenterPage(self.driver)
+
     def test_t(self):
     #self.el_my_personalCenter.click()
       #  time.sleep(0.5)
@@ -54,8 +59,8 @@ class MyPage(BasePage):
        # self.el_my_transactionRecord.click()
       #  self.pressBackKey()
         time.sleep(0.5)
-        self.el_my_transactionRecord_btn_click()
-        return  MyTradeRecordPage(self.driver)
+        self.logic_link_myCenter()
+       # return  MyTradeRecordPage(self.driver)
      #   self.pressBackKey()
 
 

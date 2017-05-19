@@ -26,6 +26,13 @@ class RegisterIdentityAuthPage(BasePage):
     def el_next_step_btn(self):
         return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/tv_nextstep")
 
+    def logic_entry_user_info(self,name,id,email):
+        self.el_name_text_input.send_keys(name)
+        self.el_id_text_input.send_keys(id)
+        self.el_email_text_input.send_keys(email)
+        self.el_next_step_btn.click()
+        return HomePage(self.driver)
+
     #跳转至home_page(首页)
     def logic_link_home_page(self):
         self.el_next_step_btn.click()

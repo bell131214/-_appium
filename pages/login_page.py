@@ -4,7 +4,6 @@ import time
 from selenium.webdriver.common.by import By
 from functions.BasePage import BasePage
 from functions.appium_init import *
-from pages.home_page import HomePage
 from pages.startup_page import StartupPage
 from pages.register_choose_page import RegisterChoosePage
 
@@ -51,6 +50,7 @@ class LoginPage(BasePage):
              :param pwd:  密码
               :return:  HomePage
             """
+            from pages.home_page import HomePage
             startuppage=StartupPage(self.driver)
             a= startuppage.page_swipe()
             a.el_my_btn.click()

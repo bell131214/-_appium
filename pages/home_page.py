@@ -59,10 +59,17 @@ class HomePage(BasePage):
 
     #点击【我的】跳转至my_page
     def click_el_my_btn(self):
+
+       # self.press_TouchAction()
         time.sleep(0.5)
-        self.press_TouchAction()
         self.el_my_btn.click()
         return MyPage(self.driver)
+
+    #未登录态 点击【我的】跳转至LoginPage
+    def logic_link_login_page(self):
+        from pages.login_page import LoginPage
+        self.el_my_btn.click()
+        return LoginPage(self.driver)
 
 
     #点击【消息中心】，跳转至newsw_page
@@ -107,9 +114,9 @@ class HomePage(BasePage):
 
 
 if __name__ == '__main__':
-    from login_page import LoginPage
     Init()
     driver = appium_init.inital.get_driver()
+    from pages.login_page import LoginPage
     login = LoginPage(driver)
     a = login.logic_login('14488888098', 'qwe123')
     time.sleep(1.5)
