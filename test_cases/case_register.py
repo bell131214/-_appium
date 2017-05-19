@@ -31,11 +31,14 @@ class RegisterTest(InterfaceCase):
         homePage=registerIdentityAuthPage.logic_entry_user_info(user_name,user_id,user_email)
 
         myPage=homePage.click_el_my_btn()
+        #点击浮层
+        time.sleep(1)
+        myPage.el_tv_know.click()
 
         myPersonalCenterPage=myPage.logic_link_myCenter()
         phone_text=myPersonalCenterPage.el_phone_text.text
         phone_secret=user_phone[:3]+'****'+user_phone[7:]
-        print phone_text,phone_secret
+
         self.assertEqual(phone_text,phone_secret)
         self.logger.info("userinfo:phone-{phone} name-{name} id-{id} email-{email}".format(phone=user_phone,name=user_name,
                                                                 id=user_id,email=user_email))
