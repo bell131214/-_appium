@@ -269,6 +269,10 @@ class BasePage(object):
 		else:
 			return False
 
+	def element_is_exsit(self,el):
+		return isinstance(el,WebElement)
+
+
 
 class WebUI(BasePage):
 	def __str__(self):

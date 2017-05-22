@@ -21,14 +21,15 @@ class LoginTest(InterfaceCase):
         productQuarkzxPage=productListPage.logic_link_quarkZX()
         loginPage=productQuarkzxPage.logic_noLogin_state_buy()
 
-        self.assertEqual('im login page',loginPage.context)
+        self.assertTrue(loginPage.element_is_exsit(loginPage.el_phone_text_input))
 
     #非登录状态点击“我的”按钮
     def test_non_login_state_clickMyPage(self):
         startupPage=StartupPage(self.driver)
         homePage=startupPage.page_swipe()
         loginPage=homePage.logic_link_login_page()
-        self.assertEqual('im login page',loginPage.context)
+
+        self.assertTrue(loginPage.element_is_exsit(loginPage.el_pwd_text_input))
 
     #登录成功用例
     def test_login_success(self):
