@@ -256,6 +256,19 @@ class BasePage(object):
 		else:
 			return False
 
+		#判断元素是否存在于当前页面
+	def proving_element(self,el):
+		"""
+		:param el: 元素 
+		:return: True  False
+		"""
+		source = self.driver.page_source
+		print  source
+		if el in source:
+			return True
+		else:
+			return False
+
 
 class WebUI(BasePage):
 	def __str__(self):

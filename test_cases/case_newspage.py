@@ -16,21 +16,26 @@ class NewsPage(InterfaceCase):
     def setUp(self):
         self.driver = self.inital.get_driver()
         self.logger = self.inital.logger
-        login_=login(self.driver)
-        homepage=login_.logic_login()
+
+
+
+    def lojin(self):
+        login_ = login(self.driver)
+        homepage = login_.logic_login()
         time.sleep(1)
-        self.newspage=homepage.click_el_news_img()
+        self.newspage = homepage.click_el_news_img()
 
     def test_check_title(self):
-        """page 验证"""
+        """消息中心页面验证"""
         title_=self.newspage.get_el_newspage_title()
-        self.assertEqual(title_,u"消息中心")
+        self.assertEqual(title_,"消息中心")
+
 
     def test_check_contract(self):
         """合同消息 跳转验证"""
         contractpage=self.newspage.click_el_contract_message_btn()
         title=contractpage.get_el_Contracts_title()
-        self.assertEqual(title,u"合同消息")
+        self.assertEqual(title,"合同消息")
 
 
 

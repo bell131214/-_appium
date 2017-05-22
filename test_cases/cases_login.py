@@ -3,34 +3,38 @@
 
 import unittest,sys
 # sys.path.append('..')
+
+from pages.login_page import LoginPage as login
+from functions.interface_case import InterfaceCase
 from functions.appium_init import Initialization
-from pages.login_page import LoginPage
 
 
 
-class LoginTest(unittest.TestCase):
+
+class LoginTest(InterfaceCase):
 
 
     def setUp(self):
-        info=Initialization()
-        self.driver=info.get_driver()
-        self.logger=info.logger
+        self.driver = self.inital.get_driver()
+        self.logger = self.inital.logger
+        self.login_ = login(self.driver)
 
 
-
-    def test_Login_def1(self):
+    def test_Login_def(self):
+       """验证成功登录"""
        try:
-           d=LoginPage(self.driver)
-           username = '18048444414'
-           password = 'hele5201'
+           username = '14488888098'
+           password = 'qwe123'
            self.logger.info(username+password)
-           d.logic_login(username,password)
-           self.assertEquals(1==1)
-           self.logger.info('LoginTest | exec test_Login_def1')
-
+           homepage=self.login_.logic_login(username,password)
+           self.logger.info('LoginTest | exec test_Login_def1 name{name},password:{password}'.format(name=username,password=password))
+           #self.assertTrue(homepage.proving_el_invest_img())
        except Exception,e:
            self.logger.debug('LoginTest | exception is %s' %e)
-           self.driver.quit()
+       self.assertTrue(homepage.proving_el_invest_img())
+
+
+
 
        def tearDown(self):
            self.driver.quit()

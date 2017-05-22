@@ -49,15 +49,15 @@ class hometest(InterfaceCase):
     def test_click_banner3(self):
        u"""验证点击banner[3]"""
        try:
-        startUp=StartupPage(self.driver)
-        homepage=startUp.page_swipe()
-        b=homepage.banner_click(id=3)
-        time.sleep(3)
-        self.logger.info(b.el_title.text)
-
+            startUp=StartupPage(self.driver)
+            homepage=startUp.page_swipe()
+            b=homepage.banner_click(id=3)
+            time.sleep(3)
+            self.logger.info(b.el_title.text)
        except Exception,e:
-        self.logger.info(e)
-        self.assertEqual(b.el_title.text, u"夸客美丽增值计划")
+           self.logger.info(e)
+
+       self.assertEqual(b.el_title.text, u"夸客美丽增值计划")
 
 
         # id:输入需要验证的banner 索引ID

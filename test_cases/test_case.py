@@ -17,9 +17,6 @@ class LoginTest(InterfaceCase):
         self.driver = self.inital.get_driver()
         self.logger=self.inital.logger
 
-    def test_add(self):
-        self.assertEqual(self.inital.project_path,'D:\\quarkscript\\UFO_appium')
-
 
     def test_new_PO_test(self):
         u"""验证登录"""
