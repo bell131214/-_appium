@@ -34,7 +34,10 @@ class MyPage(BasePage):
     def el_my_investmentRecord(self):
          return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'投资记录')]")
 
-
+    #我知道了 浮层
+    @property
+    def el_tv_know(self):
+        return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/tv_know")
 
 
     #点击投资记录
@@ -52,8 +55,8 @@ class MyPage(BasePage):
         return MyPersonalCenterPage(self.driver)
 
     def test_t(self):
-        self.press_TouchAction()
-        time.sleep(1)
+        #self.press_TouchAction()
+        #time.sleep(1)
         self.el_my_personalCenter.click()
         #self.el_my_personalCenter.click()
       #  time.sleep(0.5)

@@ -59,8 +59,12 @@ class HomePage(BasePage):
 
     #点击【我的】跳转至my_page
     def click_el_my_btn(self):
-        self.press_TouchAction()
+
+
+        # self.press_TouchAction()
+        self.el_my_btn.click()
         time.sleep(0.5)
+
         self.el_my_btn.click()
         return MyPage(self.driver)
 
@@ -95,11 +99,6 @@ class HomePage(BasePage):
     def logic_link_product(self):
         self.el_product_btn.click()
         return ProductListPage(self.driver)
-
-    #判断立即投资元素是否存在，验证是否登录成功
-    def proving_el_invest_img(self):
-
-        return self.proving_element(el='com.quarkfinance.ufo:id/return_money_btn')
 
 
 
