@@ -23,6 +23,11 @@ class BuyInsertMoneyPage(BasePage):
     def el_buy_btn(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'立即支付')]")
 
+    def logic_buy_product(self,money):
+        self.el_amount_text_input.send_keys(str(money))
+        self.el_checkBox_btn.click()
+        self.el_buy_btn.click()
+        return BuyConfirmPage(self.driver)
 
     def logic_link_buy(self):
         self.el_buy_btn.click()

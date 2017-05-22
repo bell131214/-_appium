@@ -57,16 +57,19 @@ class HomePage(BasePage):
 
 
 
-    #点击【我的】跳转至my_page
+    #点击【我的】跳转至my_page,刚注册成功点击该按钮
     def click_el_my_btn(self):
-
-
         # self.press_TouchAction()
         self.el_my_btn.click()
         time.sleep(0.5)
-
         self.el_my_btn.click()
         return MyPage(self.driver)
+
+    #点击【我的】跳转至my_page,刚购买完理财点击该按钮
+    def logic_buy_my_btn(self):
+        self.el_my_btn.click()
+        return MyPage(self.driver)
+
 
     #未登录态 点击【我的】跳转至LoginPage
     def logic_link_login_page(self):

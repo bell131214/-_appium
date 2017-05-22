@@ -23,6 +23,14 @@ class BuyConfirmPage(BasePage):
     def el_confirm_btn(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'确定')]")
 
+    #页面逻辑封装，点击立即投资，输入登录密码，点击确定按钮
+    def logic_confirm_info(self,pwd='qwe123'):
+        self.el_buy_btn.click()
+        self.el_password_text_input.send_keys(pwd)
+        self.el_confirm_btn.click()
+        return BuyTradeResultPage(self.driver)
+
+
     def logic_link_confirm(self):
         self.el_confirm_btn.click()
         return BuyTradeResultPage(self.driver)

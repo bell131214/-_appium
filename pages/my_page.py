@@ -46,7 +46,7 @@ class MyPage(BasePage):
         return MyInvsetRecorePage(self.driver)
 
 
-    def el_my_transactionRecord_btn_click(self):
+    def logic_my_transactionRecord_btn_click(self):
         self.el_my_transactionRecord_btn.click()
         return MyTradeRecordPage(self.driver)
 

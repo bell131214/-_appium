@@ -15,10 +15,13 @@ class MyTradeRecordPage(BasePage):
 
     #交易
     @property
-    def el__trade_btn(self):
+    def el_trade_btn(self):
         return self.base_find_elements(By.XPATH, "//android.widget.TextView[contains(@text,'交易')]")
 
-
+    #我知道了 确认按钮
+    @property
+    def el_tv_know(self):
+        return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/tv_know")
 
     #咨询
     @property
@@ -27,8 +30,8 @@ class MyTradeRecordPage(BasePage):
 
 
     #进入交易list
-    def el__trade_btn_click(self):
-          self.el__trade_btn[1].click()
+    def el_trade_btn_click(self):
+          self.el_trade_btn[1].click()
 
 
 
@@ -46,5 +49,5 @@ if __name__ == '__main__':
     c=MyTradeRecordPage(driver)
     c.el_trade_Consultation_btn.click()
     time.sleep(3)
-    c.el__trade_btn[1].click()
+    c.el_trade_btn[1].click()
 
