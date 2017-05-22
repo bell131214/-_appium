@@ -14,6 +14,10 @@ class RegisterTest(InterfaceCase):
         self.logger=self.inital.logger
 
     def test_new_customer(self):
+        '''
+        注册新客户，并在我的个人中心，根据手机号断言
+        :return: 
+        '''
         user_phone=Create_Data().get_phone()
         user_name=Create_Data().get_name()
         user_id=Create_Data.get_identification()
@@ -35,6 +39,7 @@ class RegisterTest(InterfaceCase):
         time.sleep(1)
         myPage.el_tv_know.click()
 
+        #断言代码
         myPersonalCenterPage=myPage.logic_link_myCenter()
         phone_text=myPersonalCenterPage.el_phone_text.text
         phone_secret=user_phone[:3]+'****'+user_phone[7:]
