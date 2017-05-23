@@ -48,6 +48,9 @@ if __name__ == '__main__':
 	# print sql_conn.execSql_getOne("SELECT * from dbo.new_product")
 
 	#测试代码，查询结果集
-	results=sql_conn.execSql_getList("SELECT * from dbo.new_product")
-	for i in xrange(3):
-		print results[i]
+	# results=sql_conn.execSql_getList("SELECT * from dbo.new_product")
+	# for i in xrange(3):
+	# 	print results[i]
+	SQL="select top(1) m.new_managemoney from dbo.Account t,dbo.new_investdetail m where t.name=m.new_accountnameName and t.new_telephone1='14488888098' ORDER BY m.CreatedOn DESC"
+	# print type(sql_conn.execSql_getOne(SQL)[0])
+	print int(sql_conn.execSql_getOne(SQL)[0])
