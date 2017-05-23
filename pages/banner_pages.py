@@ -6,6 +6,8 @@ from functions.appium_init import *
 import time
 
 
+
+
 class BannerPages(BasePage):
     """
     功能：首页 Banner页面的测试

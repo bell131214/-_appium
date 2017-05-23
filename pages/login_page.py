@@ -52,13 +52,8 @@ class LoginPage(BasePage):
              :param pwd:  密码
               :return:  HomePage
             """
+
             from pages.home_page import HomePage
-
-            #非本页面的操作 都写在启动页page中，此三行删除
-            # startuppage=StartupPage(self.driver)
-            # a= startuppage.page_swipe()
-            # a.el_my_btn.click()
-
             self.el_phone_text_input.send_keys(phone)
             self.el_pwd_text_input.send_keys(pwd)
             self.el_login_btn.click()

@@ -5,5 +5,3 @@ config/
 *.pyc
 *.log
 *.html
-img/
-*.png

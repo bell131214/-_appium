@@ -31,13 +31,14 @@ class NewsPage(BasePage):
 
     @property
     def el_newspage_title_btn(self):
-        return self.base_find_element(By.XPATH,
-                                      "//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
+        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
+
+
 
 
     def click_el_contract_message_btn(self):
         """
-        :return:  NewsContractsPage  消息中心合同页面 
+        :return:  NewsContractsPage  消息中心合同消息
         """
         self.el_contract_message_btn.click()
         return NewsContractsPage(self.driver)
@@ -48,6 +49,11 @@ class NewsPage(BasePage):
         """
         self.el_consult_message_btn.click()
         return NewsConsultsPage(self.driver)
+
+    def Verification_newspage_el(self):
+        return  self.proving_element('合同消息')
+
+
 
 
     def get_el_consult_message_btn(self):

@@ -101,6 +101,8 @@ class HomePage(BasePage):
         return ProductListPage(self.driver)
 
 
+    def checga_element(self):
+        return  self.proving_element('com.quarkfinance.ufo:id/tv_invest')
 
 
     # 根据传入的ID 点击对应的Banner index

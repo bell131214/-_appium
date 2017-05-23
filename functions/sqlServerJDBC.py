@@ -48,6 +48,10 @@ if __name__ == '__main__':
 	# print sql_conn.execSql_getOne("SELECT * from dbo.new_product")
 
 	#测试代码，查询结果集
-	results=sql_conn.execSql_getList("SELECT * from dbo.new_product")
-	for i in xrange(3):
-		print results[i]
+	#results=sql_conn.execSql_getList("SELECT * from dbo.new_product")
+
+	results = sql_conn.execSql_getList("SELECT top 1  new_name,new_investdate,new_financeterm from new_investdetailBase WHERE new_accountname = '24004F6C-7C08-E711-80C9-00155D01F903' order BY  new_investdate DESC")
+
+	a=list(results)
+	for i in a:
+		print i
