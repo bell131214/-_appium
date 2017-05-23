@@ -16,3 +16,8 @@ class NewsConsultsPage(BasePage):
     def el_service_agreement_txt(self):
         return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'夸客优富私募基金6号')]")
 
+
+    def Verification_NewsConsults_el(self):
+        return self.proving_element('夸客优富私募基金6号')
+
+

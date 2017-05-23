@@ -20,7 +20,7 @@ class NewsContractsPage(BasePage):
 
     @property
     def el_Contracts_title(self):
-        return self.base_find_elements(By.XPATH, "//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
+        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
 
 
 
@@ -31,13 +31,21 @@ class NewsContractsPage(BasePage):
         :param index: 列表索引
         :return:  NewsContractDetailsPage  合同详情页面
         """
-        self.el_check_pact_btn[index].click()
+        #if self.element_is_exsit(self.el_check_pact_btn):
+        if self.proving_element('点击查看'):
+             self.el_check_pact_btn[index].click()
+
+        else:
+            self.click_el_check_pact_btn()
+
         return NewsContractDetailsPage(self.driver)
+
+
 
 
     def get_el_Contracts_title(self):
         """
-        :return: 合同详情页面 title
+        :return: 合同列表页面 title
         """
         try:
             return self.el_Contracts_title.text
@@ -47,14 +55,21 @@ class NewsContractsPage(BasePage):
 
 
 if __name__ == '__main__':
-    from login_page import LoginPage
     Init()
     driver = appium_init.inital.get_driver()
-    login = LoginPage(driver)
-    a = login.logic_login('14488888098', 'qwe123')
-    time.sleep(1.5)
-    b=a.el_news_img_click()
-    c=b.el_contract_message_btn_click()
-    time.sleep(1.5)
-    c.el_check_pact_btn_click()
+    from pages.startup_page import StartupPage
+    startupPage = StartupPage(driver)
+    homepage = startupPage.page_swipe()
+
+    loginPage = homepage.logic_link_login_page()
+    homepage = loginPage.logic_login()
+    time.sleep(1)
+    newspage = homepage.click_el_news_img()
+
+    NewsContractsPage=newspage.click_el_contract_message_btn()
+    NewsContractsPage.click_el_check_pact_btn()
+
+
+
+
 

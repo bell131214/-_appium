@@ -5,7 +5,7 @@ sys.setdefaultencoding('utf-8')
 from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
 from functions.appium_init import *
-
+from appium import webdriver
 class NewsContractDetailsPage(BasePage):
     """
       describe：合同详情页
@@ -34,6 +34,20 @@ class NewsContractDetailsPage(BasePage):
     def el_capital_btn(self):
         return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'出借本金确认书')]")
 
+    #出借确认书详情页合同
+    @property
+    def el_capital_img(self):
+        return self.driver.find_element_by_accessibility_id('查看合同')
+
+
+    # 出借确认书title
+    @property
+    def el_capitalt_title(self):
+        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'出借本金确认书')]")
+
+
+    def clcik_el_capital_btn(self):
+        self.el_capital_btn.click()
 
 
 if __name__ == '__main__':

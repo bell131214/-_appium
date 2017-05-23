@@ -19,27 +19,50 @@ class NewsPage(InterfaceCase):
 
 
 
-    def lojin(self):
-        login_ = login(self.driver)
-        homepage = login_.logic_login()
+    def test_newspage_contract(self):
+        """消息中心-合同消息-本金确认书验证"""
+
+
+        #客户登录并进入消息中心列表
+        newspage = self.logon()
+        #点击合同列表页面
+        NewsContractsPage=newspage.click_el_contract_message_btn()
+        #点击合同详情页
+        NewsContractDetailsPage=NewsContractsPage.click_el_check_pact_btn()
+        #点击出借本金确认书 el_capital_btn
+        NewsContractDetailsPage.clcik_el_capital_btn()
+
+        #bool1 = NewsContractDetailsPage.get_screenshot_by_element(NewsContractDetailsPage, 'el_capital_img',isexist=False)  #第一次截图时
+        #进行截图对比
+        bool1= NewsContractDetailsPage.get_screenshot_by_element(NewsContractDetailsPage,'el_capital_img',isexist=True).same_as()
+
+        #断言判断
+        title=NewsContractDetailsPage.el_capitalt_title.text
+        self.assertTrue(bool1)
+        self.assertEqual(title,'出借本金确认书')
+
+
+    def test_contract_list(self):
+        """消息中心-合同消息-展示本金确认书合同列表"""
+        # 客户登录并进入消息中心列表
+        newspage = self.logon()
+        # 点击合同列表页面
+        NewsContractsPage = newspage.click_el_contract_message_btn()
+
+
+
+
+
+
+
+    def logon(self):
+        startupPage = StartupPage(self.driver)
+        homepage = startupPage.page_swipe()
+        loginPage = homepage.logic_link_login_page()
+        homepage = loginPage.logic_login()
         time.sleep(1)
-        self.newspage = homepage.click_el_news_img()
-
-    def test_check_title(self):
-        """消息中心页面验证"""
-        title_=self.newspage.get_el_newspage_title()
-        self.assertEqual(title_,"消息中心")
-
-
-    def test_check_contract(self):
-        """合同消息 跳转验证"""
-        contractpage=self.newspage.click_el_contract_message_btn()
-        title=contractpage.get_el_Contracts_title()
-        self.assertEqual(title,"合同消息")
-
-
-
-
+        newspage = homepage.click_el_news_img()
+        return  newspage
 
     def tearDown(self):
         self.driver.quit()
