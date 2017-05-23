@@ -41,6 +41,7 @@ class NewsPage(BasePage):
         :return:  NewsContractsPage  消息中心合同消息
         """
         self.el_contract_message_btn.click()
+
         return NewsContractsPage(self.driver)
 
     def click_el_consult_message_btn(self):

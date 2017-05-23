@@ -45,6 +45,7 @@ class BasePage(object):
 
 
 
+
 	def get_size(self):
 		"""
 		获取当前屏幕的分辨率
@@ -214,7 +215,7 @@ class BasePage(object):
 			return False
 		f = getattr(instance, function_name)
 		element = f
-
+		time.sleep(5)
 		self.driver.get_screenshot_as_file(self.img_file)
 
 		if isinstance(element,WebElement):
@@ -263,7 +264,7 @@ class BasePage(object):
 		:return: True  False
 		"""
 		source = self.driver.page_source
-		print  source
+		#print  source
 		if el in source:
 			return True
 		else:

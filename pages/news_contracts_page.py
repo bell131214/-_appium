@@ -9,7 +9,7 @@ from pages.news_contract_details_page import NewsContractDetailsPage
 
 class NewsContractsPage(BasePage):
     """
-     describe：消息中心合同页面
+     describe：消息中心合同消息
       """
 
 
@@ -23,6 +23,20 @@ class NewsContractsPage(BasePage):
         return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tb_title')]")
 
 
+
+
+
+    def get_Contracts_list_text(self,index=0):
+         """
+        :param index: 
+        :return: 
+        """
+         product_name =self.base_find_elements(By.ID,"com.quarkfinance.ufo:id/tv_product_name")[index].text
+         creat_date=self.base_find_elements(By.ID,"com.quarkfinance.ufo:id/tv_jiaoyi_date")[index].text
+         contract_number=self.base_find_elements(By.ID,"com.quarkfinance.ufo:id/tv_hetong_num")[index].text
+         quit_date = self.base_find_elements(By.ID, "com.quarkfinance.ufo:id/tv_exit_date")[index].text
+         lista=[product_name,creat_date,contract_number,quit_date]
+         return lista
 
 
 
@@ -67,7 +81,10 @@ if __name__ == '__main__':
     newspage = homepage.click_el_news_img()
 
     NewsContractsPage=newspage.click_el_contract_message_btn()
-    NewsContractsPage.click_el_check_pact_btn()
+
+    print  NewsContractsPage.test(1)
+
+    #NewsContractsPage.click_el_check_pact_btn()
 
 
 

@@ -20,8 +20,8 @@ class LoginTest(InterfaceCase):
         productListPage=homePage.logic_link_product()
         productQuarkzxPage=productListPage.logic_link_quarkZX()
         loginPage=productQuarkzxPage.logic_noLogin_state_buy()
-
         self.assertTrue(loginPage.element_is_exsit(loginPage.el_phone_text_input))
+
 
     #非登录状态点击“我的”按钮
     def test_non_login_state_clickMyPage(self):
