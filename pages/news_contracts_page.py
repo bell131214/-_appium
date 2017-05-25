@@ -25,7 +25,7 @@ class NewsContractsPage(BasePage):
 
 
 
-
+    #获得合同明细 list 数据
     def get_Contracts_list_text(self,index=0):
          """
         :param index: 

@@ -34,8 +34,13 @@ class MyInvsetRecorePage(BasePage):
      def el_invest_list(self):
          return self.base_find_elements(By.XPATH,"//android.widget.LinearLayout[contains(@resource-id,'com.quarkfinance.ufo:id/item_view')]")
 
+     # 我知道了 浮层
+     @property
+     def el_tv_know(self):
+         return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/tv_know")
 
-     def invest_list_click(self,index=0):
+
+     def logic_invest_list_click(self,index=0):
          self.el_invest_list[index].click()
          return MyAssetDetailsPage(self.driver)
 
@@ -58,5 +63,7 @@ if __name__ == '__main__':
     #time.sleep(3)
     #e.el_my_financial.click()
     e.invest_list_click()
+    
+    "17712345606 qwe123"
 
 

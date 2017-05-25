@@ -4,14 +4,10 @@ import unittest,sys
 sys.path.append('..')
 import time
 from functions.interface_case import InterfaceCase
-from pages.login_page import LoginPage as login
-from pages.banner_pages import BannerPages
-from functions.appium_init import Initialization as inital
 from pages.startup_page import StartupPage
-from pages.home_page import HomePage
 from functions.sqlServerJDBC import Exce_SQLserver
 
-class NewsPage(InterfaceCase):
+class NewsMesg(InterfaceCase):
     """消息中心"""
 
     def setUp(self):
@@ -95,19 +91,13 @@ class NewsPage(InterfaceCase):
 
         self.assertEqual(newsconsultspage_title,'咨询消息')
 
-
-
-
-
-
-
     def logon(self):
         startupPage = StartupPage(self.driver)
         homepage = startupPage.page_swipe()
         loginPage = homepage.logic_link_login_page()
         homepage = loginPage.logic_login()
         time.sleep(1)
-        newspage = homepage.click_el_news_img()
+        newspage = homepage.logic_click_el_news_img()
         return  newspage
 
     def tearDown(self):

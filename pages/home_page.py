@@ -79,13 +79,13 @@ class HomePage(BasePage):
 
 
     #点击【消息中心】，跳转至newsw_page
-    def click_el_news_img(self):
+    def logic_click_el_news_img(self):
         self.press_TouchAction()
         self.el_news_img.click()
         return NewsPage(self.driver)
 
     #点击【投资记录】，跳转至 my_invset_record_page
-    def click_el_invest_img(self):
+    def logic_click_el_invest_img(self):
         self.press_TouchAction()
         self.el_invest_img.click()
         return MyInvsetRecorePage(self.driver)
@@ -119,8 +119,8 @@ class HomePage(BasePage):
         except Exception,e:
             self.logger.info('HomePage | Exception  is %s %s'%e %(sys._getframe().f_back.f_lineno))
             self.saveScreenshot('banner_click')
-
-
+            
+    
 if __name__ == '__main__':
     Init()
     driver = appium_init.inital.get_driver()

@@ -5,3 +5,5 @@ config/
 *.pyc
 *.log
 *.html
+*.project
+.settings/
