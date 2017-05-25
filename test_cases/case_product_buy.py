@@ -7,6 +7,7 @@ from pages.startup_page import StartupPage
 from functions.sqlServerJDBC import Exce_SQLserver
 
 class ProductBuyTest(InterfaceCase):
+    '''购买理财产品测试用例集'''
 
     def setUp(self):
         self.drvier=self.inital.get_driver()

@@ -8,6 +8,7 @@ from pages.home_page import HomePage
 from functions.random_data import Create_Data
 
 class RegisterTest(InterfaceCase):
+    '''注册相关测试用例集'''
 
     def setUp(self):
         self.driver=self.inital.get_driver()

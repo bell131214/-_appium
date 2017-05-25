@@ -5,6 +5,7 @@ from functions.interface_case import InterfaceCase
 from pages.startup_page import StartupPage
 from pages.home_page import HomePage
 class GFtest(InterfaceCase):
+    '''截图对比测试集'''
 
     def setUp(self):
         self.driver=self.inital.get_driver()
