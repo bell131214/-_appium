@@ -4,6 +4,9 @@ import unittest,sys
 sys.path.append('..')
 import time
 from functions.interface_case import InterfaceCase
+from pages.login_page import LoginPage as login
+from pages.banner_pages import BannerPages
+from functions.appium_init import *
 from pages.startup_page import StartupPage
 from functions.sqlServerJDBC import Exce_SQLserver
 
@@ -105,6 +108,7 @@ class NewsMesg(InterfaceCase):
 
 
 if __name__ == '__main__':
+    Init()
     unittest.main()
 
 

@@ -11,6 +11,7 @@ class GFtest(InterfaceCase):
         self.logger=self.inital.logger
 
     def test_procedure(self):
+        '''我的按钮截图对比测试用例'''
         startuppage=StartupPage(self.driver)
         time.sleep(3)
         homepage=startuppage.page_swipe()
