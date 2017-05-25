@@ -13,6 +13,7 @@ class ProductBuyTest(InterfaceCase):
         self.logger=self.inital.logger
 
     def test_buy_quarkZX(self):
+        '''购买夸客尊享测试用例'''
         user_phone='14488888098'
         pwd='qwe123'
         amount=51000

@@ -13,8 +13,9 @@ class LoginTest(InterfaceCase):
         self.driver=self.inital.get_driver()
         self.logger=self.inital.logger
 
-    #非登录态点击“立即投资”按钮
+    #
     def test_non_login_state_clickBuy(self):
+        '''非登录态点击“立即投资”按钮测试用例'''
         startupPage=StartupPage(self.driver)
         homePage=startupPage.page_swipe()
         productListPage=homePage.logic_link_product()
@@ -23,16 +24,18 @@ class LoginTest(InterfaceCase):
         self.assertTrue(loginPage.element_is_exsit(loginPage.el_phone_text_input))
 
 
-    #非登录状态点击“我的”按钮
+    #
     def test_non_login_state_clickMyPage(self):
+        '''非登录状态点击“我的”按钮测试用例'''
         startupPage=StartupPage(self.driver)
         homePage=startupPage.page_swipe()
         loginPage=homePage.logic_link_login_page()
 
         self.assertTrue(loginPage.element_is_exsit(loginPage.el_pwd_text_input))
 
-    #登录成功用例
+    #
     def test_login_success(self):
+        '''登录成功测试用例'''
         user_phone='14488888098'
         pwd='qwe123'
 
