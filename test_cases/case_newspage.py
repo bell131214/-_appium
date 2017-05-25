@@ -11,7 +11,7 @@ from pages.startup_page import StartupPage
 from functions.sqlServerJDBC import Exce_SQLserver
 
 class NewsMesg(InterfaceCase):
-    """消息中心"""
+    """消息中心模块验证"""
 
     def setUp(self):
         self.driver = self.inital.get_driver()

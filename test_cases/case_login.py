@@ -6,7 +6,7 @@ from functions.interface_case import InterfaceCase
 from pages.startup_page import StartupPage
 class LoginTest(InterfaceCase):
     '''
-    登录操作相关测试用例集合
+    登录模块验证
     '''
 
     def setUp(self):

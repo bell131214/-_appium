@@ -11,7 +11,7 @@ from pages.all_pages import  AllPage
 from pages.my_invset_record_page import MyAssetDetailsPage
 
 class InvestRecord(InterfaceCase):
-    """投资记录"""
+    """投资记录模块验证"""
 
 
     def setUp(self):

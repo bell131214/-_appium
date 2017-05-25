@@ -11,7 +11,7 @@ from pages.home_page import HomePage
 
 
 class hometest(InterfaceCase):
-    u"""验证首页banner获取加载页内容"""
+    u"""首页模块验证"""
 
 
     """
