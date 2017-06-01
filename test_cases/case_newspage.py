@@ -22,7 +22,6 @@ class NewsMesg(InterfaceCase):
     def test_newspage_contract(self):
         """消息中心-合同消息-本金确认书验证"""
 
-
         #客户登录并进入消息中心列表
         newspage = self.logon()
         #点击合同列表页面
@@ -32,12 +31,10 @@ class NewsMesg(InterfaceCase):
         #点击出借本金确认书 el_capital_btn
         contractdetailspage.clcik_el_capital_btn()
 
-        bool1 = contractdetailspage.get_screenshot_by_element(contractdetailspage, 'el_capital_img',isexist=False)  #第一次截图时
+        contractdetailspage.get_screenshot_by_element(contractdetailspage, 'el_capital_img',isexist=False)  #第一次截图时
         #进行截图对比
         time.sleep(5)
         bool1= contractdetailspage.get_screenshot_by_element(contractdetailspage,'el_capital_img',isexist=True).same_as(percent=30)
-        print bool1
-
         #断言判断
         title=contractdetailspage.el_capitalt_title.text
         self.assertTrue(bool1)

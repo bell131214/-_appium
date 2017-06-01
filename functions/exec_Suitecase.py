@@ -22,9 +22,9 @@ class exec_sutiecase():
         if os.path.exists(self.tdresult)!=True:
             os.mkdir(self.tdresult)
         filename = self.tdresult +"\\" + self.now + "_result.html"
-        mail_name = self.tdresult + "\\" + self.now + "_send_mail.html"
+        #mail_name = self.tdresult + "\\" + self.now + "_send_mail.html"
         fp = file(filename, 'wb')
-        fp1 = file(mail_name, 'wb')
+        #fp1 = file(mail_name, 'wb')
 
         # 定义测试报告
         runner = HTMLTestRunner(stream=fp, title=u'quark—UFO自动化测试报告', description=u'用例详情：',verbosity=2)
@@ -32,9 +32,9 @@ class exec_sutiecase():
         a=runner.run(test_case)
         startTime = datetime.datetime.now()
         startTime = str(startTime)[:19]
-        GetHtml.get_html(fp1, startTime, a.success_count, a.failure_count, a.error_count)
+       # GetHtml.get_html(fp1, startTime, a.success_count, a.failure_count, a.error_count)
         fp.close()  # 关闭报告文件
-        fp1.close()
+       # fp1.close()
 
         # else:
         #     os.mkdir(self.tdresult)

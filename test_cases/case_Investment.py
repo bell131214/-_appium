@@ -9,6 +9,7 @@ from functions.sqlServerJDBC import Exce_SQLserver
 from functions.appium_init import *
 from pages.all_pages import  AllPage
 from pages.my_invset_record_page import MyAssetDetailsPage
+from functions.BasePage import BasePage
 
 class InvestRecord(InterfaceCase):
     """投资记录模块验证"""
@@ -49,6 +50,8 @@ class InvestRecord(InterfaceCase):
             "SELECT top 1  new_product_name from new_investdetailBase WHERE new_accountname = '24004F6C-7C08-E711-80C9-00155D01F903' AND  new_status=100000000 order BY  new_instreststartdate desc")
 
         #断言
+        self.basepage = BasePage(self.driver)
+        self.basepage.saveScreenshot('financial_data')
         self.assertIn(assetdetails_list[0],product_name[0][0])
         self.assertIn(contract_number[0][0],assetdetails_list[1])
         self.assertEqual(pact_title,'资产详情')
@@ -82,6 +85,9 @@ class InvestRecord(InterfaceCase):
             "SELECT top 1  new_product_name from new_investdetailBase WHERE new_accountname = '331C4E9C-D93A-E711-80D3-00155D02B414' AND  new_status=100000003 order BY  new_instreststartdate desc")
 
         #断言
+
+        self.basepage = BasePage(self.driver)
+        self.basepage.saveScreenshot('quiting_data')
         self.assertIn(assetdetails_list[0],product_name[0][0])
         self.assertIn(contract_number[0][0],assetdetails_list[1])
         self.assertEqual(pact_title,'资产详情')
@@ -118,6 +124,8 @@ class InvestRecord(InterfaceCase):
             "SELECT top 1  new_product_name from new_investdetailBase WHERE new_accountname = 'F86EEE35-2940-E711-80D3-00155D02B414' AND  new_status=100000002 order BY  new_instreststartdate desc")
 
         #断言
+        self.basepage = BasePage(self.driver)
+        self.basepage.saveScreenshot('Exited_data')
         self.assertIn(assetdetails_list[0],product_name[0][0])
         self.assertIn(contract_number[0][0],assetdetails_list[1])
         self.assertEqual(pact_title,'资产详情')

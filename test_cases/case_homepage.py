@@ -1,6 +1,9 @@
 #coding=utf-8
 
 import unittest,sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 sys.path.append('..')
 import time
 from functions.interface_case import InterfaceCase
@@ -8,6 +11,8 @@ from pages.banner_pages import BannerPages
 from functions.appium_init import *
 from pages.startup_page import StartupPage
 from pages.home_page import HomePage
+from functions.BasePage import BasePage
+
 
 
 class hometest(InterfaceCase):
@@ -30,7 +35,7 @@ class hometest(InterfaceCase):
     #assertEqual 输入预期的banner详情的title
 
     def test_click_banner1(self):
-        u"""验证点击banner[1]"""
+        u"""验证banner[1]"""
         try:
             startUp=StartupPage(self.driver)
             homepage=startUp.page_swipe()
@@ -39,6 +44,10 @@ class hometest(InterfaceCase):
             self.logger.info(b.el_title.text)
         except Exception,e:
               self.logger.info(e)
+
+        self.basepage = BasePage(self.driver)
+        self.basepage.saveScreenshot('click_banner1')
+        self.logger.info(self.assertEqual(b.el_title.text, u"系统维护"))
         self.assertEqual(b.el_title.text, u"系统维护")
 
 
@@ -47,7 +56,7 @@ class hometest(InterfaceCase):
 
     # @unittest.skip('skip')
     def test_click_banner3(self):
-       u"""验证点击banner[3]"""
+       u"""验证banner[3]"""
        try:
             startUp=StartupPage(self.driver)
             homepage=startUp.page_swipe()
@@ -57,6 +66,8 @@ class hometest(InterfaceCase):
        except Exception,e:
            self.logger.info(e)
 
+       self.basepage = BasePage(self.driver)
+       self.basepage.saveScreenshot('click_banner3')
        self.assertEqual(b.el_title.text, u"夸客美丽增值计划")
 
 
@@ -64,7 +75,7 @@ class hometest(InterfaceCase):
         # assertEqual 输入预期的banner详情的title
     # @unittest.skip('skip')
     def test_click_banner5(self):
-        u"""验证点击banner[5]"""
+        u"""验证banner[5]"""
         try:
             startUp = StartupPage(self.driver)
             homepage = startUp.page_swipe()
@@ -73,6 +84,11 @@ class hometest(InterfaceCase):
             self.logger.info(b.el_title.text)
         except Exception, e:
             self.logger.info(e)
+
+
+
+        self.basepage = BasePage(self.driver)
+        self.basepage.saveScreenshot('click_banner5')
         self.assertEqual(b.el_title.text, u"新春心意")
 
 

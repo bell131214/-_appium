@@ -4,10 +4,10 @@ sys.path.append('..')
 from functions.appium_init import *
 from functions.interface_case import InterfaceCase
 from pages.startup_page import StartupPage
+from functions.BasePage import BasePage
+
 class LoginTest(InterfaceCase):
-    '''
-    登录模块验证
-    '''
+    '''登录模块验证'''
 
     def setUp(self):
         self.driver=self.inital.get_driver()
@@ -21,6 +21,9 @@ class LoginTest(InterfaceCase):
         productListPage=homePage.logic_link_product()
         productQuarkzxPage=productListPage.logic_link_quarkZX()
         loginPage=productQuarkzxPage.logic_noLogin_state_buy()
+
+        self.basepage = BasePage(self.driver)
+        self.basepage.saveScreenshot('non_login_state_clickBuy')
         self.assertTrue(loginPage.element_is_exsit(loginPage.el_phone_text_input))
 
 
@@ -31,6 +34,8 @@ class LoginTest(InterfaceCase):
         homePage=startupPage.page_swipe()
         loginPage=homePage.logic_link_login_page()
 
+        self.basepage = BasePage(self.driver)
+        self.basepage.saveScreenshot('non_login_state_clickMyPage')
         self.assertTrue(loginPage.element_is_exsit(loginPage.el_pwd_text_input))
 
     #
@@ -52,6 +57,9 @@ class LoginTest(InterfaceCase):
         myPersonalCenterPage = myPage.logic_link_myCenter()
         phone_text = myPersonalCenterPage.el_phone_text.text
         phone_secret = user_phone[:3] + '****' + user_phone[7:]
+
+        self.basepage = BasePage(self.driver)
+        self.basepage.saveScreenshot('login_success')
         self.assertEqual(phone_text, phone_secret)
 
     def tearDown(self):

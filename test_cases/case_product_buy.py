@@ -5,6 +5,7 @@ from functions.interface_case import InterfaceCase
 from functions.appium_init import *
 from pages.startup_page import StartupPage
 from functions.sqlServerJDBC import Exce_SQLserver
+from functions.BasePage import BasePage
 
 class ProductBuyTest(InterfaceCase):
     '''购买理财产品测试用例集'''
@@ -40,6 +41,8 @@ class ProductBuyTest(InterfaceCase):
         sql_conn=Exce_SQLserver()
         sql_amount=int(sql_conn.execSql_getOne(SQL)[0])
 
+        self.basepage = BasePage(self.drvier)
+        self.basepage.saveScreenshot('buy_quarkZX')
         self.assertEqual(int(amount),sql_amount)
 
 

@@ -32,6 +32,7 @@ if __name__ == '__main__':
     exec_result.exec_cases(testSuite)
     mail = SendMail()
     mail.send()
+    
 
 
 

@@ -114,7 +114,7 @@ class HomePage(BasePage):
             time.sleep(2.5*(id-1))
             self.el_Banner[id].click()
             time.sleep(0.5)
-            self.saveScreenshot('banner_click')
+            #self.saveScreenshot('banner_click')
             return BannerPages(self.driver)
         except Exception,e:
             self.logger.info('HomePage | Exception  is %s %s'%e %(sys._getframe().f_back.f_lineno))
