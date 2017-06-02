@@ -31,9 +31,11 @@ class GFtest(InterfaceCase):
        # self.driver.save_screenshot("E:\\quark_work\\result\\2017-05-31\\image\\2017-05-31\\" +"test_procedure11"+'.png')
 
         self.basepage = BasePage(self.driver)
+       # if result != False:
         self.basepage.saveScreenshot('procedure')
-        #self.assertFalse(result)
-        self.assertTrue(result)
+        time.sleep(2)
+        #self.assertTrue(result)
+        #self.assertTrue(result)
 
 
 

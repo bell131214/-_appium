@@ -5,6 +5,7 @@ from appium import webdriver
 from configParser import Config
 from functions.appium_logging import AppLog
 from functions.adbConnon import AndroidDebugBridge
+from functions.AppiumServer import AppiumServer
 import appium_init
 
 inital=None
@@ -54,6 +55,11 @@ class Initialization():
         """
         # 通过adb判断设备是否启动
         if self.adbCall.attached_devices():
+
+            #启动appium 服务
+            appiumServer=AppiumServer()
+            appiumServer.start_server()
+            time.sleep(3)
             # desired_caps_config = self.get_desired_caps()
             desired_caps = {}
             desired_caps['platformName'] = self.desired_caps['platformname']

@@ -36,31 +36,47 @@ class SendMail(object):
 
         mail_body1=mail_body.replace( "class=\'hiddenRow\'","class=\''")
 
+        mail_body2 = mail_body1.replace("class=\'popup_window\'", "class=\'popup_window\' style=\'display: block;\'")
+
+        mail_body3 = mail_body2.replace("<a", "<div")
+
+
+
+        FROMADDR = '276476197@qq.com'
+        #TOADDR = [to_mail_list]
+        TOADDR=['LeHe@quarkfinance.com','FanGu@quarkfinance.com','XueLv@quarkfinance.com','V-DingLv@quarkfinance.com','V-YinzhuMing@quarkfinance.com','QingliTian@quarkfinance.com','V-LijiaoLiu@quarkfinance.com']
+        CCADDR=['89605179@qq.com']
+       # CCADDR = ['QingkangJin@quarkfinance.com', 'DaisyZhou@quarkfinance.com']
 
         msg = MIMEMultipart()
         msg['Subject'] = u'quark—UFO自动化测试报告'
         msg['From'] = '276476197@qq.com'
-        msg['To'] = to_mail_list
-        print msg['To']
-        html_att = MIMEText(mail_body1, 'html', 'utf-8')
+       #msg['To'] = to_mail_list
+        msg['To'] = ', '.join(TOADDR)
+        msg['Cc']=', '.join(CCADDR)
 
+      # print msg['To']
+        html_att = MIMEText(mail_body3, 'html', 'utf-8')
+
+        #邮件附件html
         xlsxpart = MIMEApplication(mail_body)
         xlsxpart.add_header('Content-Disposition', 'attachment', filename='ufo_result.html')
         msg.attach(xlsxpart)
 
+        #邮件附件 log
         xlsxpart = MIMEApplication(open(logFile, 'rb').read())
         xlsxpart.add_header('Content-Disposition', 'attachment', filename='ufo.log')
         msg.attach(xlsxpart)
-
         msg.attach(html_att)
 
 
-        smtp = smtplib.SMTP()
+        smtp = smtplib.SMTP("smtp.qq.com", 587)
         # smtp.connect(HOST, "587")
-        smtp.connect("smtp.qq.com", "587")
+        #smtp.connect("smtp.qq.com", "587")
         smtp.starttls()
         smtp.login("276476197@qq.com", "gujttwszbatpbieh")
-        smtp.sendmail(msg['From'], msg['To'].split(','), msg.as_string())
+       # smtp.sendmail(msg['From'], msg['To'].split(',') , msg.as_string())
+        smtp.sendmail(FROMADDR, TOADDR + CCADDR, msg.as_string())
 
 
         '''
@@ -69,8 +85,8 @@ class SendMail(object):
         mail.send(to=to_mail_list,subject=u'quark—UFO自动化测试报告',
                   contents=[contents,resultFile,logFile]) '''
 
-    def send(self):
 
+    def send(self):
         #to_mail_list=appium_init.inital.desired_caps['to_mail_list'].split(',')
         to_mail_list = appium_init.inital.desired_caps['to_mail_list']
         project_path=appium_init.inital.project_path

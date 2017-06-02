@@ -3,6 +3,7 @@ from functions.HTMLTestRunner1 import  *
 from appium_init import *
 import os
 import GetHtml
+from functions.AppiumServer import AppiumServer
 
 
 class exec_sutiecase():
@@ -34,6 +35,9 @@ class exec_sutiecase():
         startTime = str(startTime)[:19]
        # GetHtml.get_html(fp1, startTime, a.success_count, a.failure_count, a.error_count)
         fp.close()  # 关闭报告文件
+        print "============================================= 关闭appium"
+        appiumServer=AppiumServer()
+        appiumServer.stop_server()
        # fp1.close()
 
         # else:

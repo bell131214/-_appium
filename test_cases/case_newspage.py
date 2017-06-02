@@ -9,6 +9,7 @@ from pages.banner_pages import BannerPages
 from functions.appium_init import *
 from pages.startup_page import StartupPage
 from functions.sqlServerJDBC import Exce_SQLserver
+from functions.BasePage import BasePage
 
 class NewsMesg(InterfaceCase):
     """消息中心模块验证"""
@@ -37,6 +38,8 @@ class NewsMesg(InterfaceCase):
         bool1= contractdetailspage.get_screenshot_by_element(contractdetailspage,'el_capital_img',isexist=True).same_as(percent=30)
         #断言判断
         title=contractdetailspage.el_capitalt_title.text
+        self.basepage = BasePage(self.driver)
+        self.basepage.saveScreenshot('newspage_contract')
         self.assertTrue(bool1)
         self.assertEqual(title,'出借本金确认书')
 
@@ -68,6 +71,8 @@ class NewsMesg(InterfaceCase):
         #print  contract_number[0][0]
 
         #断言处理
+        self.basepage = BasePage(self.driver)
+        self.basepage.saveScreenshot('contract_list')
         self.assertIn(con_list[0],product_name[0][0])
         self.assertEqual(con_list[2],contract_number[0][0])
 
@@ -89,6 +94,8 @@ class NewsMesg(InterfaceCase):
 
         newsconsultspage_title=newsconsultspage.el_service_agreement_title.text
 
+        self.basepage = BasePage(self.driver)
+        self.basepage.saveScreenshot('consultation_mes')
         self.assertEqual(newsconsultspage_title,'咨询消息')
 
     def logon(self):
