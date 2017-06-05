@@ -29,15 +29,13 @@ class exec_sutiecase():
 
         # 定义测试报告
         runner = HTMLTestRunner(stream=fp, title=u'quark—UFO自动化测试报告', description=u'用例详情：',verbosity=2)
+
         # 运行测试用例
-        a=runner.run(test_case)
-        startTime = datetime.datetime.now()
-        startTime = str(startTime)[:19]
+        runner.run(test_case)
+        #startTime = datetime.datetime.now()
+        #startTime = str(startTime)[:19]
        # GetHtml.get_html(fp1, startTime, a.success_count, a.failure_count, a.error_count)
         fp.close()  # 关闭报告文件
-        print "============================================= 关闭appium"
-        appiumServer=AppiumServer()
-        appiumServer.stop_server()
        # fp1.close()
 
         # else:

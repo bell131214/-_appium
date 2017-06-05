@@ -56,18 +56,14 @@ class Initialization():
         # 通过adb判断设备是否启动
         if self.adbCall.attached_devices():
 
-            #启动appium 服务
-            appiumServer=AppiumServer()
-            appiumServer.start_server()
-            time.sleep(3)
             # desired_caps_config = self.get_desired_caps()
             desired_caps = {}
             desired_caps['platformName'] = self.desired_caps['platformname']
-            desired_caps['platformVersion'] = self.desired_caps[
-                'platformversion']
+            desired_caps['platformVersion'] = self.desired_caps['platformversion']
             desired_caps['deviceName'] = self.desired_caps['devicename']
             desired_caps['appPackage'] = self.desired_caps['apppackage']
             desired_caps['appActivity'] = self.desired_caps['appactivity']
+            #desired_caps['udid'] = '192.168.89.101'
 
             time.sleep(1)
             # driver 实例化前，调用adb命令卸载和重新安装应用,保证每次测试用例执行的环境都是干净的

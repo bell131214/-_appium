@@ -27,11 +27,19 @@ from functions.send_mail import SendMail
 if __name__ == '__main__':
     if isinstance(appium_init.inital,Initialization)!=True:
         Init()
+
+    # 启动appium 服务
+    appiumServer = AppiumServer()
+    appiumServer.start_server()
+
     testSuite = LoadCase.get_cases()
     exec_result=exec_sutiecase()
     exec_result.exec_cases(testSuite)
     mail = SendMail()
     mail.send()
+
+    appiumServer.stop_server()
+
     
 
 
