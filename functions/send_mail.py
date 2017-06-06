@@ -42,15 +42,17 @@ class SendMail(object):
 
 
 
-        FROMADDR = '276476197@qq.com'
+       # FROMADDR = '276476197@qq.com'
+        FROMADDR = 'LeHe@quarkfinance.com'
         #TOADDR = [to_mail_list]
-        TOADDR=['LeHe@quarkfinance.com','FanGu@quarkfinance.com','XueLv@quarkfinance.com','V-DingLv@quarkfinance.com','V-YinzhuMing@quarkfinance.com','QingliTian@quarkfinance.com','V-LijiaoLiu@quarkfinance.com']
-        CCADDR=['89605179@qq.com']
-       # CCADDR = ['QingkangJin@quarkfinance.com', 'DaisyZhou@quarkfinance.com']
+        # TOADDR=['LeHe@quarkfinance.com','FanGu@quarkfinance.com','XueLv@quarkfinance.com','V-DingLv@quarkfinance.com','V-YinzhuMing@quarkfinance.com','QingliTian@quarkfinance.com','V-LijiaoLiu@quarkfinance.com']
+        TOADDR = ['LeHe@quarkfinance.com', 'V-LijiaoLiu@quarkfinance.com']
+        # CCADDR = ['QingkangJin@quarkfinance.com', 'DaisyZhou@quarkfinance.com']
+        CCADDR = ['LeHe@quarkfinance.com', 'FanGu@quarkfinance.com']
 
         msg = MIMEMultipart()
-        msg['Subject'] = u'quark—UFO自动化测试报告'
-        msg['From'] = '276476197@qq.com'
+        msg['Subject'] = u'Quark-UFO自动化测试报告'
+        msg['From'] = u'IT-测试部'
        #msg['To'] = to_mail_list
         msg['To'] = ', '.join(TOADDR)
         msg['Cc']=', '.join(CCADDR)
@@ -60,7 +62,7 @@ class SendMail(object):
 
         #邮件附件html
         xlsxpart = MIMEApplication(mail_body)
-        xlsxpart.add_header('Content-Disposition', 'attachment', filename='ufo_result.html')
+        xlsxpart.add_header('Content-Disposition', 'attachment', filename='Quark-UFO自动化测试报告.html')
         msg.attach(xlsxpart)
 
         #邮件附件 log
@@ -70,11 +72,14 @@ class SendMail(object):
         msg.attach(html_att)
 
 
-        smtp = smtplib.SMTP("smtp.qq.com", 587)
+        #smtp = smtplib.SMTP("smtp.qq.com", 587)
+        smtp = smtplib.SMTP("mail.quarkfinance.com", 587)
         # smtp.connect(HOST, "587")
         #smtp.connect("smtp.qq.com", "587")
         smtp.starttls()
-        smtp.login("276476197@qq.com", "gujttwszbatpbieh")
+        #smtp.login("276476197@qq.com", "gujttwszbatpbieh")
+        smtp.login("quark\lehe", "Password@1")
+
        # smtp.sendmail(msg['From'], msg['To'].split(',') , msg.as_string())
         smtp.sendmail(FROMADDR, TOADDR + CCADDR, msg.as_string())
 

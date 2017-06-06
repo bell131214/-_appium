@@ -6,6 +6,8 @@ from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
 from functions.appium_init import *
 from appium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+
 class NewsContractDetailsPage(BasePage):
     """
       describe：合同详情页
@@ -37,7 +39,9 @@ class NewsContractDetailsPage(BasePage):
     #出借确认书详情页合同
     @property
     def el_capital_img(self):
+        WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element_by_accessibility_id('查看合同').is_displayed())
         return self.driver.find_element_by_accessibility_id('查看合同')
+
 
 
     # 出借确认书title
