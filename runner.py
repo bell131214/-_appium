@@ -31,13 +31,12 @@ if __name__ == '__main__':
     # 启动appium 服务
     appiumServer = AppiumServer()
     appiumServer.start_server()
-
     testSuite = LoadCase.get_cases()
     exec_result=exec_sutiecase()
     exec_result.exec_cases(testSuite)
     mail = SendMail()
-    mail.send()
-
+    # type =0 发送正式邮件  type=1发送测试邮件
+    mail.send(type=1)
     appiumServer.stop_server()
 
     

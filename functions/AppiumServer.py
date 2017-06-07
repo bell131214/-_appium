@@ -35,7 +35,8 @@ class AppiumServer:
         :return:
         """
         # kill myServer
-        os.popen('pkill node')
+       # os.popen('pkill node')
+        os.system('taskkill /f /im node.exe')
 
     def re_start_server(self):
         """reStart the appium server
