@@ -32,7 +32,7 @@ class ProductBuyTest(InterfaceCase):
 
         buyConfirmPage=buyInsertMoneyPage.logic_buy_product(amount)
         buyTradeResultPage=buyConfirmPage.logic_confirm_info(pwd)
-        time.sleep(10)
+        time.sleep(20)
         homePage=buyTradeResultPage.logic_link_buy()
         myPage=homePage.logic_buy_my_btn()
 
