@@ -21,6 +21,6 @@ class StartupPage(BasePage):
         time.sleep(2)
         self.press_TouchAction()
         # BasePage(self.driver).press_TouchAction()
-        time.sleep(5)
+        time.sleep(3)
         return HomePage(self.driver)
 

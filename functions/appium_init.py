@@ -63,6 +63,8 @@ class Initialization():
             desired_caps['deviceName'] = self.desired_caps['devicename']
             desired_caps['appPackage'] = self.desired_caps['apppackage']
             desired_caps['appActivity'] = self.desired_caps['appactivity']
+            desired_caps["unicodeKeyboard"] = "True"
+            desired_caps["resetKeyboard"] = "True"
             #desired_caps['udid'] = '192.168.89.101'
 
             time.sleep(1)

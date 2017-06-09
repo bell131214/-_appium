@@ -20,20 +20,17 @@ class MyPage(InterfaceCase):
         self.logger = self.inital.logger
 
 
-
     def test_view_msg(self):
         """意见反馈"""
+
+        strmeg=u"意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈意见反馈"
         opinionpage=self.logic_login()
-        opinionpage.logic_input_data("11212")
+        opinionpage.logic_input_data(strmeg)
         opinionpage.logic_Submit_meg_click()
         time.sleep(2)
-        opinionpage.logic_jurisdiction_click()
+        #opinionpage.logic_jurisdiction_click()
         self.basepage = BasePage(self.driver)
         self.basepage.saveScreenshot('test_view_msg')
-
-
-
-
 
 
     def logic_login(self):
