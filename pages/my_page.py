@@ -1,11 +1,13 @@
 #coding:utf-8
-
+import sys
+sys.path.append('..')
 from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
 from functions.appium_init import *
 from pages.my_invset_record_page import MyInvsetRecorePage
 from pages.my_trade_record_page import MyTradeRecordPage
 from pages.my_personal_center_page import MyPersonalCenterPage
+from pages.my_opinion_page import Opinionpage
 
 
 class MyPage(BasePage):
@@ -39,6 +41,13 @@ class MyPage(BasePage):
     def el_tv_know(self):
         return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/tv_know")
 
+    #意见反馈
+    @property
+    def el_view_msg(self):
+        return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/re_feedback")
+
+
+
 
     #点击投资记录
     def click_my_investmentRecord(self):
@@ -46,6 +55,7 @@ class MyPage(BasePage):
         return MyInvsetRecorePage(self.driver)
 
 
+    #点击交易记录
     def logic_my_transactionRecord_btn_click(self):
         self.el_my_transactionRecord_btn.click()
         return MyTradeRecordPage(self.driver)
@@ -54,28 +64,9 @@ class MyPage(BasePage):
         self.el_my_personalCenter.click()
         return MyPersonalCenterPage(self.driver)
 
-    def test_t(self):
-        #self.press_TouchAction()
-        #time.sleep(1)
-        self.el_my_personalCenter.click()
-        #self.el_my_personalCenter.click()
-      #  time.sleep(0.5)
-      #  self.pressBackKey()
-      #  time.sleep(0.5)
-     #   self.el_my_bankCard.click()
-      #  self.pressBackKey()
-
-      #  time.sleep(0.5)
-       # self.el_my_transactionRecord.click()
-      #  self.pressBackKey()
-
-        time.sleep(0.5)
-        self.logic_link_myCenter()
-
-       # self.el_my_transactionRecord_btn_click()
-
-       # return  MyTradeRecordPage(self.driver)
-     #   self.pressBackKey()
+    def logic_view_msg_click(self):
+        self.el_view_msg.click()
+        return Opinionpage(self.driver)
 
 
 

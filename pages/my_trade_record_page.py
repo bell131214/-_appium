@@ -1,4 +1,5 @@
 #coding:utf-8
+
 import time,sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -29,25 +30,74 @@ class MyTradeRecordPage(BasePage):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'咨询')]")
 
 
+    #点击列表
+    @property
+    def el_trade_list_image(self):
+
+        return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/layout_item_head")
+        #return  self.base_find_elements(By.XPATH,"//android.widget.RelativeLayout[contains(@id,'com.quarkfinance.ufo:id/layout_item_head')]")
+
+    @property
+    def el_trade_Consultation_btn111(self):
+        self.logic_trade_btn_click
+        self.el_trade_list_image[1].click()
+        time.sleep(2)
+
+        #el_trade_list_image1=self.el_trade_list_image
+        #el_trade_list_image1[1].click()
+        #a=self.base_find_element(By.XPATH,"//android.widget.LinearLayout[{index}]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView".format(index=1))
+
+        #b=self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_name_and_amount'][{id}]/android.widget.TextView".format(id=2))
+        b = self.base_find_elements(By.XPATH,
+                                    "//android.widget.LinearLayout[{id}]/android.widget.RelativeLayout/android.widget.TextView".format(id=2))
+        return  b[0].text
+
+        #return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'咨询')]")
+
+
     #进入交易list
-    def el_trade_btn_click(self):
-          self.el_trade_btn[1].click()
+    def logic_trade_btn_click(self):
+          self.el_trade_btn[0].click()
+
+
+    def logic_trade_list(self,index=0):
+        #self.logic_trade_btn_click
+        self.el_trade_list_image.click()
+        time.sleep(2)
+        trade_dict={}
+        txtinvestapply =self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_contract_no']/android.widget.TextView")[1].text
+        paymentno = self.base_find_elements(By.XPATH, "//*[@resource-id='com.quarkfinance.ufo:id/text_transaction_flowing']/android.widget.TextView")[1].text
+        trade_list=[txtinvestapply,paymentno]
+
+       # trade_dict[u'产品名称']=self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_name_and_amount'][{id}]/android.widget.TextView".format(id=index))[0].text
+       # trade_dict[u'金额'] = self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_name_and_amount']/android.widget.TextView")[1].text
+
+        #print txtinvestapply,paymentno
+        return trade_list
+
 
 
 
 
 if __name__ == '__main__':
-    from login_page import LoginPage
+
+    from pages.startup_page import StartupPage
+    from functions.appium_init import Initialization
     Init()
     driver = appium_init.inital.get_driver()
-    login = LoginPage(driver)
-    a = login.logic_login('14488888098', 'qwe123')
-    time.sleep(1.5)
-    b=a.click_el_my_btn()
-    b.test_t()
+    startupPage = StartupPage(driver)
+    homepage = startupPage.page_swipe()
+    loginPage = homepage.logic_link_login_page()
+    homepage = loginPage.logic_login()
+    mypage = homepage.click_el_my_btn()
+    mypage.el_tv_know.click()
+    mytraderecordpage=mypage.logic_my_transactionRecord_btn_click()
+    time.sleep(2)
+    a=mytraderecordpage.logic_trade_list()
 
-    c=MyTradeRecordPage(driver)
-    c.el_trade_Consultation_btn.click()
-    time.sleep(3)
-    c.el_trade_btn[1].click()
+   # print a.items()
+
+
+
+
 

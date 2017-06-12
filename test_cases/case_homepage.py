@@ -61,7 +61,7 @@ class hometest(InterfaceCase):
             startUp=StartupPage(self.driver)
             homepage=startUp.page_swipe()
             b=homepage.banner_click(id=3)
-            time.sleep(3)
+            time.sleep(1)
             self.logger.info(b.el_title.text)
        except Exception,e:
            self.logger.info(e)

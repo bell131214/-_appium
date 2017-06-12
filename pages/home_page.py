@@ -109,16 +109,19 @@ class HomePage(BasePage):
 
 
     # 根据传入的ID 点击对应的Banner index
-    def banner_click(self, id=2):
-        try:
-            time.sleep(2.5*(id-1))
+    def banner_click(self,id):
+       # print  id
+        if id==1:
+           # print  "进来了"
             self.el_Banner[id].click()
-            time.sleep(0.5)
+        else:
+            time.sleep(3*(id-1))
+            self.el_Banner[id].click()
+        time.sleep(0.5)
             #self.saveScreenshot('banner_click')
-            return BannerPages(self.driver)
-        except Exception,e:
-            self.logger.info('HomePage | Exception  is %s %s'%e %(sys._getframe().f_back.f_lineno))
-            self.saveScreenshot('banner_click')
+        return BannerPages(self.driver)
+        self.logger.info('HomePage | Exception  is %s %s'%e %(sys._getframe().f_back.f_lineno))
+        #self.saveScreenshot('banner_click')
             
     
 if __name__ == '__main__':
