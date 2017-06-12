@@ -5,6 +5,7 @@ from appium import webdriver
 from configParser import Config
 from functions.appium_logging import AppLog
 from functions.adbConnon import AndroidDebugBridge
+from functions.read_excel import ReadExcel
 import appium_init
 
 inital=None
@@ -33,6 +34,10 @@ class Initialization():
         #读取配置文件中的appium_command信息，作为initial的属性保存
         self.appium_command=self.desired_caps['appium_command']
         self.html_runner_url=self.desired_caps['html_runner_url']
+
+        #读取配置文件中excel_path信息，把excel中的返回的字典作为initial的属性保存
+        readExcel=ReadExcel(self.desired_caps['excel_path'])
+        self.excel_info=readExcel.get_info()
 
 
         #将常用配置信息，日志类、ADB调用类、手机系统监控类（待扩展）的实例作为属性绑定在inital中，这些常用类避免反复实例化浪费内存影响效率
@@ -98,6 +103,6 @@ class Init():
 if __name__ == '__main__':
     if isinstance(appium_init.inital,Initialization)!=True:
         Init()
-    print appium_init.inital.desired_caps
+    print appium_init.inital.excel_info
 
 
