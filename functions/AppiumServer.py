@@ -4,29 +4,29 @@ import os
 import urllib
 from urllib2 import  URLError
 from multiprocessing import Process
-#import readConfig as readConfig
+from appium_init import *
 import threading
-
-#readConfigLocal = readConfig.ReadConfig()
 
 
 class AppiumServer:
 
     def __init__(self):
-        global openAppium, baseUrl
-        openAppium ='node "D:\\Program Files (x86)\\Appium\\node_modules\\appium\\bin\\appium.js"'
+        # global appium_command, baseUrl
+        # appium_command ='node "D:\\phone\\Appium\\node_modules\\appium\\bin\\appium.js"'
+        self.appium_command=appium_init.inital.appium_command
+        print(self.appium_command)
 
         #openAppium = readConfigLocal.getcmdValue("openAppium")
 
-        baseUrl="http://0.0.0.0:4723/wd/hub"
+        self.baseUrl="http://0.0.0.0:4723/wd/hub"
         #baseUrl = readConfigLocal.getConfigValue("baseUrl")
 
     def start_server(self):
         """start the appium server
         :return:
         """
-        t1 = RunServer(openAppium)
-        print (openAppium)
+        t1 = RunServer(self.appium_command)
+        # print (self.appium_path)
         p = Process(target=t1.start())
         p.start()
 
@@ -49,7 +49,7 @@ class AppiumServer:
         :return:True or False
         """
         response = None
-        url = baseUrl+"/status"
+        url = self.baseUrl+"/status"
         try:
             response = urllib.urlopen(url, timeout=5)
 

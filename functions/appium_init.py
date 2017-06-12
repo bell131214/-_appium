@@ -5,7 +5,6 @@ from appium import webdriver
 from configParser import Config
 from functions.appium_logging import AppLog
 from functions.adbConnon import AndroidDebugBridge
-from functions.AppiumServer import AppiumServer
 import appium_init
 
 inital=None
@@ -22,7 +21,7 @@ class Initialization():
         self.config=Config()
 
         #唯一需要配置路径的地方，路径为配置文件绝对路径
-        self.config_path="E:\\quark_work\\config\\appium_config.ini"
+        self.config_path="D:\\quarkscript\\UFO_appium\\config\\appium_config.ini"
 
         #读取配置文件中desired_caps信息，作为initial的属性保存
         self.desired_caps=self.config.get_config(
@@ -30,6 +29,11 @@ class Initialization():
 
         #读取配置文件中project_path信息，作为initial的属性保存
         self.project_path=self.desired_caps['project_path']
+
+        #读取配置文件中的appium_command信息，作为initial的属性保存
+        self.appium_command=self.desired_caps['appium_command']
+        self.html_runner_url=self.desired_caps['html_runner_url']
+
 
         #将常用配置信息，日志类、ADB调用类、手机系统监控类（待扩展）的实例作为属性绑定在inital中，这些常用类避免反复实例化浪费内存影响效率
         appLog = AppLog(self.project_path)
@@ -86,6 +90,7 @@ class Initialization():
 class Init():
     def __init__(self):
         appium_init.inital=Initialization()
+
 
 
 if __name__ == '__main__':

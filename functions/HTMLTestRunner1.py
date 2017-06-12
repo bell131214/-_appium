@@ -100,6 +100,7 @@ import sys
 import time
 import unittest
 from xml.sax import saxutils
+from functions.appium_init import *
 
 
 # ------------------------------------------------------------------------
@@ -112,6 +113,7 @@ from xml.sax import saxutils
 # e.g.
 #   >>> logging.basicConfig(stream=HTMLTestRunner.stdout_redirector)
 #   >>>
+
 
 class OutputRedirector(object):
     """ Wrapper to redirect stdout or stderr """
@@ -136,6 +138,7 @@ stderr_redirector = OutputRedirector(sys.stderr)
 # Template
 
 class Template_mixin(object):
+
     """
     Define a HTML template for report customerization and generation.
 
@@ -478,7 +481,7 @@ a.popup_link:hover {
     <td>&nbsp;</td>
 </tr>
 """ # variables: (style, desc, count, Pass, fail, error, cid)
-
+    url=appium_init.inital.html_runner_url
 
     REPORT_TEST_WITH_OUTPUT_TMPL = r"""
 <tr id='%(tid)s' class='%(Class)s'>
@@ -502,11 +505,11 @@ a.popup_link:hover {
     </td>
     
    <td align='center'>
-	<a target="_blank" href="http://172.29.23.27:8080/jenkins/job/UFO_appium/ws/result/{nowdata}/%(image)s" title="%(image)s ">
+	<a target="_blank" href="{url}/{nowdata}/%(image)s" title="%(image)s ">
 	<img src="http:\\172.29.23.27:8080\jenkins\job\UFO_appium\ws\app\img.png" height=20 width=20 border=0 /></a>
 	</td>
 </tr>
-""".format(nowdata=time.strftime('%Y-%m-%d', time.localtime(time.time())))
+""".format(url=url,nowdata=time.strftime('%Y-%m-%d', time.localtime(time.time())))
     # variables: (tid, Class, style, desc, status)
 
 
