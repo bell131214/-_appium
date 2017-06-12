@@ -5,6 +5,7 @@ from functions.exec_Suitecase import exec_sutiecase
 from functions.appium_init import *
 from functions.load_case import LoadCase
 from functions.send_mail import SendMail
+from functions.AppiumServer import AppiumServer
 # case_path="test_cases"
 # # result = "D:\\CodeWork\\quarkUFO\\result\\"
 #

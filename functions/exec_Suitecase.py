@@ -17,7 +17,7 @@ class exec_sutiecase():
 
     def exec_cases(self,test_case):
         #在这里加载HTMLTestRunner1的原因是，HTMLTestRunner1里面需要inital实例化读取配置文件，延迟调用就能等实例化以后保证有值
-        from functions.HTMLTestRunner1 import *
+        from functions.HTMLTestRunner1 import HTMLTestRunner
         if os.path.exists(self.tdresult)!=True:
             os.mkdir(self.tdresult)
         filename = self.tdresult +"\\" + self.now + "_result.html"
