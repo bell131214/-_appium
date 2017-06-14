@@ -101,8 +101,12 @@ class Init():
 
 
 if __name__ == '__main__':
-    if isinstance(appium_init.inital,Initialization)!=True:
-        Init()
-    print appium_init.inital.excel_info
+
+    a=Initialization()
+    a.get_driver()
+
+    #if isinstance(appium_init.inital,Initialization)!=True:
+     #   Init()
+    #print appium_init.inital.excel_info
 
 

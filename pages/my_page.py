@@ -47,11 +47,22 @@ class MyPage(BasePage):
         return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/re_feedback")
 
 
+    #投资记录快捷入口
+    @property
+    def el_financial_img(self):
+        return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/return_money_btn")
+
+
 
 
     #点击投资记录
     def click_my_investmentRecord(self):
         self.el_my_investmentRecord.click()
+        return MyInvsetRecorePage(self.driver)
+
+     #投资记录快捷入口
+    def logic_financial_img_click(self):
+        self.el_financial_img.click()
         return MyInvsetRecorePage(self.driver)
 
 

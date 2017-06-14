@@ -14,7 +14,7 @@ class AppiumServer:
         # global appium_command, baseUrl
         # appium_command ='node "D:\\phone\\Appium\\node_modules\\appium\\bin\\appium.js"'
         self.appium_command=appium_init.inital.appium_command
-        print(self.appium_command)
+       # print(self.appium_command)
 
         #openAppium = readConfigLocal.getcmdValue("openAppium")
 
