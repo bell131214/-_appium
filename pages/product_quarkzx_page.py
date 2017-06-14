@@ -3,6 +3,7 @@ from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
 from pages.buy_insert_money_page import BuyInsertMoneyPage
 from appium.webdriver.common.touch_action import TouchAction
+import time
 
 class ProductQuarkzxPage(BasePage):
 
@@ -18,11 +19,14 @@ class ProductQuarkzxPage(BasePage):
     def el_buy_btn(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'立即投资')]")
 
+
+    #选择理财产品小类，比如(30天、60天、90天…… 入参no=1代表选第一个30天，no=2选60天以此类推)
     def logic_choose_product_type(self,no):
         dic_size=self.el_product_kind_btn.size
         dic_loc=self.el_product_kind_btn.location
 
         position_y=dic_loc['y']+dic_size['height']/2
+        self.driver.implicitly_wait(20)
         if no==1:
             position_x=dic_size['width']*0.097
         elif no==2:
@@ -33,8 +37,15 @@ class ProductQuarkzxPage(BasePage):
             position_x=dic_size['width']*0.7
         elif no==5:
             position_x=dic_size['width']*0.9028
+        elif no==6:
+            position_x=dic_size['width']*0.9028
+            TouchAction(self.driver).press(x=position_x,y=position_y).release().perform()
+            time.sleep(1)
+            position_x=dic_size['width']*0.7
 
         TouchAction(self.driver).press(x=position_x,y=position_y).release().perform()
+        time.sleep(1)
+
 
 
 
