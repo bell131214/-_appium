@@ -7,7 +7,6 @@ from functions.interface_case import InterfaceCase
 from pages.startup_page import StartupPage
 from functions.sqlServerJDBC import Exce_SQLserver
 from functions.appium_init import *
-from pages.all_pages import  AllPage
 from pages.my_invset_record_page import MyAssetDetailsPage
 from functions.BasePage import BasePage
 
