@@ -51,6 +51,7 @@ class ProductBuyTest(InterfaceCase):
         self.basepage.saveScreenshot('buy_quarkZX90')
         self.assertEqual(int(amount),sql_amount)
         self.assertEqual("夸客尊享*90天",sql_product_name)
+        self.logger.info("run case:test_buy_quarkZX90")
 
 
     # @unittest.skip('skip')
@@ -91,6 +92,7 @@ class ProductBuyTest(InterfaceCase):
         buyTradeResultPage.saveScreenshot('buy_quarkZX30')
         self.assertEqual(int(amount),sql_amount)
         self.assertEqual("夸客尊享*30天",sql_product_name)
+        self.logger.info("run case:test_buy_quarkZX30")
 
     # @unittest.skip('skip')
     def test_buy_quarkZX60(self):
@@ -130,6 +132,7 @@ class ProductBuyTest(InterfaceCase):
         buyTradeResultPage.saveScreenshot('buy_quarkZX60')
         self.assertEqual(int(amount), sql_amount)
         self.assertEqual("夸客尊享*60天",sql_product_name)
+        self.logger.info("run case:test_buy_quarkZX60")
 
     # @unittest.skip('skip')
     def test_buy_quarkZX180(self):
@@ -169,6 +172,7 @@ class ProductBuyTest(InterfaceCase):
         buyTradeResultPage.saveScreenshot('buy_quarkZX180')
         self.assertEqual(int(amount), sql_amount)
         self.assertEqual("夸客尊享*180天",sql_product_name)
+        self.logger.info("run case:test_buy_quarkZX180")
 
     # @unittest.skip('skip')
     def test_buy_quarkZX360(self):
@@ -208,6 +212,7 @@ class ProductBuyTest(InterfaceCase):
         buyTradeResultPage.saveScreenshot('buy_quarkZX360')
         self.assertEqual(int(amount), sql_amount)
         self.assertEqual("夸客尊享*360天",sql_product_name)
+        self.logger.info("run case:test_buy_quarkZX360")
 
     # @unittest.skip('skip')
     def test_buy_quarkZX720(self):
@@ -247,6 +252,7 @@ class ProductBuyTest(InterfaceCase):
         buyTradeResultPage.saveScreenshot('buy_quarkZX720')
         self.assertEqual(int(amount), sql_amount)
         self.assertEqual("夸客尊享*720天",sql_product_name)
+        self.logger.info("run case:test_buy_quarkZX720")
 
 
 

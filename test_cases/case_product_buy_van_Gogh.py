@@ -54,6 +54,7 @@ class ProductBuyTest(InterfaceCase):
         buyTradeResultPage.saveScreenshot('buy_van_Gogh60')
         self.assertEqual(int(amount), sql_amount)
         self.assertEqual("梵高计划*60天",sql_product_name)
+        self.logger.info("run case:test_buy_van_Gogh60")
 
     # @unittest.skip('skip')
     def test_buy_van_Gogh180(self):
@@ -93,6 +94,7 @@ class ProductBuyTest(InterfaceCase):
         buyTradeResultPage.saveScreenshot('buy_van_Gogh180')
         self.assertEqual(int(amount), sql_amount)
         self.assertEqual("梵高计划*180天",sql_product_name)
+        self.logger.info("run case:test_buy_van_Gogh180")
 
     # @unittest.skip('skip')
     def test_buy_van_Gogh360(self):
@@ -133,6 +135,8 @@ class ProductBuyTest(InterfaceCase):
         buyTradeResultPage.saveScreenshot('buy_van_Gogh360')
         self.assertEqual(int(amount), sql_amount)
         self.assertEqual("梵高计划*360天",sql_product_name)
+        self.logger.info("run case:test_buy_van_Gogh360")
+
 
     def tearDown(self):
         self.drvier.quit()
