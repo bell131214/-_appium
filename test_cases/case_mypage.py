@@ -14,6 +14,7 @@ class MyPage(InterfaceCase):
     """登录状态下我的模块验证"""
 
 
+
     def setUp(self):
         self.driver = self.inital.get_driver()
         self.logger = self.inital.logger

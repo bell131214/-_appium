@@ -13,9 +13,13 @@ class BasePage(object):
 	封装关于Appium中操作元素对象的方法
 	"""
 
-	def __init__(self, driver):
+	def __init__(self, driver,phone="14488888098",pwd="qwe123"):
 		self.driver = driver
 		self.logger=appium_init.inital.logger
+		self.phone=phone
+		self.pwd=pwd
+
+
 
 
 	#根据何乐获取的方法名、方法行数对日志异常修改完善

@@ -94,10 +94,10 @@ class MyInvsetRecorePage(BasePage):
          invest_dic={}
          invest_text_name=self.el_invest_text_name[index].text
          invest_product_no=self.el_invest_product_no[index].text
-         start_income_day=self.el_start_income_day[index*2].text
-         end_income_day=self.el_end_income_day[index*2].text
-         reality_invest=self.el_reality_invest[index*2].text
-         expected_invest=self.el_expected_invest[index*2].text
+         start_income_day=self.el_start_income_day[index*2+1].text
+         end_income_day=self.el_end_income_day[index*2+1].text
+         reality_invest=self.el_reality_invest[index*2+1].text
+         expected_invest=self.el_expected_invest[index*2+1].text
          invest_dic={"invest_text_name":invest_text_name,"invest_product_no":invest_product_no,"start_income_day":start_income_day,"end_income_day":end_income_day,"reality_invest":reality_invest,"expected_invest":expected_invest}
 
          return invest_dic
