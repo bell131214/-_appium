@@ -17,6 +17,16 @@ class ProductListPage(BasePage):
     def el_quarkZX_btn(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'夸客尊享')]")
 
+    #私募基金按钮 元素
+    @property
+    def el_fund_btn(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'私募基金')]")
+
+    #续投产品按钮 元素
+    @property
+    def el_reinvestment_btn(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'续投产品')]")
+
 
     #梵高计划按钮  元素
     @property
@@ -42,6 +52,19 @@ class ProductListPage(BasePage):
         self.el_van_Gogh_btn.click()
         return ProductVanGoghPage(self.driver)
 
+    #非登录状态，点击私募基金链接，跳转至首页
+    def logic_nologin_state_fund(self):
+        from pages.login_page import LoginPage
+        self.el_fund_btn.click()
+        return LoginPage(self.driver)
+
+    #非登录状态，点击续投产品链接，跳转至首页
+    def logic_nologin_state_reinvestment(self):
+        from pages.login_page import LoginPage
+        self.el_reinvestment_btn.click()
+        return LoginPage(self.driver)
+
+    # 跳转投资记录page
     def logic_financia_img_click(self):
         self.el_financia_img.click()
         return  MyInvsetRecorePage(self.driver)

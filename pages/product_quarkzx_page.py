@@ -2,6 +2,7 @@
 from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
 from pages.buy_insert_money_page import BuyInsertMoneyPage
+from pages.product_calculation_page import ProductCalculationPage
 from appium.webdriver.common.touch_action import TouchAction
 import time
 
@@ -18,6 +19,11 @@ class ProductQuarkzxPage(BasePage):
     @property
     def el_buy_btn(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'立即投资')]")
+
+    #试算按钮 元素
+    @property
+    def el_calculation_btn(self):
+        return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/text_calculate")
 
 
     #选择理财产品小类，比如(30天、60天、90天…… 入参no=1代表选第一个30天，no=2选60天以此类推)
@@ -49,7 +55,10 @@ class ProductQuarkzxPage(BasePage):
 
 
 
-
+    #跳转至理财计算器页面
+    def logic_link_calculation_Page(self):
+        self.el_calculation_btn.click()
+        return ProductCalculationPage(self.driver)
 
 
     #非登录态点击立即投资按钮，跳转至登录页

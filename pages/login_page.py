@@ -19,6 +19,11 @@ class LoginPage(BasePage):
     # def el_my_btn(self):
     #     return self.base_find_element(By.NAME,u'我的')
 
+    #登录页title
+    @property
+    def el_title(self):
+        return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/tb_title")
+
     #手机号 文本输入框 元素
     @property
     def el_phone_text_input(self):
