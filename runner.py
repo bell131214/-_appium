@@ -32,12 +32,13 @@ if __name__ == '__main__':
     # 启动appium 服务
     appiumServer = AppiumServer()
     appiumServer.start_server()
-    testSuite = LoadCase.get_cases()
+    testSuite = LoadCase.get_cases('testcase')
     exec_result=exec_sutiecase()
     exec_result.exec_cases(testSuite)
     mail = SendMail()
     # type =0 发送正式邮件  type=1发送测试邮件
-    mail.send(type=1)
+    mail_type=appium_init.inital.desired_caps['test_mail']
+    mail.send(mail_type)
     appiumServer.stop_server()
 
     
