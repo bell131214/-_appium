@@ -41,10 +41,12 @@ class Entry_page(BasePage):
 
         return loginPage
 
+    # 登录状态返回homepage
     def open_login_home_page(self):
         loginPage=self.open_login_page()
         homepage = loginPage.logic_login(self.phone,self.pwd)
         return homepage
+
 
 
     def open_login_my_page(self):
@@ -107,6 +109,19 @@ class Entry_page(BasePage):
         time.sleep(1)
         electronic_contract_page=myAssetDetailsPage.click_pact()
         return  electronic_contract_page
+
+
+    #登录状态进入交易记录页面
+    def open_my_tradeRecord_page(self):
+        mypage=self.open_login_my_page()
+        mytradeRecordPage=mypage.logic_my_transactionRecord_btn_click()
+
+        return mytradeRecordPage
+
+    def open_news_page(self):
+        homepage=self.open_login_home_page()
+        newsPage=homepage.logic_click_el_news_img()
+        return newsPage
 
 
 

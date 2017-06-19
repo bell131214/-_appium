@@ -9,6 +9,7 @@ from functions.sqlServerJDBC import Exce_SQLserver
 from functions.appium_init import *
 from pages.my_invset_record_page import MyAssetDetailsPage
 from functions.BasePage import BasePage
+from pages.entry_page import Entry_page
 
 class Transaction(InterfaceCase):
     """交易记录模块验证"""
@@ -20,9 +21,13 @@ class Transaction(InterfaceCase):
 
     def test_transaction_list(self):
         """交易列表数据验证"""
-        mytraderecordpage=self.into_transaction()
+        #mytraderecordpage=self.into_transaction()
+
+        entry_page = Entry_page(self.driver)
+        mytradeRecordPage = entry_page.open_my_tradeRecord_page()
+
        # time.sleep(2)
-        trade_list = mytraderecordpage.logic_trade_list()
+        trade_list = mytradeRecordPage.logic_trade_list()
         # 查询DB 获得理财中第一个理财的合同编号
         sql = Exce_SQLserver()
         txtinvestapply = sql.execSql_getList("SELECT  top 1 new_txtinvestapply from new_tradedetailBase WHERE new_account = '24004F6C-7C08-E711-80C9-00155D01F903'  ORDER BY new_paydate DESC")
@@ -33,10 +38,25 @@ class Transaction(InterfaceCase):
         #print  paymentno[0][0]
         #print trade_list[1]
 
-        self.basepage = BasePage(self.driver)
-        self.basepage.saveScreenshot('transaction_list')
+        entry_page.saveScreenshot('transaction_list')
         self.assertEquals(trade_list[0],txtinvestapply[0][0])
         self.assertEquals(trade_list[1], paymentno[0][0])
+
+    def test_transaction_consultation(self):
+        """咨询消息验证"""
+        "14114444144"
+
+        entry_page=Entry_page(self.driver)
+        mytradeRecordPage=entry_page.open_my_tradeRecord_page()
+        mytradeRecordPage.el_trade_Consultation_btn.click()
+        mytradeRecordPage.el_trade_Consultation_list[0].click()
+        #time.sleep(2)
+        title=mytradeRecordPage.logic_get_inquiry_no_test()
+
+        entry_page.saveScreenshot('transaction_consultation')
+        #断言
+        self.assertIsNotNone(title)
+        #print title
 
 
     def into_transaction(self):
@@ -49,6 +69,7 @@ class Transaction(InterfaceCase):
         mytraderecordpage = mypage.logic_my_transactionRecord_btn_click()
         return  mytraderecordpage
 
+
     def tearDown(self):
         self.driver.quit()
 
@@ -57,4 +78,5 @@ class Transaction(InterfaceCase):
 
 
 if __name__ == '__main__':
+    Init()
     unittest.main(verbosity=2)

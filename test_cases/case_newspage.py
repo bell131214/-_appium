@@ -10,6 +10,7 @@ from functions.appium_init import *
 from pages.startup_page import StartupPage
 from functions.sqlServerJDBC import Exce_SQLserver
 from functions.BasePage import BasePage
+from pages.entry_page import Entry_page
 
 class NewsMesg(InterfaceCase):
     """消息中心模块验证"""
@@ -18,13 +19,12 @@ class NewsMesg(InterfaceCase):
         self.driver = self.inital.get_driver()
         self.logger = self.inital.logger
 
-
-
     def test_newspage_contract(self):
         """消息中心-合同消息-本金确认书验证"""
 
         #客户登录并进入消息中心列表
-        newspage = self.logon()
+        entry_page = Entry_page(self.driver)
+        newspage = entry_page.open_news_page()
         #点击合同列表页面
         contractspage=newspage.click_el_contract_message_btn()
         #点击合同详情页
@@ -48,7 +48,9 @@ class NewsMesg(InterfaceCase):
         """消息中心-合同消息-展示本金确认书合同列表"""
 
         # 客户登录并进入消息中心列表
-        newspage = self.logon()
+        entry_page = Entry_page(self.driver)
+        newspage = entry_page.open_news_page()
+
         # 点击合同列表页面
         contractspage = newspage.click_el_contract_message_btn()
 
@@ -87,25 +89,17 @@ class NewsMesg(InterfaceCase):
         """消息中心-咨询消息-展示咨询消息列表"""
 
         # 客户登录并进入消息中心列表
-        newspage = self.logon()
+        entry_page=Entry_page(self.driver)
+        newspage=entry_page.open_news_page()
 
         # 点击合同列表页面
         newsconsultspage = newspage.click_el_consult_message_btn()
 
         newsconsultspage_title=newsconsultspage.el_service_agreement_title.text
 
-        self.basepage = BasePage(self.driver)
-        self.basepage.saveScreenshot('consultation_mes')
+        entry_page.saveScreenshot('consultation_mes')
         self.assertEqual(newsconsultspage_title,'咨询消息')
 
-    def logon(self):
-        startupPage = StartupPage(self.driver)
-        homepage = startupPage.page_swipe()
-        loginPage = homepage.logic_link_login_page()
-        homepage = loginPage.logic_login()
-        time.sleep(1)
-        newspage = homepage.logic_click_el_news_img()
-        return  newspage
 
     def tearDown(self):
         self.driver.quit()

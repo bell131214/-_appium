@@ -30,6 +30,16 @@ class MyTradeRecordPage(BasePage):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'咨询')]")
 
 
+    #咨询列表
+    @property
+    def el_trade_Consultation_list(self):
+        return self.base_find_elements(By.ID,"com.quarkfinance.ufo:id/layout_item_head")
+
+    # 预约编号
+    @property
+    def el_trade_Consultation_inquiry_no(self):
+            return self.base_find_elements(By.XPATH, "//*[@resource-id='com.quarkfinance.ufo:id/text_inquiry_no']/android.widget.TextView[2]")
+
     #点击列表
     @property
     def el_trade_list_image(self):
@@ -37,9 +47,22 @@ class MyTradeRecordPage(BasePage):
         return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/layout_item_head")
         #return  self.base_find_elements(By.XPATH,"//android.widget.RelativeLayout[contains(@id,'com.quarkfinance.ufo:id/layout_item_head')]")
 
+
+
+    def logic_get_Consultation_list(self):
+        self.el_trade_Consultation_list[0].click()
+
+    #获取私募预约编号
+    def logic_get_inquiry_no_test(self):
+        inquiry_no=self.el_trade_Consultation_inquiry_no[0].text
+        return  inquiry_no
+
+
+
+
     @property
     def el_trade_Consultation_btn111(self):
-        self.logic_trade_btn_click
+        self.logic_trade_btn_click()
         self.el_trade_list_image[1].click()
         time.sleep(2)
 

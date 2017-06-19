@@ -42,18 +42,25 @@ class HomePage(BasePage):
     #消息中心
     @property
     def el_news_img(self):
-        return self.base_find_element(By.XPATH, "//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/img_messages')]")
+        return self.base_find_elements(By.XPATH, "//android.widget.RelativeLayout[contains(@resource-id,'com.quarkfinance.ufo:id/rl_message_layout')]")
 
     #投资记录
     @property
     def el_invest_img(self):
-        return self.base_find_element(By.XPATH,"//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/return_money_btn')]")
+       # return self.base_find_element(By.XPATH,"//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/return_money_btn')]")
+        return  self.base_find_element(By.ID,"com.quarkfinance.ufo:id/return_money_btn")
 
     #立即投资
     @property
     def el_immediate_investment_btn(self):
         return self.base_find_element(By.XPATH,
                                        "//android.widget.TextView[contains(@resource-id,'com.quarkfinance.ufo:id/tv_invest')]")
+
+
+    # 理财产品名称
+    @property
+    def el_product_title_btn(self):
+        return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/tv_product_title")
 
 
 
@@ -80,8 +87,9 @@ class HomePage(BasePage):
 
     #点击【消息中心】，跳转至newsw_page
     def logic_click_el_news_img(self):
+        time.sleep(1)
         self.press_TouchAction()
-        self.el_news_img.click()
+        self.el_news_img[0].click()
         return NewsPage(self.driver)
 
     #点击【投资记录】，跳转至 my_invset_record_page
@@ -106,6 +114,13 @@ class HomePage(BasePage):
 
     def checga_element(self):
         return  self.proving_element('com.quarkfinance.ufo:id/tv_invest')
+
+
+    def get_product_title_text(self):
+        text=self.el_product_title_btn.text
+        return text
+
+
 
 
     # 根据传入的ID 点击对应的Banner index

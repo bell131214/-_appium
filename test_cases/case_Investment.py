@@ -9,8 +9,6 @@ from functions.sqlServerJDBC import Exce_SQLserver
 from functions.appium_init import *
 from functions.BasePage import BasePage
 from pages.entry_page import Entry_page
-from functions.dateToString import dateToString
-
 
 
 class InvestRecord(InterfaceCase):
@@ -33,11 +31,13 @@ class InvestRecord(InterfaceCase):
         myInvsetRecorePage.el_tv_know.click()
         title_text=myInvsetRecorePage.logic_get_invest_title()
 
+        #截图
+        entry_page.saveScreenshot('home_financial')
+
         #断言
         self.assertEquals(title_text,u"投资记录")
 
-        #截图
-        entry_page.saveScreenshot('home_financial')
+
 
 
     def test_product_financial(self):
@@ -70,7 +70,6 @@ class InvestRecord(InterfaceCase):
         entry_page.saveScreenshot('my_financial')
 
 
-
     def test_financial_list(self):
         "投资记录-理财中列表数据验证"
 
@@ -79,8 +78,6 @@ class InvestRecord(InterfaceCase):
         invest_list_value=myinvsetrecorepage.logic_get_invest_value()
         sql = Exce_SQLserver()
         contract_number = sql.execSql_getList("SELECT  top 1 new_product_name,new_name,new_instreststartdate,new_quitdate,new_planmoney,new_planmoney_Base from new_investdetailBase WHERE new_accountname = '24004F6C-7C08-E711-80C9-00155D01F903' AND  new_status=100000000 order BY  new_paidon desc")
-
-        strdate=dateToString()
 
         entry_page.saveScreenshot('financial_data')
         #断言验证
@@ -144,6 +141,7 @@ class InvestRecord(InterfaceCase):
         self.assertIn(str(contract_number[0][5])[:-6] + "," + str(contract_number[0][5])[-6:],
                       invest_list_value["expected_invest"])
 
+
     def test_invest_contract_no1(self):
         """资产详情-电子合同《出借咨询与服务协议》验证"""
         entry_page = Entry_page(self.driver)
@@ -165,6 +163,7 @@ class InvestRecord(InterfaceCase):
         entry_page.saveScreenshot('invest_contract_no2')
         self.assertEquals(title, "授权委托书-出借确认和债权转让")
 
+
     def test_invest_contract_no3(self):
         """资产详情-电子合同《授权委托书-催收及诉讼》验证"""
         entry_page = Entry_page(self.driver)
@@ -175,6 +174,7 @@ class InvestRecord(InterfaceCase):
         entry_page.saveScreenshot('invest_contract_no3')
         self.assertEquals(title, "授权委托书-催收及诉讼")
 
+
     def test_invest_contract_no4(self):
         """资产详情-电子合同《出借本金确认书》验证"""
         entry_page = Entry_page(self.driver)
@@ -184,7 +184,6 @@ class InvestRecord(InterfaceCase):
         title = electronic_contract_page.logic_get_contract_details_title()
         entry_page.saveScreenshot('invest_contract_no4')
         self.assertEquals(title, "出借本金确认书")
-
 
 
     def test_invest_profit_detailed(self):
@@ -201,7 +200,6 @@ class InvestRecord(InterfaceCase):
 
         #对金额进行断言
         self.assertNotEqual(money,0)
-
 
 
     def test_Exited_list(self):
@@ -297,7 +295,6 @@ class InvestRecord(InterfaceCase):
         self.assertIn(assetdetails_list[0],product_name[0][0])
         self.assertIn(contract_number[0][0],assetdetails_list[1])
         self.assertEqual(pact_title,'资产详情')
-
 
 
     def test_Exited_data(self):
