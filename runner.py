@@ -28,11 +28,12 @@ from functions.AppiumServer import AppiumServer
 if __name__ == '__main__':
     if isinstance(appium_init.inital,Initialization)!=True:
         Init()
+    testSuite = LoadCase.get_cases('testcase')
 
     # 启动appium 服务
     appiumServer = AppiumServer()
     appiumServer.start_server()
-    testSuite = LoadCase.get_cases('testcase')
+
     exec_result=exec_sutiecase()
     exec_result.exec_cases(testSuite)
     mail = SendMail()
