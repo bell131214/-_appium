@@ -47,7 +47,7 @@ class NewsContractDetailsPage(BasePage):
     # 出借确认书title
     @property
     def el_capitalt_title(self):
-        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'出借本金确认书')]")
+        return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/tb_title")
 
 
     def clcik_el_capital_btn(self):

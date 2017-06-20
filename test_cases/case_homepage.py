@@ -35,6 +35,7 @@ class hometest(InterfaceCase):
     #id:输入需要验证的banner 索引ID
     #assertEqual 输入预期的banner详情的title
 
+
     def test_click_banner1(self):
         u"""验证banner[1]"""
 
@@ -82,7 +83,6 @@ class hometest(InterfaceCase):
             self.basepage.saveScreenshot('click_banner5')
            # self.assertEqual(b.el_title.text, u"新春心意")
 
-
     def test_newuser_product_buy(self):
         """新用户首页理财产品验证"""
         "14414441414 ，qwe123"
@@ -93,6 +93,25 @@ class hometest(InterfaceCase):
         entry_page.saveScreenshot('newuser_product_buy')
 
         self.assertEquals(title_text,"新手体验计划")
+
+
+
+    def test_system_notice(self):
+        """首页-未登录点击系统广告"""
+        entry_page = Entry_page(self.driver)
+        homepage = entry_page.open_start_home_page()
+        homepage.el_system_notice.click()
+        time.sleep(2)
+        entry_page.saveScreenshot('system_notice')
+
+
+    def test_home_product(self):
+        """首页-未登录点击推荐产品"""
+        entry_page = Entry_page(self.driver)
+        homepage = entry_page.open_start_home_page()
+        myInvsetRecorePage=homepage.el_invest_img.click()
+
+
 
 
 

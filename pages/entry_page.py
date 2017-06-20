@@ -55,6 +55,12 @@ class Entry_page(BasePage):
         mypage.el_tv_know.click()
         return mypage
 
+    #个人中心
+    def open_my_Personal_CenterPage(self):
+        mypage=self.open_login_my_page()
+        myPersonalCenterPage=mypage.logic_link_myCenter()
+        return  myPersonalCenterPage
+
 
 
     #登录状态进去产品列表
@@ -72,10 +78,6 @@ class Entry_page(BasePage):
         myinvsetrecorepage = mypage.click_my_investmentRecord()
         myinvsetrecorepage.el_tv_know.click()
         return myinvsetrecorepage
-
-        #退出中月月付息收益明细
-    def open_My_Invest_Profit_Detailed_page(self):
-        self.open_my_assetDetails_quiting_page()
 
 
 
@@ -122,6 +124,12 @@ class Entry_page(BasePage):
         homepage=self.open_login_home_page()
         newsPage=homepage.logic_click_el_news_img()
         return newsPage
+
+    #修改密码
+    def open_Modify_Password_page(self):
+        myPersonalCenterPage=self.open_my_Personal_CenterPage()
+        Modify_Password_page=myPersonalCenterPage.logic_modify_password_btn_click()
+        return  Modify_Password_page
 
 
 

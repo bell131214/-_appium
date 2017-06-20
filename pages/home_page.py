@@ -1,15 +1,18 @@
 #coding:utf-8
-from pages.my_page import MyPage
+
+import time,sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
-from pages.banner_pages import BannerPages
+
 from functions.appium_init import *
 from pages.product_list_page import ProductListPage
 from pages.news_page import NewsPage
 from pages.my_invset_record_page import MyInvsetRecorePage
-import time,sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+from pages.my_page import MyPage
+from pages.banner_pages import BannerPages
 
 
 
@@ -23,6 +26,11 @@ class HomePage(BasePage):
     def el_Banner(self):
         return self.base_find_elements(By.XPATH,"//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/image_indicator')]")
 
+    #系统公告
+    @property
+    def el_system_notice(self):
+        return self.base_find_element(By.XPATH,
+                                       "//*[@resource-id='com.quarkfinance.ufo:id/tv_verticalScrollTV']/android.widget.TextView[1]")
 
     #"我的"按钮 元素
     @property
@@ -115,7 +123,7 @@ class HomePage(BasePage):
     def checga_element(self):
         return  self.proving_element('com.quarkfinance.ufo:id/tv_invest')
 
-
+    #首页理财产品名称
     def get_product_title_text(self):
         text=self.el_product_title_btn.text
         return text

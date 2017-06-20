@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from functions.appium_init import *
 from pages.my_invset_record_page import MyInvsetRecorePage
 from pages.my_trade_record_page import MyTradeRecordPage
-from pages.my_personal_center_page import MyPersonalCenterPage
+
 from pages.my_opinion_page import Opinionpage
 
 
@@ -72,6 +72,7 @@ class MyPage(BasePage):
         return MyTradeRecordPage(self.driver)
 
     def logic_link_myCenter(self):
+        from pages.my_personal_center_page import MyPersonalCenterPage
         self.el_my_personalCenter.click()
         return MyPersonalCenterPage(self.driver)
 

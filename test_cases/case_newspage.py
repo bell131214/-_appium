@@ -19,6 +19,7 @@ class NewsMesg(InterfaceCase):
         self.driver = self.inital.get_driver()
         self.logger = self.inital.logger
 
+
     def test_newspage_contract(self):
         """消息中心-合同消息-本金确认书验证"""
 
@@ -42,6 +43,46 @@ class NewsMesg(InterfaceCase):
         self.basepage.saveScreenshot('newspage_contract')
         self.assertTrue(bool1)
         self.assertEqual(title,'出借本金确认书')
+
+
+    def test_contract_details_no1(self):
+        """消息中心-出借咨询与服务协议验证"""
+        entry_page = Entry_page(self.driver)
+        newspage = entry_page.open_news_page()
+        contractspage = newspage.click_el_contract_message_btn()
+        contractdetailspage=contractspage.click_el_check_pact_btn()
+        contractdetailspage.el_service_agreement_btn.click()
+
+        title = contractdetailspage.el_capitalt_title.text
+        entry_page.saveScreenshot("contract_details_no2")
+
+        self.assertEquals(title,"出借咨询与服务协议")
+
+
+    def test_contract_details_no2(self):
+        """消息中心-授权委托书-出借确认和债权转让验证"""
+        entry_page = Entry_page(self.driver)
+        newspage = entry_page.open_news_page()
+        contractspage = newspage.click_el_contract_message_btn()
+        contractdetailspage = contractspage.click_el_check_pact_btn()
+        contractdetailspage.el_confirmation_btn.click()
+
+        title = contractdetailspage.el_capitalt_title.text
+        entry_page.saveScreenshot("contract_details_no1")
+
+        self.assertEquals("授权委托书-出借确认和债权转让",title)
+
+    def test_contract_details_no3(self):
+        """消息中心-授权委托书-催收及诉讼验证"""
+        entry_page = Entry_page(self.driver)
+        newspage = entry_page.open_news_page()
+        contractspage = newspage.click_el_contract_message_btn()
+        contractdetailspage = contractspage.click_el_check_pact_btn()
+        contractdetailspage.el_litigation_btn.click()
+
+        title = contractdetailspage.el_capitalt_title.text
+        entry_page.saveScreenshot("contract_details_no3")
+        self.assertEquals("授权委托书-催收及诉讼", title)
 
 
     def test_contract_list(self):
@@ -82,7 +123,6 @@ class NewsMesg(InterfaceCase):
         [u'\u5938\u5ba2\u5c0a\u4eab', u'2017-05-22', u'UF201500009497', u'90\u5929']
         [(u'\u5938\u5ba2\u5c0a\u4eab*90\u5929', datetime.datetime(2017, 5, 22, 10, 39, 4), u'UF201500009497', 90)]
         """
-
 
 
     def test_consultation_mes(self):
