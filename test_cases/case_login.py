@@ -13,7 +13,7 @@ class LoginTest(InterfaceCase):
         self.driver=self.inital.get_driver()
         self.logger=self.inital.logger
 
-    @unittest.skip('skip')
+    # @unittest.skip('skip')
     def test_non_login_state_clickBuy(self):
         '''非登录态点击“立即投资”按钮测试用例'''
         startupPage=StartupPage(self.driver)
@@ -27,7 +27,7 @@ class LoginTest(InterfaceCase):
         self.logger.info("run case:case_login.test_non_login_state_clickBuy")
         self.assertTrue(loginPage.element_is_exsit(loginPage.el_phone_text_input))
 
-    @unittest.skip('skip')
+    # @unittest.skip('skip')
     def test_non_login_state_calculation(self):
         '''非登录状态点击理财计算器测试用例'''
         startupPage=StartupPage(self.driver)
@@ -64,7 +64,7 @@ class LoginTest(InterfaceCase):
         self.logger.info("run case:case_login.test_non_login_state_clickReinvsetment")
         self.assertEqual(page_title, u'登录')
 
-    @unittest.skip('skip')
+    # @unittest.skip('skip')
     def test_non_login_state_clickMyPage(self):
         '''非登录状态点击“我的”按钮测试用例'''
         startupPage=StartupPage(self.driver)
@@ -76,7 +76,7 @@ class LoginTest(InterfaceCase):
         self.logger.info("run case:case_login.test_non_login_state_clickMyPage")
         self.assertTrue(loginPage.element_is_exsit(loginPage.el_pwd_text_input))
 
-    @unittest.skip('skip')
+    # @unittest.skip('skip')
     def test_login_success(self):
         '''登录成功测试用例'''
         user_phone='14488888098'

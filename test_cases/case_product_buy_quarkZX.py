@@ -7,7 +7,7 @@ from pages.startup_page import StartupPage
 from functions.sqlServerJDBC import Exce_SQLserver
 from functions.BasePage import BasePage
 
-class ProductBuyTest(InterfaceCase):
+class ProductBuyQuarkZX(InterfaceCase):
     '''购买夸客尊享理财产品测试用例集'''
 
     def setUp(self):

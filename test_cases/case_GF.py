@@ -4,7 +4,7 @@ sys.path.append('..')
 from functions.interface_case import InterfaceCase
 from functions.BasePage import BasePage
 from pages.startup_page import StartupPage
-from pages.home_page import HomePage
+from pages.converged_page import ConvergedPage
 import unittest
 from functions.appium_init import *
 
@@ -18,7 +18,7 @@ class GFtest(InterfaceCase):
         self.driver = self.inital.get_driver()
         self.logger = self.inital.logger
 
-
+    @unittest.skip('skip')
     def test_procedure(self):
         '''我的按钮截图对比测试用例'''
 
@@ -36,6 +36,26 @@ class GFtest(InterfaceCase):
         time.sleep(2)
         #self.assertTrue(result)
         #self.assertTrue(result)
+
+    def test_converged(self):
+        convergedPage=ConvergedPage(self.driver)
+        (user_phone,user_pwd)=convergedPage.register_customer()
+
+
+
+        self.driver=appium_init.inital.get_driver()
+        startupPage = StartupPage(self.driver)
+        homePage = startupPage.page_swipe()
+        loginPage = homePage.logic_link_login_page()
+        homePage = loginPage.logic_login(user_phone, user_pwd)
+
+        myPage = homePage.click_el_my_btn()
+        # 点击浮层
+        time.sleep(1)
+        myPage.el_tv_know.click()
+        # 断言代码
+        myPersonalCenterPage = myPage.logic_link_myCenter()
+        myPersonalCenterPage.saveScreenshot('myPersonalCenterPage')
 
 
 

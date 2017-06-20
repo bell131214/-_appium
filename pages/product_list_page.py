@@ -3,10 +3,9 @@ from functions.BasePage import BasePage
 from functions.appium_init import *
 from selenium.webdriver.common.by import By
 from pages.product_quarkzx_page import ProductQuarkzxPage
-
 from pages.product_van_Gogh_page import ProductVanGoghPage
-
 from pages.my_invset_record_page import MyInvsetRecorePage
+from pages.product_beauti_page import ProductBeautiPage
 
 class ProductListPage(BasePage):
 
@@ -33,6 +32,12 @@ class ProductListPage(BasePage):
     def el_van_Gogh_btn(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'梵高计划')]")
 
+    #夸客美丽按钮
+    @property
+    def el_beauti_btn(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'夸客美丽')]")
+
+
     #投资记录悬浮层
     @property
     def el_financia_img(self):
@@ -51,6 +56,10 @@ class ProductListPage(BasePage):
     def logic_link_van_Gogh(self):
         self.el_van_Gogh_btn.click()
         return ProductVanGoghPage(self.driver)
+
+    def logic_link_beauti(self):
+        self.el_beauti_btn.click()
+        return ProductBeautiPage(self.driver)
 
     #非登录状态，点击私募基金链接，跳转至首页
     def logic_nologin_state_fund(self):

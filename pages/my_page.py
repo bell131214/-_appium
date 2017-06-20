@@ -8,7 +8,7 @@ from pages.my_invset_record_page import MyInvsetRecorePage
 from pages.my_trade_record_page import MyTradeRecordPage
 from pages.my_personal_center_page import MyPersonalCenterPage
 from pages.my_opinion_page import Opinionpage
-
+from pages.my_bankcard_page import MyBankCardPage
 
 class MyPage(BasePage):
     """
@@ -59,6 +59,11 @@ class MyPage(BasePage):
     def click_my_investmentRecord(self):
         self.el_my_investmentRecord.click()
         return MyInvsetRecorePage(self.driver)
+
+    #点击我的银行卡
+    def logic_my_bankCard_click(self):
+        self.el_my_bankCard.click()
+        return MyBankCardPage(self.driver)
 
      #投资记录快捷入口
     def logic_financial_img_click(self):

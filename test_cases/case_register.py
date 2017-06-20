@@ -16,8 +16,7 @@ class RegisterTest(InterfaceCase):
         self.logger=self.inital.logger
 
     def test_new_customer(self):
-        '''注册新客户，并在我的个人中心，根据手机号断言
-         '''
+        '''注册新客户，并在我的个人中心，根据手机号断言'''
         user_phone=Create_Data().get_phone()
         user_name=Create_Data().get_name()
         user_id=Create_Data.get_identification()
@@ -34,9 +33,10 @@ class RegisterTest(InterfaceCase):
         registerIdentityAuthPage=registerPatternlockPage.logic_drawGestureCode()
         homePage=registerIdentityAuthPage.logic_entry_user_info(user_name,user_id,user_email)
 
+        homePage.el_my_btn.click()
         myPage=homePage.click_el_my_btn()
+
         #点击浮层
-        time.sleep(1)
         myPage.el_tv_know.click()
 
         #断言代码
