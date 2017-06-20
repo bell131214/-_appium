@@ -5,9 +5,7 @@ sys.path.append('..')
 from functions.BasePage import BasePage
 from selenium.webdriver.common.by import By
 from functions.appium_init import *
-from pages.my_invset_record_page import MyInvsetRecorePage
-from pages.my_trade_record_page import MyTradeRecordPage
-from pages.my_personal_center_page import MyPersonalCenterPage
+
 
 class Opinionpage(BasePage):
         """意见反馈页面"""
