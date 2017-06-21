@@ -97,7 +97,7 @@ class SendMail(object):
     def send(self,type):
         #to_mail_list=appium_init.inital.desired_caps['to_mail_list'].split(',')
 
-        if type==0:
+        if type=='0':
             to_mail_list = appium_init.inital.desired_caps['to_mail_list'].split(',')
             cc_mail_list = appium_init.inital.desired_caps['cc_mail_list'].split(',')
         else:
@@ -114,6 +114,7 @@ class SendMail(object):
        # mailFile=self.get_FileName(result_path,'send_mail')
 
         self.post_mail(to_mail_list,cc_mail_list,resultFile,logFile)
+
 
         #调试类
     def sendEmail1(msgTo, content, type):
@@ -137,5 +138,12 @@ class SendMail(object):
 
 if __name__ == '__main__':
     Init()
-    mail=SendMail()
-    mail.send(type=1)
+   # mail=SendMail()
+   # mail.send(type=1)
+
+    mail = SendMail()
+    # type =0 发送正式邮件  type=1发送测试邮件
+    mail_type = appium_init.inital.desired_caps['test_mail']
+    print  type(mail_type)
+    print mail_type
+    mail.send(mail_type)
