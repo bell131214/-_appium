@@ -58,6 +58,14 @@ class HomePage(BasePage):
        # return self.base_find_element(By.XPATH,"//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/return_money_btn')]")
         return  self.base_find_element(By.ID,"com.quarkfinance.ufo:id/return_money_btn")
 
+
+
+    # 新手体验计划投资记录
+    @property
+    def el_invest_newpeo_img(self):
+        # return self.base_find_element(By.XPATH,"//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/return_money_btn')]")
+        return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/tv_invest")
+
     #立即投资
     @property
     def el_immediate_investment_btn(self):
