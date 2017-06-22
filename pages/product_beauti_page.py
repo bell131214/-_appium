@@ -16,6 +16,12 @@ class ProductBeautiPage(BasePage):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'立即投资')]")
 
 
+    #title
+    @property
+    def el_title_text(self):
+        return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/tb_title")
+
+
 
 
     #非登录态点击立即投资按钮，跳转至登录页
@@ -28,3 +34,8 @@ class ProductBeautiPage(BasePage):
     def logic_link_buy(self):
         self.el_buy_btn.click()
         return BuyInsertMoneyPage(self.driver)
+
+
+    def logic_get_title_text(self):
+        title=self.el_title_text.text
+        return title

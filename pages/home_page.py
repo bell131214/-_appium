@@ -13,7 +13,7 @@ from pages.news_page import NewsPage
 from pages.my_invset_record_page import MyInvsetRecorePage
 from pages.my_page import MyPage
 from pages.banner_pages import BannerPages
-
+from pages.product_beauti_page import ProductBeautiPage
 
 
 class HomePage(BasePage):
@@ -63,7 +63,6 @@ class HomePage(BasePage):
     # 新手体验计划投资记录
     @property
     def el_invest_newpeo_img(self):
-        # return self.base_find_element(By.XPATH,"//android.widget.ImageView[contains(@resource-id,'com.quarkfinance.ufo:id/return_money_btn')]")
         return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/tv_invest")
 
     #立即投资
@@ -127,6 +126,14 @@ class HomePage(BasePage):
         self.el_product_btn.click()
         return ProductListPage(self.driver)
 
+    #登录状态 点击产品列表
+    def logic_link_login_product(self):
+        #time.sleep(0.5)
+       #self.press_TouchAction()
+        self.el_product_btn.click()
+        self.el_product_btn.click()
+        return ProductListPage(self.driver)
+
 
     def checga_element(self):
         return  self.proving_element('com.quarkfinance.ufo:id/tv_invest')
@@ -135,6 +142,11 @@ class HomePage(BasePage):
     def get_product_title_text(self):
         text=self.el_product_title_btn.text
         return text
+
+
+    def logic_el_invest_newpeo_click(self):
+         self.el_invest_newpeo_img.click()
+         return  ProductBeautiPage(self.driver)
 
 
 

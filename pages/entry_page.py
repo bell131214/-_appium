@@ -132,6 +132,18 @@ class Entry_page(BasePage):
         return  Modify_Password_page
 
 
+    #登录状态_产品列表
+
+    #登录状态私募预约
+    def open_Private_Offering_Fund_Page(self):
+        homepage=self.open_login_home_page()
+        productListPage=homepage.logic_link_login_product()
+
+        private_Offering_Fund_Page=productListPage.logic_login_private_fund()
+        return private_Offering_Fund_Page
+
+
+
 
 
 
