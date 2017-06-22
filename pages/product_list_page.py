@@ -32,6 +32,11 @@ class ProductListPage(BasePage):
     def el_van_Gogh_btn(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'梵高计划')]")
 
+    #新手体验计划
+    @property
+    def el_Novice_experience_btn(self):
+        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'新手体验计划')]")
+
     #夸客美丽按钮
     @property
     def el_beauti_btn(self):
@@ -67,6 +72,12 @@ class ProductListPage(BasePage):
         self.el_fund_btn.click()
         return LoginPage(self.driver)
 
+    # 登录状态，点击私募基金链接，跳转至私募列表页
+    def logic_login_private_fund(self):
+        from pages.private_offering_fund_page import Private_Offering_Fund_Page
+        self.el_fund_btn.click()
+        return Private_Offering_Fund_Page(self.driver)
+
     #非登录状态，点击续投产品链接，跳转至首页
     def logic_nologin_state_reinvestment(self):
         from pages.login_page import LoginPage
@@ -77,4 +88,9 @@ class ProductListPage(BasePage):
     def logic_financia_img_click(self):
         self.el_financia_img.click()
         return  MyInvsetRecorePage(self.driver)
+
+    #非登录状态点击新手体验计划
+    def logic_notlogin_prodict(self):
+        self.el_Novice_experience_btn.click()
+        return ProductBeautiPage(self.driver)
 

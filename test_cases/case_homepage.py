@@ -35,7 +35,7 @@ class hometest(InterfaceCase):
     #id:输入需要验证的banner 索引ID
     #assertEqual 输入预期的banner详情的title
 
-    @unittest.skip("测试")
+
     def test_click_banner1(self):
         u"""验证banner[1]"""
 
@@ -49,7 +49,7 @@ class hometest(InterfaceCase):
         self.logger.info(self.assertEqual(b.el_title.text, u"系统维护"))
         #self.assertEqual(b.el_title.text, u"系统维护")
 
-    @unittest.skip("测试")
+
     def test_click_banner3(self):
             u"""验证banner[3]"""
 
@@ -65,7 +65,7 @@ class hometest(InterfaceCase):
             self.basepage.saveScreenshot('click_banner3')
            # self.assertEqual(b.el_title.text, u"夸客美丽增值计划")
 
-    @unittest.skip("测试")
+
     def test_click_banner5(self):
             u"""验证banner[5]"""
             # id:输入需要验证的banner 索引ID
@@ -80,7 +80,7 @@ class hometest(InterfaceCase):
             self.basepage.saveScreenshot('click_banner5')
            # self.assertEqual(b.el_title.text, u"新春心意")
 
-    @unittest.skip("测试")
+
     def test_newuser_product_buy(self):
         """新用户首页理财产品验证"""
         "14414441414 ，qwe123"
@@ -93,7 +93,7 @@ class hometest(InterfaceCase):
         self.assertEquals(title_text,"新手体验计划")
 
 
-    @unittest.skip("测试")
+
     def test_system_notice(self):
         """首页-未登录点击系统广告"""
         entry_page = Entry_page(self.driver)
@@ -107,13 +107,24 @@ class hometest(InterfaceCase):
         """首页-未登录点击推荐产品"""
         entry_page = Entry_page(self.driver)
         homepage = entry_page.open_start_home_page()
-        myInvsetRecorePage=homepage.el_invest_newpeo_img.click()
+        productBeautiPage=homepage.logic_el_invest_newpeo_click()
+        title=productBeautiPage.logic_get_title_text()
         entry_page.saveScreenshot('home_product')
+        self.assertEquals(title,"新手体验计划")
 
 
+    def test_product_notlogin(self):
+        """首页-未登录购买理财产品"""
+        entry_page = Entry_page(self.driver)
+        homepage = entry_page.open_start_home_page()
+        productBeautiPage = homepage.logic_el_invest_newpeo_click()
+        #productListPage=homepage.logic_link_product()
+       # productBeautiPage=productListPage.logic_notlogin_prodict()
+        loginPage=productBeautiPage.logic_noLogin_state_buy()
+        title=loginPage.el_title.text
 
-
-
+        entry_page.saveScreenshot('product_notlogin')
+        self.assertEquals(title,"登录")
 
 
 
