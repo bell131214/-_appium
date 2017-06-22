@@ -6,6 +6,7 @@ from pages.product_quarkzx_page import ProductQuarkzxPage
 from pages.product_van_Gogh_page import ProductVanGoghPage
 from pages.my_invset_record_page import MyInvsetRecorePage
 from pages.product_beauti_page import ProductBeautiPage
+from pages.product_greenHand_page import ProductGreenHandPage
 
 class ProductListPage(BasePage):
 
@@ -43,6 +44,11 @@ class ProductListPage(BasePage):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'夸客美丽')]")
 
 
+    @property
+    def el_greenHand_btn(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'新手体验计划')]")
+
+
     #投资记录悬浮层
     @property
     def el_financia_img(self):
@@ -55,6 +61,11 @@ class ProductListPage(BasePage):
     def logic_link_quarkZX(self):
         self.el_quarkZX_btn.click()
         return ProductQuarkzxPage(self.driver)
+
+    #点击新手体验计划，跳转至新手体验计划详情page
+    def logic_link_greenHand(self):
+        self.el_greenHand_btn.click()
+        return ProductGreenHandPage(self.driver)
 
 
     #点击梵高计划链接，跳转至梵高计划产品详情page

@@ -7,8 +7,8 @@ from pages.startup_page import StartupPage
 from functions.sqlServerJDBC import Exce_SQLserver
 from pages.converged_page import ConvergedPage
 
-class ProductBuyBeauti(InterfaceCase):
-    '''购买夸客美丽产品测试用例集'''
+class ProductBuyGreenHand(InterfaceCase):
+    '''购买新手体验测试用例集'''
 
     def setUp(self):
         self.drvier=self.inital.get_driver()
@@ -16,9 +16,9 @@ class ProductBuyBeauti(InterfaceCase):
 
 
 
-    # @unittest.skip('skip')
-    def test_buy_Beauti(self):
-        '''购买美丽田园测试用例'''
+    @unittest.skip('skip')
+    def test_buy_GreenHand_fristtime(self):
+        '''购买新手体验计划测试用例'''
         convergedPage=ConvergedPage(self.drvier)
         (user_phone,pwd)=convergedPage.register_customer()
 
@@ -33,10 +33,9 @@ class ProductBuyBeauti(InterfaceCase):
         homePage.el_product_btn.click()
         time.sleep(0.5)
         productListPage = homePage.logic_link_product()
-        time.sleep(1)
-        productListPage.swipe_to_up()
-        productBeautiPage = productListPage.logic_link_beauti()
-        buyInsertMoneyPage=productBeautiPage.logic_link_buy()
+
+        productGreenHandPage = productListPage.logic_link_greenHand()
+        buyInsertMoneyPage=productGreenHandPage.logic_link_buy()
 
 
         buyConfirmPage = buyInsertMoneyPage.logic_buy_product(amount)
@@ -54,12 +53,34 @@ class ProductBuyBeauti(InterfaceCase):
         sql_amount = int(sql_result[0])
         sql_product_name=str(sql_result[1])
 
-        buyTradeResultPage.saveScreenshot('test_buy_Beauti')
+        buyTradeResultPage.saveScreenshot('test_buy_GreenHand')
         self.assertEqual(int(amount), sql_amount)
 
-        self.logger.info("run case:test_buy_Beauti user_phone is %s,product_name is %s" %(user_phone,sql_product_name))
-        self.assertEqual("夸客美丽*360天", sql_product_name)
-        # self.assertIn(sql_product_name,("360天财富增值计划美丽田园定制版","夸客美丽*360天"))
+        self.logger.info("run case:test_buy_GreenHand_fristtime user_phone is %s,product_name is %s" %(user_phone,sql_product_name))
+        self.assertEqual("新手体验计划*12天", sql_product_name)
+
+    def test_buy_greenHand_secondtime(self):
+        user_phone=self.inital.excel_info['quarkZX90']['phone']
+        pwd=self.inital.excel_info['quarkZX90']['pwd']
+        amount='100000'
+
+        startupPage = StartupPage(self.drvier)
+        homePage = startupPage.page_swipe()
+        loginPage = homePage.logic_link_login_page()
+        homePage = loginPage.logic_login(user_phone, pwd)
+        # 点击一次理财产品元素，过滤蒙层
+        homePage.el_product_btn.click()
+        time.sleep(0.5)
+        productListPage = homePage.logic_link_product()
+        time.sleep(1)
+        productListPage.swipe_to_up()
+        productGreenHandPage = productListPage.logic_link_greenHand()
+        # productGreenHandPage.get_screenshot_by_element(productGreenHandPage,'el_buy_btn',False)
+        result=productGreenHandPage.get_screenshot_by_element(productGreenHandPage,'el_buy_btn').same_as(30)
+
+        self.logger.info(
+            "run case:test_buy_greenHand_secondtime user_phone is %s" %user_phone)
+        self.assertEqual(result,True)
 
 
     def tearDown(self):
