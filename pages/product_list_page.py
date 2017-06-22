@@ -7,6 +7,9 @@ from pages.product_van_Gogh_page import ProductVanGoghPage
 from pages.my_invset_record_page import MyInvsetRecorePage
 from pages.product_beauti_page import ProductBeautiPage
 from pages.product_greenHand_page import ProductGreenHandPage
+from pages.product_monthly_interest_page import ProductMonthlyInterestPage
+from pages.product_riseBystep_page import ProductRiseByStepPage
+from pages.product_annualInterestRise_page import ProductAnnualInterestRisePage
 
 class ProductListPage(BasePage):
 
@@ -38,18 +41,45 @@ class ProductListPage(BasePage):
     def el_beauti_btn(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'夸客美丽')]")
 
+    #月月付息按钮 元素
+    @property
+    def el_monthly_interest_btn(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'月月付息')]")
 
+
+    #新手体验计划
     @property
     def el_greenHand_btn(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'新手体验计划')]")
 
+    #步步高按钮 元素
+    @property
+    def el_risebystep_btn(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'步步高')]")
+
+    #年年生利 按钮 元素
+    @property
+    def el_annualinterestrise_btn(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'年年生利')]")
 
     #投资记录悬浮层
     @property
     def el_financia_img(self):
         return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/return_money_btn")
 
+    #点击月月付息链接，跳转至月月付息产品详情page
+    def logic_link_monthly_interest(self):
+        self.el_monthly_interest_btn.click()
+        return ProductMonthlyInterestPage(self.driver)
 
+    #点击步步高按钮，跳转至步步高产品详情page
+    def logic_link_rise_by_step(self):
+        self.el_risebystep_btn.click()
+        return ProductRiseByStepPage(self.driver)
+
+    def logic_link_annualInterestRise(self):
+        self.el_annualinterestrise_btn.click()
+        return  ProductAnnualInterestRisePage(self.driver)
 
 
     #点击夸客尊享链接，跳转至夸客尊享产品详情page
