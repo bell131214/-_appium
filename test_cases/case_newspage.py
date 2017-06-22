@@ -35,7 +35,7 @@ class NewsMesg(InterfaceCase):
 
         contractdetailspage.get_screenshot_by_element(contractdetailspage, 'el_capital_img',isexist=False)  #第一次截图时
         #进行截图对比
-        time.sleep(5)
+        time.sleep(4)
         bool1= contractdetailspage.get_screenshot_by_element(contractdetailspage,'el_capital_img',isexist=True).same_as(percent=30)
         #断言判断
         title=contractdetailspage.el_capitalt_title.text

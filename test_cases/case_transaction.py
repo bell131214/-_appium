@@ -7,8 +7,6 @@ from functions.interface_case import InterfaceCase
 from pages.startup_page import StartupPage
 from functions.sqlServerJDBC import Exce_SQLserver
 from functions.appium_init import *
-from pages.my_invset_record_page import MyAssetDetailsPage
-from functions.BasePage import BasePage
 from pages.entry_page import Entry_page
 
 class Transaction(InterfaceCase):
@@ -20,7 +18,7 @@ class Transaction(InterfaceCase):
 
 
     def test_transaction_list(self):
-        """交易列表数据验证"""
+        """交易记录-交易列表数据验证"""
         #mytraderecordpage=self.into_transaction()
 
         entry_page = Entry_page(self.driver)
@@ -43,7 +41,7 @@ class Transaction(InterfaceCase):
         self.assertEquals(trade_list[1], paymentno[0][0])
 
     def test_transaction_consultation(self):
-        """咨询消息验证"""
+        """交易记录-咨询消息验证"""
         "14114444144"
 
         entry_page=Entry_page(self.driver)
@@ -56,18 +54,17 @@ class Transaction(InterfaceCase):
         entry_page.saveScreenshot('transaction_consultation')
         #断言
         self.assertIsNotNone(title)
-        #print title
 
 
-    def into_transaction(self):
-        startupPage = StartupPage(self.driver)
-        homepage = startupPage.page_swipe()
-        loginPage = homepage.logic_link_login_page()
-        homepage = loginPage.logic_login()
-        mypage = homepage.click_el_my_btn()
-        mypage.el_tv_know.click()
-        mytraderecordpage = mypage.logic_my_transactionRecord_btn_click()
-        return  mytraderecordpage
+    def test_payment_record(self):
+        """交易记录-回款记录验证"""
+
+        entry_page = Entry_page(self.driver,phone="14454839876",pwd="qwe123")
+        mytradeRecordPage = entry_page.open_my_tradeRecord_page()
+
+
+
+
 
 
     def tearDown(self):
