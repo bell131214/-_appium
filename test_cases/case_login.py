@@ -41,6 +41,7 @@ class LoginTest(InterfaceCase):
         self.assertEqual(page_title,'理财计算器')
 
 
+
     def test_non_login_state_clickFund(self):
         '''非登录状态点击基金列表'''
         startupPage = StartupPage(self.driver)

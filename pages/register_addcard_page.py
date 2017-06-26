@@ -40,8 +40,55 @@ class RegisterAddCardPage(BasePage):
 
     #下拉列表中 建设银行 option
     @property
-    def el_bankJS_option(self):
+    def el_bank_optionJS(self):
         return self.base_find_element(By.NAME,"中国建设银行")
+
+    #下拉列表中 广发银行 option
+    @property
+    def el_bank_optionGF(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'广发银行')]")
+
+    #下拉列表中 交通银行 option
+    @property
+    def el_bank_optionJT(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'交通银行')]")
+
+    #下拉列表中 平安银行 option
+    @property
+    def el_bank_optionPA(self):
+        return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'平安银行')]")
+
+
+    #下拉列表中 招商银行 option
+    @property
+    def el_bank_optionZS(self):
+        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'招商银行')]")
+
+    #下拉列表中 中信银行 option
+    @property
+    def el_bank_optionZX(self):
+        self.swipe_to_up()
+        time.sleep(1)
+        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'中信银行')]")
+
+    # 下拉列表中 中国银行 option
+    @property
+    def el_bank_optionZG(self):
+        self.swipe_to_up()
+        time.sleep(1)
+        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'中国银行')]")
+
+    # 下拉列表中 农业银行 option
+    @property
+    def el_bank_optionNY(self):
+        self.swipe_to_up()
+        time.sleep(1)
+        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'中国农业银行')]")
+
+    #下拉列表中 明生银行 option
+    @property
+    def el_bank_optionMS(self):
+        return self.base_find_element(By.XPATH, "//android.widget.TextView[contains(@text,'中国民生银行')]")
 
     #确认按钮 元素
     @property
@@ -56,16 +103,28 @@ class RegisterAddCardPage(BasePage):
 
 
 
-    #点击银行卡下拉列表，选择建设银行
-    def logic_choose_bankcard_js(self):
+    #点击银行卡下拉列表，选择银行
+    def logic_choose_bankcard(self,bankType):
         self.el_bankcard_list.click()
+        method_name="el_bank_option"+str(bankType)
         time.sleep(1)
-        self.el_bankJS_option.click()
+        exec "self.%s.click()" %method_name
 
-    def logic_insert_jsbankCard_INFO(self,username,phone,cardNO):
+    #反射机制实现选择银行  暂时有问题
+    def logic_choose_bankcard_getattr(self,bankType):
+        self.el_bankcard_list.click()
+        method_name="el_bank_option"+str(bankType)
+        el_option=getattr(self,method_name)
+        time.sleep(1)
+        el_option.click()
+
+
+
+    #最后一个参数bankType为银行简称，输入哪个简称就绑定哪家银行卡
+    def logic_insert_bankCard_INFO(self,username,phone,cardNO,bankType='JS'):
         from pages.my_bankcard_page import MyBankCardPage
         self.el_username_textfield.send_keys(username)
-        self.logic_choose_bankcard_js()
+        self.logic_choose_bankcard(bankType)
         self.el_cardNo_textfield.send_keys(cardNO)
         self.el_phone_textfield.send_keys(phone)
 
@@ -73,9 +132,11 @@ class RegisterAddCardPage(BasePage):
         sms=Message()
         self.el_sms_textfield.send_keys(sms.get_sms(phone))
         self.el_confirm_btn.click()
-        time.sleep(8)
+        time.sleep(15)
 
         return MyBankCardPage(self.driver)
+
+
 
 
 

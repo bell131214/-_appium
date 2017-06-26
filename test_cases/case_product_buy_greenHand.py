@@ -16,7 +16,7 @@ class ProductBuyGreenHand(InterfaceCase):
 
 
 
-    @unittest.skip('skip')
+    # @unittest.skip('skip')
     def test_buy_GreenHand_fristtime(self):
         '''购买新手体验计划测试用例'''
         convergedPage=ConvergedPage(self.drvier)
@@ -53,13 +53,14 @@ class ProductBuyGreenHand(InterfaceCase):
         sql_amount = int(sql_result[0])
         sql_product_name=str(sql_result[1])
 
-        buyTradeResultPage.saveScreenshot('test_buy_GreenHand')
+        buyTradeResultPage.saveScreenshot('test_buy_GreenHand_fristtime')
         self.assertEqual(int(amount), sql_amount)
 
         self.logger.info("run case:test_buy_GreenHand_fristtime user_phone is %s,product_name is %s" %(user_phone,sql_product_name))
         self.assertEqual("新手体验计划*12天", sql_product_name)
 
     def test_buy_greenHand_secondtime(self):
+        '''已经有理财记录的账号，再次购买新手标测试用例'''
         user_phone=self.inital.excel_info['quarkZX90']['phone']
         pwd=self.inital.excel_info['quarkZX90']['pwd']
         amount='100000'
@@ -77,7 +78,7 @@ class ProductBuyGreenHand(InterfaceCase):
         productGreenHandPage = productListPage.logic_link_greenHand()
         # productGreenHandPage.get_screenshot_by_element(productGreenHandPage,'el_buy_btn',False)
         result=productGreenHandPage.get_screenshot_by_element(productGreenHandPage,'el_buy_btn').same_as(30)
-
+        productGreenHandPage.saveScreenshot('test_buy_greenHand_secondtime')
         self.logger.info(
             "run case:test_buy_greenHand_secondtime user_phone is %s" %user_phone)
         self.assertEqual(result,True)
