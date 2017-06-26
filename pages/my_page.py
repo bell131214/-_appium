@@ -26,6 +26,11 @@ class MyPage(BasePage):
     def el_my_bankCard(self):
         return self.base_find_element(By.XPATH,"//android.widget.TextView[contains(@text,'我的银行卡')]")
 
+    # 我的银行卡张数
+    @property
+    def el_my_bankcard_num(self):
+        return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/text_bank_num")
+
     #交易记录
     @property
     def el_my_transactionRecord_btn(self):
@@ -45,6 +50,50 @@ class MyPage(BasePage):
     @property
     def el_view_msg(self):
         return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/re_feedback")
+
+
+    # 关于我们
+    @property
+    def el_about_us(self):
+        return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/re_about_us")
+
+
+
+    #关于我们详情
+    @property
+    def el_about_us_deilt(self):
+        return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/img_content")
+
+
+    # 帮助中心
+    @property
+    def el_Help_center(self):
+        return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/re_help_center")
+
+
+    # 帮助中心详情
+    @property
+    def el_Help_center_deil(self):
+        return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/img_content")
+
+
+    # 隐藏金额
+    @property
+    def el_Amount_hidden(self):
+        return self.base_find_elements(By.XPATH,"//android.widget.RelativeLayout[contains(@resource-id,'com.quarkfinance.ufo:id/re_img_can_see')]")
+        #return self.base_find_elements(By.ID, "com.quarkfinance.ufo:id/re_img_can_see")
+
+
+    # 金额
+    @property
+    def el_my_money(self):
+        return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/tv_wealthAmount")
+
+    # 收益
+    @property
+    def el_Profit_money(self):
+        return self.base_find_element(By.ID, "com.quarkfinance.ufo:id/tv_profitTotal")
+
 
 
     #投资记录快捷入口

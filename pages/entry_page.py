@@ -38,7 +38,6 @@ class Entry_page(BasePage):
     def open_login_page(self):
         homepage=self.open_start_home_page()
         loginPage=homepage.logic_link_login_page()
-
         return loginPage
 
     # 登录状态返回homepage
