@@ -19,6 +19,50 @@ class MyTradeRecordPage(BasePage):
     def el_trade_btn(self):
         return self.base_find_elements(By.XPATH, "//android.widget.TextView[contains(@text,'交易')]")
 
+
+    #理财名称和金额
+    @property
+    def el_name_and_amount(self):
+        return  self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_name_and_amount']/android.widget.TextView")
+
+    #时间和状态
+    @property
+    def el_date_and_status(self):
+        return self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_date_and_status']/android.widget.TextView")
+        #return self.base_find_elements(By.XPATH,"//*[resource-id='com.quarkfinance.ufo:id/text_date_and_status']/android.widget.TextView[1]")
+
+    #交易流水
+    @property
+    def el_transaction_flowing(self):
+        return self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_transaction_flowing']/android.widget.TextView")
+        #return self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_transaction_flowing']/android.widget.TextView")
+
+
+    #合同编号
+    @property
+    def el_contract_no(self):
+        return self.base_find_elements(By.XPATH,
+                                       "//*[@resource-id='com.quarkfinance.ufo:id/text_contract_no']/android.widget.TextView")
+        #return self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_contract_no']/android.widget.TextView")
+
+
+    # 续投合同编号
+    @property
+    def el_reinvest_contract_no(self):
+        return self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_reinvest_contract_no']/android.widget.TextView")
+
+    #续投方式
+    @property
+    def el_reinvest_way(self):
+        return self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_reinvest_way']/android.widget.TextView")
+
+    #预期收益
+    @property
+    def el_expect_incomeself(self):
+        return self.base_find_elements(By.XPATH,"//*[@resource-id='com.quarkfinance.ufo:id/text_expect_income']/android.widget.TextView")
+
+
+
     #我知道了 确认按钮
     @property
     def el_tv_know(self):
@@ -48,9 +92,10 @@ class MyTradeRecordPage(BasePage):
         #return  self.base_find_elements(By.XPATH,"//android.widget.RelativeLayout[contains(@id,'com.quarkfinance.ufo:id/layout_item_head')]")
 
 
-
+    #点击咨询列表
     def logic_get_Consultation_list(self):
         self.el_trade_Consultation_list[0].click()
+
 
     #获取私募预约编号
     def logic_get_inquiry_no_test(self):
@@ -97,6 +142,39 @@ class MyTradeRecordPage(BasePage):
 
         #print txtinvestapply,paymentno
         return trade_list
+
+
+    #交易回款列表列表数据获取
+    def logic_get_trade_list(self):
+        trade_list_dict={}
+        #产品名称
+        name=self.el_name_and_amount[0].text
+        #产品金额
+        amount=self.el_name_and_amount[1].text
+        #理财时间
+        time.sleep(0.2)
+        data1=self.el_date_and_status[0].text
+        #状态
+        status=self.el_date_and_status[1].text
+        #流水编号
+        flowing=self.el_transaction_flowing[1].text
+        #合同编号
+        contract_no=self.el_contract_no[1].text
+        trade_list_dict={"name":name,"amount":amount,"data":data1,"status":status,"flowing":flowing,"contract_no":contract_no}
+
+        return trade_list_dict
+
+
+    def logic_get_reinvest_way(self):
+        trade_list_dict = {}
+        reinvest_way=self.el_reinvest_way[1].text
+        expect_incomeself=self.el_expect_incomeself[1].text
+        reinvest_contract_no=self.el_reinvest_contract_no[1].text
+        trade_list_dict={"reinvest_way":reinvest_way,"expect_incomeself":expect_incomeself,"el_reinvest_contract_no":reinvest_contract_no}
+
+        return  trade_list_dict
+
+
 
 
 

@@ -21,7 +21,6 @@ class InvestRecord(InterfaceCase):
         self.logger = self.inital.logger
 
 
-
     def test_home_financial(self):
         "登录状态-首页进入资产详情"
         entry_page=Entry_page(self.driver)
@@ -36,8 +35,6 @@ class InvestRecord(InterfaceCase):
 
         #断言
         self.assertEquals(title_text,u"投资记录")
-
-
 
 
     def test_product_financial(self):
@@ -109,6 +106,7 @@ class InvestRecord(InterfaceCase):
         myinvsetrecorepage = entry_page.open_my_invset_recore_Page()
         time.sleep(0.2)
         myinvsetrecorepage.el_drop_out_btn.click()
+
         invest_list_value = myinvsetrecorepage.logic_get_invest_value()
         sql = Exce_SQLserver()
         contract_number = sql.execSql_getList(
@@ -237,7 +235,6 @@ class InvestRecord(InterfaceCase):
         self.assertIn(str(contract_number[0][5])[:-6] + "," + str(contract_number[0][5])[-6:],
                       invest_list_value["expected_invest"])
 
-
     def test_financial_data(self):
         """投资记录-理财中资产详情数据验证"""
 
@@ -266,7 +263,6 @@ class InvestRecord(InterfaceCase):
         self.assertIn(contract_number[0][0],assetdetails_list[1])
         self.assertEqual(pact_title,'资产详情')
 
-
     def test_quiting_data(self):
         """投资记录-退出中资产详情数据验证"""
 
@@ -277,6 +273,7 @@ class InvestRecord(InterfaceCase):
         #获得资产详情页列表数据，默认获得第index=0 个
         time.sleep(1.5)
         assetdetails_list=MyAssetDetailsPage.get_assetdetails_list()
+        time.sleep(2)
 
         pact_title=MyAssetDetailsPage.el_pact_title_btn.text
         #查询DB 获得理财中第一个理财的合同编号

@@ -47,7 +47,7 @@ class MyPage(InterfaceCase):
         mypage = entry_page.open_login_my_page()
         mypage.el_about_us.click()
         #mypage.get_screenshot_by_element(mypage, 'el_about_us_deilt', isexist=False)
-
+        #time.sleep(5)
         bool1 = mypage.get_screenshot_by_element(mypage, 'el_about_us_deilt',isexist=True).same_as(percent=30)
 
         entry_page.saveScreenshot("test_About_us")
@@ -60,7 +60,7 @@ class MyPage(InterfaceCase):
         mypage = entry_page.open_login_my_page()
         mypage.el_Help_center.click()
         #mypage.get_screenshot_by_element(mypage, 'el_Help_center_deil', isexist=False)
-
+        #time.sleep(5)
         bool1 = mypage.get_screenshot_by_element(mypage, 'el_Help_center_deil', isexist=True).same_as(percent=30)
         entry_page.saveScreenshot("test_Help_center")
         self.assertTrue(bool1)
