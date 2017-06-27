@@ -13,9 +13,9 @@ class ConvergedPage(BasePage):
         user_name=Create_Data().get_name()
         user_id=Create_Data.get_identification()
         user_email=Create_Data.get_random_mail()
-        user_card=Create_Data.get_bank_card_js()
+        user_card=Create_Data.get_bank_card_zg()
         user_pwd='123456q'
-        bankType="ZX"
+        bankType="ZG"
 
         # user_phone='14488888083'
         # user_name='ufo83'

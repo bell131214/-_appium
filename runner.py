@@ -28,7 +28,7 @@ from functions.AppiumServer import AppiumServer
 if __name__ == '__main__':
     if isinstance(appium_init.inital,Initialization)!=True:
         Init()
-    testSuite = LoadCase.get_cases('testcase')
+    testSuite = LoadCase.get_cases(appium_init.inital.desired_caps['testsuite'])
 
     # 启动appium 服务
     appiumServer = AppiumServer()
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     exec_result.exec_cases(testSuite)
     mail = SendMail()
     # type =0 发送正式邮件  type=1发送测试邮件
-    mail_type=appium_init.inital.desired_caps['test_mail']
+    mail_type=str(appium_init.inital.desired_caps['test_mail'])
     mail.send(mail_type)
     appiumServer.stop_server()
 

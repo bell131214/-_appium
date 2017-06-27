@@ -33,16 +33,18 @@ class BasePage(object):
 			self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
 
 
-
-
 	def base_find_elements(self,locator,value):
 
 		if len(self.driver.find_elements(locator, value)):
 			return self.driver.find_elements(locator, value)
 		else:
+			for i in xrange(15):
+				time.sleep(1)
+				if len(self.driver.find_elements(locator,value)):
+					return self.driver.find_elements(locator,value)
 			self.logger.info('BasePage | NoSuchElementException error occur at {one};function name is {two};locator is {three} {four};'.format(one=sys._getframe().f_back.f_lineno,
 																																			   two=sys._getframe().f_back.f_code.co_name,
-																																			   three=locator,four=value))
+																																		   three=locator,four=value))
 			self.saveScreenshot(sys._getframe().f_back.f_code.co_name)
 
 	def get_size(self):

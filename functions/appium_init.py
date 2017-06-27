@@ -22,7 +22,7 @@ class Initialization():
         self.config=Config()
 
         #唯一需要配置路径的地方，路径为配置文件绝对路径
-        self.config_path="E:\\quark_work\\config\\appium_config.ini"
+        self.config_path="D:\\quarkscript\\UFO_appium\\config\\appium_config.ini"
 
         #读取配置文件中desired_caps信息，作为initial的属性保存
         self.desired_caps=self.config.get_config(
@@ -38,6 +38,9 @@ class Initialization():
         #读取配置文件中excel_path信息，把excel中的返回的字典作为initial的属性保存
         readExcel=ReadExcel(self.desired_caps['excel_path'])
         self.excel_info=readExcel.get_info()
+
+        read_buyProduct_Excel=ReadExcel(self.desired_caps['buyproduct_excel_path'])
+        self.buyProduct_info=read_buyProduct_Excel.get_buy_product_info()
 
 
         #将常用配置信息，日志类、ADB调用类、手机系统监控类（待扩展）的实例作为属性绑定在inital中，这些常用类避免反复实例化浪费内存影响效率

@@ -73,7 +73,7 @@ class ProductBuyGreenHand(InterfaceCase):
         homePage.el_product_btn.click()
         time.sleep(0.5)
         productListPage = homePage.logic_link_product()
-        time.sleep(1)
+        time.sleep(3)
         productListPage.swipe_to_up()
         productGreenHandPage = productListPage.logic_link_greenHand()
         # productGreenHandPage.get_screenshot_by_element(productGreenHandPage,'el_buy_btn',False)
