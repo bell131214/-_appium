@@ -40,6 +40,13 @@ class Entry_page(BasePage):
         loginPage=homepage.logic_link_login_page()
         return loginPage
 
+    def open_forget_pass_page(self):
+        loginPage=self.open_login_page()
+        forget_Pass=loginPage.logic_el_forget_pass_click()
+        return  forget_Pass
+
+
+
     # 登录状态返回homepage
     def open_login_home_page(self):
         loginPage=self.open_login_page()

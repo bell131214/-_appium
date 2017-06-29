@@ -13,6 +13,11 @@ class MyBankCardPage(BasePage):
     def el_addCard_btn(self):
         return self.base_find_element(By.ID,"com.quarkfinance.ufo:id/tb_right")
 
+    @property
+    def el_bankcard_list(self):
+        return self.base_find_elements(By.ID,"com.quarkfinance.ufo:id/ll_bank_layout")
+
+
     #银行卡列表第一个元素
     @property
     def el_bankName_listOne(self):
