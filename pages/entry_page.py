@@ -40,6 +40,13 @@ class Entry_page(BasePage):
         loginPage=homepage.logic_link_login_page()
         return loginPage
 
+    def open_forget_pass_page(self):
+        loginPage=self.open_login_page()
+        forget_Pass=loginPage.logic_el_forget_pass_click()
+        return  forget_Pass
+
+
+
     # 登录状态返回homepage
     def open_login_home_page(self):
         loginPage=self.open_login_page()
@@ -51,6 +58,7 @@ class Entry_page(BasePage):
     def open_login_my_page(self):
         homepage=self.open_login_home_page()
         mypage = homepage.click_el_my_btn()
+        time.sleep(0.1)
         mypage.el_tv_know.click()
         return mypage
 
@@ -116,7 +124,6 @@ class Entry_page(BasePage):
     def open_my_tradeRecord_page(self):
         mypage=self.open_login_my_page()
         mytradeRecordPage=mypage.logic_my_transactionRecord_btn_click()
-
         return mytradeRecordPage
 
     def open_news_page(self):

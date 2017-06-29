@@ -40,6 +40,7 @@ class Transaction(InterfaceCase):
         self.assertEquals(trade_list[0],txtinvestapply[0][0])
         self.assertEquals(trade_list[1], paymentno[0][0])
 
+
     def test_transaction_consultation(self):
         """交易记录-咨询消息验证"""
         "14114444144"
@@ -62,6 +63,49 @@ class Transaction(InterfaceCase):
         entry_page = Entry_page(self.driver,phone="14454839876",pwd="qwe123")
         mytradeRecordPage = entry_page.open_my_tradeRecord_page()
 
+        mytradeRecordPage.el_trade_list_image.click()
+        trade_list_dict=mytradeRecordPage.logic_get_trade_list()
+
+        sql = Exce_SQLserver()
+        data_trade_list = sql.execSql_getList("SELECT top 1 new_product_name,new_payamount,new_paydate,new_paymentstatus,new_paymentno,new_txtinvestapply FROM new_tradedetailBase  WHERE new_account ='6B5A5084-9C49-E711-80D3-00155D02B414'")
+
+        entry_page.saveScreenshot("payment_record")
+
+        #断言理财名称
+        self.assertIn(trade_list_dict['name'],data_trade_list[0][0])
+        #断言金额
+        self.assertIn(str(data_trade_list[0][1])[:-6]+","+str(data_trade_list[0][1])[-6:],trade_list_dict['amount'])
+        #断言时间
+        self.assertIn((data_trade_list[0][2].date().strftime("%Y-%m-%d")),trade_list_dict['data'])
+        #断言交易流水
+        self.assertEquals(trade_list_dict['flowing'],data_trade_list[0][4])
+        #断言理财状态
+        self.assertEquals(data_trade_list[0][3],100000003)
+        #断言合同编号
+        self.assertEquals(trade_list_dict['contract_no'],data_trade_list[0][5])
+
+    def test_Continued_investment(self):
+        """交易记录-续投记录验证"""
+
+        entry_page = Entry_page(self.driver, phone="14404414441", pwd="qwe123")
+        mytradeRecordPage = entry_page.open_my_tradeRecord_page()
+
+        mytradeRecordPage.el_trade_list_image.click()
+        trade_list_dict = mytradeRecordPage.logic_get_reinvest_way()
+
+
+        sql = Exce_SQLserver()
+        data_trade_list = sql.execSql_getList("SELECT top 10 new_renewmethod,new_expectprofit,new_newcontractno FROM new_renewapplyBase WHERE new_customer ='47A24DAD-E65A-E711-80C9-00155D01F903'")
+
+        entry_page.saveScreenshot("Continued_investment")
+
+        #断言续投方式
+        self.assertEquals(data_trade_list[0][0],100000001)
+        self.assertEquals(trade_list_dict['reinvest_way'],"本金续投")
+        #断言预期收益
+        self.assertIn(str(data_trade_list[0][1])[:5],trade_list_dict['expect_incomeself'])
+        #断言续投编号
+        self.assertEquals(trade_list_dict['el_reinvest_contract_no'],data_trade_list[0][2])
 
 
 
@@ -72,7 +116,8 @@ class Transaction(InterfaceCase):
 
         "14454839876 qwe123  回款成功"
         "14454635718 qwe123  回款成功"
-
+        "14404414441 qwe123 续投记录"
+        "SELECT top 1 * FROM AccountBase WHERE  new_telephone1=14454839876"
 
 if __name__ == '__main__':
     Init()
