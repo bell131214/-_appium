@@ -33,6 +33,7 @@ class ProductBuyAnnualInterestRise(InterfaceCase):
         productListPage = homePage.logic_link_product()
         time.sleep(1)
         productListPage.swipe_to_up()
+        time.sleep(1)
         productAnnualInterestRisePage = productListPage.logic_link_annualInterestRise()
         buyInsertMoneyPage=productAnnualInterestRisePage.logic_link_buy()
 
