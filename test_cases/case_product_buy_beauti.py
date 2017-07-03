@@ -33,8 +33,9 @@ class ProductBuyBeauti(InterfaceCase):
         homePage.el_product_btn.click()
         time.sleep(0.5)
         productListPage = homePage.logic_link_product()
-        time.sleep(1)
+        time.sleep(2)
         productListPage.swipe_to_up()
+        time.sleep(2)
         productBeautiPage = productListPage.logic_link_beauti()
         buyInsertMoneyPage=productBeautiPage.logic_link_buy()
 
