@@ -37,6 +37,7 @@ class GFtest(InterfaceCase):
         #self.assertTrue(result)
         #self.assertTrue(result)
 
+    @unittest.skip('skip')
     def test_converged(self):
         convergedPage=ConvergedPage(self.driver)
         (user_phone,user_pwd)=convergedPage.register_customer()
@@ -57,11 +58,33 @@ class GFtest(InterfaceCase):
         myPersonalCenterPage = myPage.logic_link_myCenter()
         myPersonalCenterPage.saveScreenshot('myPersonalCenterPage')
 
+    def test_delete_card(self):
+        user_name = 'ufo83'
+        user_phone = '14488888083'
+        user_pwd = '123456q'
+
+        startupPage = StartupPage(self.driver)
+        homePage = startupPage.page_swipe()
+        loginPage = homePage.logic_link_login_page()
+        homePage = loginPage.logic_login(user_phone, user_pwd)
+
+        myPage = homePage.click_el_my_btn()
+        # 点击浮层
+        time.sleep(1)
+        myPage.el_tv_know.click()
+
+        myBankCardPage=myPage.logic_my_bankCard_click()
+        bankCardInfoPage=myBankCardPage.logic_link_bankcardInfo_page()
+        bankCardInfoPage.el_delete_btn.click()
+        time.sleep(5)
+
+
 
 
     def tearDown(self):
         self.driver.quit()
 
 if __name__=='__main__':
+    Init()
     unittest.main()
     

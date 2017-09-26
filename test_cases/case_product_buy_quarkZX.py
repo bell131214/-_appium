@@ -14,7 +14,7 @@ class ProductBuyQuarkZX(InterfaceCase):
         self.drvier=self.inital.get_driver()
         self.logger=self.inital.logger
 
-    # @unittest.skip('skip')
+    @unittest.skip('skip')
     def test_buy_quarkZX90(self):
         '''购买夸客尊享90天测试用例'''
         user_phone=self.inital.excel_info['quarkZX90']['phone']
@@ -54,7 +54,7 @@ class ProductBuyQuarkZX(InterfaceCase):
         self.logger.info("run case:test_buy_quarkZX90")
 
 
-    # @unittest.skip('skip')
+    @unittest.skip('skip')
     def test_buy_quarkZX30(self):
         '''购买夸客尊享30天测试用例'''
         user_phone=self.inital.excel_info['quarkZX30']['phone']
@@ -94,7 +94,7 @@ class ProductBuyQuarkZX(InterfaceCase):
         self.assertEqual("夸客尊享*30天",sql_product_name)
         self.logger.info("run case:test_buy_quarkZX30")
 
-    # @unittest.skip('skip')
+    @unittest.skip('skip')
     def test_buy_quarkZX60(self):
         '''购买夸客尊享60天测试用例'''
         user_phone = self.inital.excel_info['quarkZX60']['phone']
@@ -134,7 +134,7 @@ class ProductBuyQuarkZX(InterfaceCase):
         self.assertEqual("夸客尊享*60天",sql_product_name)
         self.logger.info("run case:test_buy_quarkZX60")
 
-    # @unittest.skip('skip')
+    @unittest.skip('skip')
     def test_buy_quarkZX180(self):
         '''购买夸客尊享180天测试用例'''
         user_phone = self.inital.excel_info['quarkZX180']['phone']
@@ -174,7 +174,7 @@ class ProductBuyQuarkZX(InterfaceCase):
         self.assertEqual("夸客尊享*180天",sql_product_name)
         self.logger.info("run case:test_buy_quarkZX180")
 
-    # @unittest.skip('skip')
+    @unittest.skip('skip')
     def test_buy_quarkZX360(self):
         '''购买夸客尊享360天测试用例'''
         user_phone = self.inital.excel_info['quarkZX360']['phone']
